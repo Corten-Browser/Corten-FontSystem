@@ -4,6 +4,7 @@ members = [
     "components/font_parser",
     "components/font_registry",
     "components/text_shaper",
+    "components/text_layout",
     "components/glyph_renderer",
     "components/platform_integration",
     "components/font_system_api",

@@ -33,6 +33,7 @@ Parse OpenType, TrueType, WOFF, and WOFF2 font files
 - **WOFF** web font parsing - Signature: 'wOFF' (0x774F4646)
 - **WOFF2** web font parsing - Signature: 'wOF2' (0x774F4632)
 - **Variable Fonts** (OpenType Font Variations) - fvar and avar table parsing
+- **Color Fonts** (Emoji support) - COLR/CPAL, CBDT/CBLC, sbix, and SVG table parsing
 
 All web font formats (WOFF/WOFF2) are automatically decompressed to standard TTF/OTF format before parsing.
 
@@ -108,6 +109,52 @@ Tag::SLANT         // 'slnt' - Slant angle (-90 to 90)
 Tag::OPTICAL_SIZE  // 'opsz' - Optical size (6-72)
 Tag::ITALIC        // 'ital' - Italic (0 or 1)
 ```
+
+### Color Fonts & Emoji
+
+```rust
+use font_parser::OpenTypeFont;
+
+// Parse color font (emoji font)
+let font_data = std::fs::read("path/to/emoji-font.ttf")?;
+let font = OpenTypeFont::parse(font_data)?;
+
+// Check if font has color glyphs
+if font.is_color_font() {
+    // Get supported color formats
+    let formats = font.get_color_formats();
+    println!("Color formats: {:?}", formats);
+
+    // Get color palettes (CPAL)
+    if let Some(cpal) = font.get_cpal() {
+        let palette = cpal.default_palette().unwrap();
+        println!("Default palette has {} colors", palette.len());
+
+        // Access individual colors
+        for (i, color) in palette.iter().enumerate() {
+            println!("Color {}: R={}, G={}, B={}, A={}",
+                i, color.red, color.green, color.blue, color.alpha);
+        }
+    }
+
+    // Get color layers for a glyph (COLR)
+    let glyph_id = 42;
+    if font.has_color_layers(glyph_id) {
+        let layers = font.get_color_layers(glyph_id).unwrap();
+        for layer in layers {
+            println!("Layer: glyph {:?}, palette color {}",
+                layer.glyph_id, layer.palette_index);
+        }
+    }
+}
+```
+
+#### Supported Color Font Formats
+
+- **COLR/CPAL** - Vector-based layered color glyphs with palette support
+- **CBDT/CBLC** - Embedded color bitmap data (commonly used for emoji)
+- **sbix** - Apple's standard bitmap graphics format
+- **SVG** - SVG-in-OpenType for scalable color glyphs
 
 ## Development
 

@@ -401,6 +401,91 @@ impl OpenTypeFont {
 
         Ok(())
     }
+
+    /// Check if this font has color glyphs
+    ///
+    /// Returns true if the font contains any color font tables (COLR, CBDT, sbix, or SVG).
+    pub fn is_color_font(&self) -> bool {
+        self.has_table("COLR".parse().unwrap())
+            || self.has_table("CBDT".parse().unwrap())
+            || self.has_table("sbix".parse().unwrap())
+            || self.has_table("SVG ".parse().unwrap())
+    }
+
+    /// Get supported color formats
+    ///
+    /// Returns a list of all color font formats supported by this font.
+    pub fn get_color_formats(&self) -> Vec<crate::color_fonts::ColorFormat> {
+        let mut formats = Vec::new();
+
+        if self.has_table("COLR".parse().unwrap()) {
+            formats.push(crate::color_fonts::ColorFormat::ColrCpal);
+        }
+        if self.has_table("CBDT".parse().unwrap()) {
+            formats.push(crate::color_fonts::ColorFormat::Cbdt);
+        }
+        if self.has_table("sbix".parse().unwrap()) {
+            formats.push(crate::color_fonts::ColorFormat::Sbix);
+        }
+        if self.has_table("SVG ".parse().unwrap()) {
+            formats.push(crate::color_fonts::ColorFormat::Svg);
+        }
+
+        formats
+    }
+
+    /// Get color palette table (CPAL)
+    ///
+    /// Returns the parsed CPAL table if present, which defines color palettes
+    /// used by the COLR table for layered color glyphs.
+    pub fn get_cpal(&self) -> Option<crate::color_fonts::CpalTable> {
+        let data = self.get_table("CPAL".parse().unwrap())?;
+        crate::color_fonts::CpalTable::parse(data).ok()
+    }
+
+    /// Get color layers table (COLR)
+    ///
+    /// Returns the parsed COLR table if present, which defines layered color glyphs
+    /// using palette colors from the CPAL table.
+    pub fn get_colr(&self) -> Option<crate::color_fonts::ColrTable> {
+        let data = self.get_table("COLR".parse().unwrap())?;
+        crate::color_fonts::ColrTable::parse(data).ok()
+    }
+
+    /// Get color bitmap table (CBDT)
+    ///
+    /// Returns the parsed CBDT table if present, which contains embedded color
+    /// bitmap data for glyphs (commonly used for emoji).
+    pub fn get_cbdt(&self) -> Option<crate::color_fonts::CbdtTable> {
+        let data = self.get_table("CBDT".parse().unwrap())?;
+        crate::color_fonts::CbdtTable::parse(data).ok()
+    }
+
+    /// Get SVG table
+    ///
+    /// Returns the parsed SVG table if present, which contains SVG glyph definitions.
+    pub fn get_svg(&self) -> Option<crate::color_fonts::SvgTable> {
+        let data = self.get_table("SVG ".parse().unwrap())?;
+        crate::color_fonts::SvgTable::parse(data).ok()
+    }
+
+    /// Check if a specific glyph has color layers
+    ///
+    /// Returns true if the glyph has color layers defined in the COLR table.
+    pub fn has_color_layers(&self, glyph_id: GlyphId) -> bool {
+        if let Some(colr) = self.get_colr() {
+            return colr.is_color_glyph(glyph_id);
+        }
+        false
+    }
+
+    /// Get color layers for a glyph
+    ///
+    /// Returns the color layers for a specific glyph if defined in the COLR table.
+    pub fn get_color_layers(&self, glyph_id: GlyphId) -> Option<Vec<crate::color_fonts::Layer>> {
+        let colr = self.get_colr()?;
+        colr.get_layers(glyph_id).cloned()
+    }
 }
 
 #[cfg(test)]
