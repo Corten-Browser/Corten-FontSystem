@@ -1,7 +1,7 @@
 //! Text shaper implementation using Harfbuzz
 
 use crate::types::{Script, ShapingError, ShapingOptions};
-use font_registry::{FontRegistry, FontDescriptor as RegistryFontDescriptor};
+use font_registry::{FontDescriptor as RegistryFontDescriptor, FontRegistry};
 use font_types::types::{FontDescriptor, FontId, ShapedText};
 
 /// Text shaping engine
@@ -140,7 +140,8 @@ fn _script_to_string(script: Script) -> &'static str {
     }
 }
 
-/// Convert direction to harfbuzz direction
+/// Convert direction to harfbuzz direction (placeholder for Phase 2)
+#[allow(dead_code)]
 fn direction_to_hb_direction(direction: font_types::types::Direction) -> harfbuzz_rs::Direction {
     match direction {
         font_types::types::Direction::LeftToRight => harfbuzz_rs::Direction::Ltr,
