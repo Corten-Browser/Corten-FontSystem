@@ -3,13 +3,14 @@
 Font discovery, loading, caching, and font matching algorithms for the Corten Font System.
 
 **Type**: library
-**Tech Stack**: Rust, ttf-parser
+**Tech Stack**: Rust, ttf-parser, platform_integration
 **Version**: 0.1.0
 
 ## Overview
 
 The `font_registry` component provides a high-performance in-memory font registry that can:
 - Load fonts from files and raw data
+- Load system fonts using platform-specific APIs (Linux/Windows/macOS)
 - Cache loaded fonts for efficient reuse
 - Match fonts based on family, weight, style, and stretch
 - Extract and scale font metrics
@@ -17,15 +18,17 @@ The `font_registry` component provides a high-performance in-memory font registr
 ## Features
 
 - ✅ **Font Loading**: Load fonts from files (`load_font_file`) or memory (`load_font_data`)
+- ✅ **System Fonts**: Platform-specific system font discovery via `platform_integration`
 - ✅ **Font Matching**: Smart font matching algorithm based on CSS font selection
 - ✅ **Font Caching**: In-memory cache for fast font access
 - ✅ **Metrics Extraction**: Extract and scale font metrics for any size
 - ✅ **Multiple Formats**: Supports TrueType and OpenType fonts via `ttf-parser`
-- 🚧 **System Fonts**: Platform-specific system font discovery (stub - not yet implemented)
+- ✅ **Lazy Loading**: Fonts store file paths and can be reloaded on-demand
 
 ## Dependencies
 
 - **font_types** - Common types (FontWeight, FontStyle, FontStretch)
+- **platform_integration** - Platform-specific font discovery
 - **ttf-parser** - Font file parsing
 - **thiserror** - Error handling
 
@@ -46,6 +49,35 @@ let font_id = registry
     .expect("Failed to load font");
 
 println!("Loaded font with ID: {}", font_id);
+```
+
+### Loading System Fonts
+
+```rust
+use font_registry::FontRegistry;
+
+// Create a new registry
+let mut registry = FontRegistry::new();
+
+// Load all system fonts (uses platform_integration)
+match registry.load_system_fonts() {
+    Ok(count) => {
+        println!("Loaded {} system fonts", count);
+    }
+    Err(e) => {
+        eprintln!("Error loading system fonts: {}", e);
+    }
+}
+
+// System fonts are now available for matching
+let descriptor = FontDescriptor {
+    family: vec!["DejaVu Sans".to_string()],
+    ..Default::default()
+};
+
+if let Some(font_id) = registry.match_font(&descriptor) {
+    println!("Found DejaVu Sans in system fonts");
+}
 ```
 
 ### Font Matching
@@ -128,7 +160,7 @@ let font_id = registry.match_font(&descriptor);
 - `new()` - Create a new empty registry
 - `load_font_file(path: &Path)` - Load font from file
 - `load_font_data(data: Vec<u8>)` - Load font from memory
-- `load_system_fonts()` - Load platform system fonts (stub)
+- `load_system_fonts()` - Load platform system fonts (via platform_integration)
 - `match_font(descriptor: &FontDescriptor)` - Find best matching font
 - `get_font_face(font_id: FontId)` - Get font face information
 - `get_font_metrics(font_id: FontId, size: f32)` - Get scaled metrics
@@ -162,8 +194,9 @@ cargo fmt
 
 ### Test Coverage
 
-- ✅ 18 unit tests (13 total tests, 7 doc tests)
-- ✅ All public APIs tested
+- ✅ 21 tests total (15 unit tests, 6 integration tests, 7 doc tests)
+- ✅ All public APIs tested (including system font loading)
+- ✅ Integration tests with real system fonts
 - ✅ Error cases covered
 - ✅ 100% test pass rate
 
@@ -203,7 +236,12 @@ components/font_registry/
 │   └── types.rs        # Type definitions
 ├── tests/
 │   ├── test_main.rs    # Test entry point
-│   └── unit/           # Unit tests
+│   ├── unit/           # Unit tests
+│   │   ├── mod.rs
+│   │   └── test_registry.rs
+│   └── integration/    # Integration tests
+│       ├── mod.rs
+│       └── test_system_fonts.rs
 ├── Cargo.toml          # Package manifest
 ├── CLAUDE.md           # Component instructions
 └── README.md           # This file
@@ -211,22 +249,24 @@ components/font_registry/
 
 ## Known Limitations
 
-1. **System Fonts**: `load_system_fonts()` is a stub returning `SystemFontsUnavailable`
-2. **Font Collections**: TTC (TrueType Collection) files not yet supported
-3. **Cache Management**: No automatic cache eviction or memory limits
+1. **Font Collections**: TTC (TrueType Collection) files not yet fully supported
+2. **Cache Management**: No automatic cache eviction or memory limits
+3. **Lazy Loading**: Currently loads font data eagerly (optimization opportunity)
 
 ## Future Enhancements
 
-- Platform-specific system font discovery (fontconfig/CoreText/DirectWrite)
+- True lazy loading of font data (load on-demand)
 - Font family grouping and variant detection
 - Font substitution rules
 - Memory-mapped font loading
 - LRU cache with size limits
-- Font collection support (.ttc files)
+- Full font collection support (.ttc files)
+- Font validation and sanitization
 
 ## Related Components
 
 - **font_types**: Common types and interfaces
+- **platform_integration**: Platform-specific font discovery (Linux/Windows/macOS)
 - **font_parser**: Font file parsing (planned)
 - **font_shaper**: Text shaping (planned)
 - **font_renderer**: Glyph rendering (planned)
