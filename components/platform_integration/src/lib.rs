@@ -10,6 +10,39 @@ pub mod types;
 
 pub use types::{FontCategory, FontStyle, FontWeight, Platform, PlatformFontInfo};
 
+/// Discover system fonts with detailed metadata (family, weight, style)
+///
+/// This function uses platform-specific APIs to discover fonts and parse their metadata.
+/// On Linux, it uses fontconfig. On Windows and macOS, this is currently a stub.
+///
+/// # Returns
+///
+/// A vector of `PlatformFontInfo` structures containing detailed font metadata.
+///
+/// # Examples
+///
+/// ```no_run
+/// use platform_integration::discover_system_fonts_detailed;
+///
+/// let fonts = discover_system_fonts_detailed();
+/// for font in fonts {
+///     println!("{}: {:?} {:?}", font.family_name, font.weight, font.style);
+/// }
+/// ```
+pub fn discover_system_fonts_detailed() -> Vec<PlatformFontInfo> {
+    #[cfg(target_os = "linux")]
+    return linux::discover_fonts_detailed();
+
+    #[cfg(target_os = "windows")]
+    return windows::discover_fonts_detailed();
+
+    #[cfg(target_os = "macos")]
+    return macos::discover_fonts_detailed();
+
+    #[cfg(not(any(target_os = "linux", target_os = "windows", target_os = "macos")))]
+    Vec::new()
+}
+
 /// Discover system fonts for the current platform
 ///
 /// Returns a vector of paths to font files found on the system.
@@ -120,6 +153,148 @@ mod linux {
     use super::*;
     use std::fs;
     use std::process::Command;
+
+    /// Discover fonts with detailed metadata using fontconfig
+    pub fn discover_fonts_detailed() -> Vec<PlatformFontInfo> {
+        let mut fonts = Vec::new();
+
+        // Try to use fontconfig library for detailed metadata
+        match use_fontconfig_library() {
+            Ok(fc_fonts) => {
+                fonts.extend(fc_fonts);
+            }
+            Err(e) => {
+                eprintln!(
+                    "Fontconfig library error: {}. Falling back to basic discovery.",
+                    e
+                );
+                // Fall back to basic discovery without metadata
+                let paths = discover_fonts();
+                for path in paths {
+                    // Create default font info for paths we found
+                    fonts.push(PlatformFontInfo::new(
+                        extract_family_from_path(&path),
+                        path,
+                        FontWeight::Regular,
+                        FontStyle::Normal,
+                        true,
+                    ));
+                }
+            }
+        }
+
+        fonts
+    }
+
+    /// Extract family name from font file path
+    fn extract_family_from_path(path: &std::path::Path) -> String {
+        path.file_stem()
+            .and_then(|s| s.to_str())
+            .unwrap_or("Unknown")
+            .to_string()
+    }
+
+    /// Use fontconfig library to discover fonts with detailed metadata
+    fn use_fontconfig_library() -> Result<Vec<PlatformFontInfo>, String> {
+        use fontconfig::Fontconfig;
+
+        let fc = Fontconfig::new().ok_or("Failed to initialize fontconfig")?;
+
+        // Use sort_fonts with an empty pattern to get all fonts
+        let pattern = fontconfig::Pattern::new(&fc);
+        let font_set = fontconfig::sort_fonts(&pattern, true);
+
+        let mut fonts = Vec::new();
+        let mut seen_paths = std::collections::HashSet::new();
+
+        // Iterate through fonts
+        // Note: We need to be careful as fontconfig can return duplicates
+        for font in font_set.iter() {
+            // Extract file path
+            let file_path = match font.filename() {
+                Some(f) => {
+                    let path = PathBuf::from(f);
+                    // Skip if we've already seen this path
+                    if !seen_paths.insert(path.clone()) {
+                        continue;
+                    }
+                    path
+                }
+                None => continue, // Skip fonts without file path
+            };
+
+            // Only process existing files
+            if !file_path.exists() {
+                continue;
+            }
+
+            // Extract family name
+            let family = font.name().unwrap_or("Unknown").to_string();
+
+            // Parse weight (fontconfig uses different scale than we expect)
+            let fc_weight = font.weight().unwrap_or(80); // Default: Regular
+            let weight = map_fontconfig_weight(fc_weight);
+
+            // Parse style/slant
+            let fc_slant = font.slant().unwrap_or(0); // Default: Normal
+            let style = map_fontconfig_slant(fc_slant);
+
+            // Determine if system font based on path
+            let is_system_font = file_path
+                .to_str()
+                .map(|s| s.starts_with("/usr/") || s.starts_with("/lib/") || s.starts_with("/etc/"))
+                .unwrap_or(false);
+
+            fonts.push(PlatformFontInfo::new(
+                family,
+                file_path,
+                weight,
+                style,
+                is_system_font,
+            ));
+        }
+
+        if fonts.is_empty() {
+            Err("No fonts found via fontconfig".to_string())
+        } else {
+            Ok(fonts)
+        }
+    }
+
+    /// Map fontconfig weight value to FontWeight enum
+    ///
+    /// Fontconfig weight values:
+    /// - 0 (Thin) to 210+ (Black)
+    /// - 80 is Regular
+    /// - 200 is Bold
+    fn map_fontconfig_weight(fc_weight: i32) -> FontWeight {
+        match fc_weight {
+            0..=40 => FontWeight::Thin,
+            41..=55 => FontWeight::ExtraLight,
+            56..=75 => FontWeight::Light,
+            76..=90 => FontWeight::Regular,
+            91..=110 => FontWeight::Medium,
+            111..=180 => FontWeight::SemiBold,
+            181..=200 => FontWeight::Bold,
+            201..=209 => FontWeight::ExtraBold,
+            _ => FontWeight::Black,
+        }
+    }
+
+    /// Map fontconfig slant value to FontStyle enum
+    ///
+    /// Fontconfig slant values:
+    /// - 0: Roman (Normal)
+    /// - 100: Italic
+    /// - 110: Oblique
+    fn map_fontconfig_slant(fc_slant: i32) -> FontStyle {
+        match fc_slant {
+            0 => FontStyle::Normal,
+            100 => FontStyle::Italic,
+            110 => FontStyle::Oblique(10.0), // ~10 degree oblique angle
+            _ => FontStyle::Normal,
+        }
+    }
 
     /// Discover fonts on Linux using fontconfig and common directories
     pub fn discover_fonts() -> Vec<PathBuf> {
@@ -266,6 +441,37 @@ mod linux {
 mod windows {
     use super::*;
 
+    /// Discover fonts with detailed metadata on Windows
+    ///
+    /// # TODO
+    ///
+    /// This is currently a stub. Full implementation will use DirectWrite API:
+    /// - Use windows-rs crate for DirectWrite bindings
+    /// - Query IDWriteFontCollection for system fonts
+    /// - Parse font properties (family, weight, style, stretch)
+    /// - Map DirectWrite enums to our FontWeight/FontStyle enums
+    ///
+    /// See: https://docs.microsoft.com/en-us/windows/win32/directwrite/direct-write-portal
+    pub fn discover_fonts_detailed() -> Vec<PlatformFontInfo> {
+        eprintln!("WARNING: discover_system_fonts_detailed() not yet implemented for Windows");
+        eprintln!("         Falling back to basic path discovery");
+
+        // Fall back to basic discovery
+        let paths = discover_fonts();
+        paths
+            .into_iter()
+            .map(|path| {
+                let family = path
+                    .file_stem()
+                    .and_then(|s| s.to_str())
+                    .unwrap_or("Unknown")
+                    .to_string();
+
+                PlatformFontInfo::new(family, path, FontWeight::Regular, FontStyle::Normal, true)
+            })
+            .collect()
+    }
+
     /// Discover fonts on Windows
     pub fn discover_fonts() -> Vec<PathBuf> {
         let mut fonts = Vec::new();
@@ -357,6 +563,37 @@ mod windows {
 #[cfg(target_os = "macos")]
 mod macos {
     use super::*;
+
+    /// Discover fonts with detailed metadata on macOS
+    ///
+    /// # TODO
+    ///
+    /// This is currently a stub. Full implementation will use CoreText API:
+    /// - Use core-foundation-rs crate for CoreText bindings
+    /// - Query CTFontCollection for system fonts
+    /// - Parse font descriptors for properties (family, traits, weight)
+    /// - Map CoreText traits to our FontWeight/FontStyle enums
+    ///
+    /// See: https://developer.apple.com/documentation/coretext
+    pub fn discover_fonts_detailed() -> Vec<PlatformFontInfo> {
+        eprintln!("WARNING: discover_system_fonts_detailed() not yet implemented for macOS");
+        eprintln!("         Falling back to basic path discovery");
+
+        // Fall back to basic discovery
+        let paths = discover_fonts();
+        paths
+            .into_iter()
+            .map(|path| {
+                let family = path
+                    .file_stem()
+                    .and_then(|s| s.to_str())
+                    .unwrap_or("Unknown")
+                    .to_string();
+
+                PlatformFontInfo::new(family, path, FontWeight::Regular, FontStyle::Normal, true)
+            })
+            .collect()
+    }
 
     /// Discover fonts on macOS
     pub fn discover_fonts() -> Vec<PathBuf> {

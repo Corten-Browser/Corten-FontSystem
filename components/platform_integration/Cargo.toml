@@ -7,7 +7,10 @@ license = "MIT OR Apache-2.0"
 description = "Platform-specific font discovery (Linux, Windows, macOS)"
 
 [dependencies]
-# Add dependencies based on component needs
+# Platform-specific dependencies
+
+[target.'cfg(target_os = "linux")'.dependencies]
+fontconfig = "0.8"
 
 [dev-dependencies]
 criterion = "0.5"
