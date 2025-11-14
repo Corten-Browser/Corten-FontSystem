@@ -1,3 +1,5 @@
+mod variable_fonts_tests;
+
 mod integration {
     use font_parser::{OpenTypeFont, ParseError, Woff2Font, WoffFont};
 

@@ -142,6 +142,18 @@ impl Tag {
         // Safety: We only create Tags from valid UTF-8 strings or bytes
         std::str::from_utf8(&self.0).unwrap_or("????")
     }
+
+    // Standard variation axis tags
+    /// Weight axis tag ('wght')
+    pub const WEIGHT: Tag = Tag(*b"wght");
+    /// Width axis tag ('wdth')
+    pub const WIDTH: Tag = Tag(*b"wdth");
+    /// Slant axis tag ('slnt')
+    pub const SLANT: Tag = Tag(*b"slnt");
+    /// Optical size axis tag ('opsz')
+    pub const OPTICAL_SIZE: Tag = Tag(*b"opsz");
+    /// Italic axis tag ('ital')
+    pub const ITALIC: Tag = Tag(*b"ital");
 }
 
 impl fmt::Display for Tag {
@@ -311,6 +323,83 @@ impl OpenTypeFont {
         // Stub implementation - returns None
         // Full implementation would parse glyf table
         None
+    }
+
+    /// Check if this is a variable font
+    ///
+    /// Returns true if the font contains an 'fvar' table, which indicates
+    /// it supports OpenType Font Variations.
+    pub fn is_variable(&self) -> bool {
+        self.has_table("fvar".parse().unwrap())
+    }
+
+    /// Get font variations table (fvar)
+    ///
+    /// Returns the parsed fvar table if this is a variable font, or None otherwise.
+    /// The fvar table defines the available variation axes and named instances.
+    pub fn get_fvar(&self) -> Option<crate::variable_fonts::FvarTable> {
+        let data = self.get_table("fvar".parse().unwrap())?;
+        crate::variable_fonts::FvarTable::parse(data).ok()
+    }
+
+    /// Get axis variations table (avar)
+    ///
+    /// Returns the parsed avar table if present, or None otherwise.
+    /// The avar table defines non-linear axis value mappings.
+    pub fn get_avar(&self) -> Option<crate::variable_fonts::AvarTable> {
+        let fvar = self.get_fvar()?;
+        let data = self.get_table("avar".parse().unwrap())?;
+        crate::variable_fonts::AvarTable::parse(data, fvar.axes.len()).ok()
+    }
+
+    /// Get available variation axes
+    ///
+    /// Returns a list of all variation axes defined in the font's fvar table.
+    /// Each axis specifies a design dimension (e.g., weight, width) with min/max bounds.
+    pub fn get_variation_axes(&self) -> Vec<crate::variable_fonts::VariationAxis> {
+        self.get_fvar().map(|fvar| fvar.axes).unwrap_or_default()
+    }
+
+    /// Get named instances
+    ///
+    /// Returns a list of all named instances defined in the font's fvar table.
+    /// Named instances are predefined coordinate sets (e.g., "Bold", "Light").
+    pub fn get_named_instances(&self) -> Vec<crate::variable_fonts::NamedInstance> {
+        self.get_fvar()
+            .map(|fvar| fvar.instances)
+            .unwrap_or_default()
+    }
+
+    /// Validate variation coordinates
+    ///
+    /// Checks that all coordinates are within the valid range for their respective axes.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if:
+    /// - The font is not a variable font
+    /// - Any coordinate value is outside the axis bounds
+    pub fn validate_coordinates(
+        &self,
+        coords: &crate::variable_fonts::VariationCoordinates,
+    ) -> Result<(), ParseError> {
+        let fvar = self
+            .get_fvar()
+            .ok_or_else(|| ParseError::CorruptedData("Not a variable font".to_string()))?;
+
+        // Validate each coordinate is within bounds
+        for (tag, value) in &coords.values {
+            if let Some(axis) = fvar.get_axis(*tag) {
+                if *value < axis.min_value || *value > axis.max_value {
+                    return Err(ParseError::CorruptedData(format!(
+                        "Coordinate {} out of range [{}, {}] for axis {}",
+                        value, axis.min_value, axis.max_value, tag
+                    )));
+                }
+            }
+        }
+
+        Ok(())
     }
 }
 
