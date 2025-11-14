@@ -76,8 +76,40 @@ pub struct FontFace {
     pub stretch: FontStretch,
     /// Font metrics
     pub metrics: FontMetrics,
-    /// Raw font data (kept for rendering)
-    pub(crate) data: Vec<u8>,
+    /// Path to font file (for system fonts, lazy loading)
+    pub(crate) file_path: Option<std::path::PathBuf>,
+    /// Raw font data (loaded eagerly or lazily)
+    pub(crate) data: Option<Vec<u8>>,
+    /// Whether this is a system font
+    pub(crate) is_system_font: bool,
+}
+
+impl FontFace {
+    /// Get reference to raw font data
+    ///
+    /// This is needed for text shaping and rendering operations.
+    ///
+    /// # Returns
+    ///
+    /// Reference to the raw font file data, or None if data not loaded
+    ///
+    /// # Note
+    ///
+    /// For system fonts loaded lazily, data may be None until explicitly loaded.
+    /// Use FontRegistry::ensure_font_data_loaded() to load data on-demand.
+    pub fn data(&self) -> Option<&[u8]> {
+        self.data.as_deref()
+    }
+
+    /// Check if this is a system font
+    pub fn is_system_font(&self) -> bool {
+        self.is_system_font
+    }
+
+    /// Get the file path if this font was loaded from a file
+    pub fn file_path(&self) -> Option<&std::path::Path> {
+        self.file_path.as_deref()
+    }
 }
 
 /// Font registry errors

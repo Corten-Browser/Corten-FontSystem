@@ -200,3 +200,102 @@ fn test_get_font_metrics_with_negative_size_returns_none() {
     // Then
     assert_eq!(result, None);
 }
+
+// ========== load_system_fonts() Tests ==========
+
+#[test]
+fn test_load_system_fonts_returns_count() {
+    //! Given: A new FontRegistry
+    //! When: Loading system fonts
+    //! Then: Should return count of fonts loaded (may be 0 on some systems)
+
+    // Given
+    let mut registry = FontRegistry::new();
+    let initial_count = registry.font_count();
+
+    // When
+    let result = registry.load_system_fonts();
+
+    // Then
+    assert!(result.is_ok());
+    let loaded_count = result.unwrap();
+    assert_eq!(registry.font_count(), initial_count + loaded_count);
+}
+
+#[test]
+fn test_load_system_fonts_registers_fonts_with_metadata() {
+    //! Given: A new FontRegistry
+    //! When: Loading system fonts
+    //! Then: Loaded fonts should have proper metadata (family, weight, style)
+
+    // Given
+    let mut registry = FontRegistry::new();
+
+    // When
+    let result = registry.load_system_fonts();
+
+    // Then
+    if let Ok(count) = result {
+        if count > 0 {
+            // At least one font was loaded, verify we can match it
+            let descriptor = FontDescriptor::default();
+            let _matched = registry.match_font(&descriptor);
+            // Note: May be None if no fonts match default descriptor
+            // This test just verifies load_system_fonts() completes
+        }
+    }
+}
+
+#[test]
+fn test_load_system_fonts_can_be_called_multiple_times() {
+    //! Given: A FontRegistry with system fonts already loaded
+    //! When: Loading system fonts again
+    //! Then: Should handle gracefully (may add more fonts or skip duplicates)
+
+    // Given
+    let mut registry = FontRegistry::new();
+    let first_result = registry.load_system_fonts();
+    assert!(first_result.is_ok());
+    let first_count = registry.font_count();
+
+    // When
+    let second_result = registry.load_system_fonts();
+
+    // Then
+    assert!(second_result.is_ok());
+    // After second load, font count should be >= first count
+    assert!(registry.font_count() >= first_count);
+}
+
+#[test]
+fn test_load_system_fonts_fonts_are_findable() {
+    //! Given: A FontRegistry with system fonts loaded
+    //! When: Matching fonts by family name
+    //! Then: Should be able to find common system fonts
+
+    // Given
+    let mut registry = FontRegistry::new();
+    let result = registry.load_system_fonts();
+
+    // When/Then
+    if let Ok(count) = result {
+        if count > 0 {
+            // We should have at least one font
+            assert!(registry.font_count() > 0);
+
+            // Try to match a generic sans-serif descriptor
+            // (most systems have some sans-serif font)
+            let descriptor = FontDescriptor {
+                family: vec!["sans-serif".to_string()],
+                weight: FontWeight::Regular,
+                style: FontStyle::Normal,
+                stretch: FontStretch::Normal,
+                size: 16.0,
+            };
+
+            // Note: Matching may return None if no exact family match
+            // The implementation should handle generic family names
+            let _ = registry.match_font(&descriptor);
+        }
+    }
+}

@@ -10,6 +10,9 @@ description = "Font discovery, loading, caching, and font matching algorithms"
 # Dependency on font_types for common types
 font_types = { path = "../font_types" }
 
+# Platform-specific font discovery
+platform_integration = { path = "../platform_integration" }
+
 # Error handling
 thiserror = "1.0"
 
