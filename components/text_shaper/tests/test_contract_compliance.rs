@@ -1,9 +1,9 @@
 //! Contract compliance tests - verify public API matches contract exactly
 
-use text_shaper::{TextShaper, ShapingOptions, Script, Language, ShapingError};
 use font_registry::FontRegistry;
-use font_types::types::{FontDescriptor, FontWeight, FontStyle, FontStretch, Direction};
+use font_types::types::{Direction, FontDescriptor, FontStretch, FontStyle, FontWeight};
 use std::collections::HashMap;
+use text_shaper::{Language, Script, ShapingError, ShapingOptions, TextShaper};
 
 #[test]
 fn test_contract_textshaper_exports() {

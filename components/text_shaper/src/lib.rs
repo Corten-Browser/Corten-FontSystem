@@ -3,12 +3,12 @@
 #![warn(missing_docs)]
 #![warn(clippy::all)]
 
-pub mod types;
 pub mod shaper;
+pub mod types;
 
 // Re-export main types for convenience
-pub use types::{Language, Script, ShapingError, ShapingOptions};
 pub use shaper::TextShaper;
+pub use types::{Language, Script, ShapingError, ShapingOptions};
 
 #[cfg(test)]
 mod tests {

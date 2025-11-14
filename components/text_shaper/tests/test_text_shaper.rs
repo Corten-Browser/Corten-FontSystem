@@ -1,9 +1,9 @@
 //! Tests for TextShaper functionality
 
-use text_shaper::{TextShaper, ShapingOptions, Script, Language, ShapingError};
 use font_registry::FontRegistry;
-use font_types::types::{FontDescriptor, FontWeight, FontStyle, FontStretch, Direction};
+use font_types::types::{Direction, FontDescriptor, FontStretch, FontStyle, FontWeight};
 use std::collections::HashMap;
+use text_shaper::{Language, Script, ShapingError, ShapingOptions, TextShaper};
 
 #[test]
 fn test_text_shaper_new() {
@@ -214,5 +214,11 @@ fn test_shape_text_rtl() {
     let result = shaper.shape_text(text, font_id, size, &options);
 
     // Then: Should handle RTL text correctly
-    assert!(result.is_ok() || matches!(result, Err(ShapingError::FontNotFound) | Err(ShapingError::UnsupportedScript(_))));
+    assert!(
+        result.is_ok()
+            || matches!(
+                result,
+                Err(ShapingError::FontNotFound) | Err(ShapingError::UnsupportedScript(_))
+            )
+    );
 }

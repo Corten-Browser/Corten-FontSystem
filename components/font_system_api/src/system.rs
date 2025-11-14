@@ -9,16 +9,10 @@ use text_shaper::types::ShapingOptions;
 
 // ShapedText type placeholder (will be implemented in text_shaper)
 /// Shaped text result (placeholder)
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Default)]
 pub struct ShapedText {
     /// Placeholder for shaped text data
     _data: Vec<u8>,
-}
-
-impl Default for ShapedText {
-    fn default() -> Self {
-        Self { _data: Vec::new() }
-    }
 }
 
 /// Main font system orchestration structure
@@ -27,6 +21,7 @@ impl Default for ShapedText {
 /// matching, shaping, and rendering. It wraps the underlying component
 /// implementations and provides a unified high-level API.
 pub struct FontSystem {
+    #[allow(dead_code)] // Will be used in Phase 2 when components are fully integrated
     config: FontSystemConfig,
     // Component implementations will be added as dependencies are implemented
     // font_registry: FontRegistry,

@@ -2,8 +2,8 @@
 //! This is an integration test file that tests the public API
 
 mod test_types {
-    use text_shaper::{Script, Language, ShapingError, ShapingOptions};
     use std::collections::HashMap;
+    use text_shaper::{Language, Script, ShapingError, ShapingOptions};
 
     #[test]
     fn test_script_variants_exist() {
