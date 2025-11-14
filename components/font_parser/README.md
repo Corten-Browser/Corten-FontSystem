@@ -22,10 +22,36 @@ Parse OpenType, TrueType, WOFF, and WOFF2 font files
 ## Dependencies
 
 - font_types
+- byteorder - Binary data reading
+- flate2 - WOFF decompression (zlib)
+- brotli - WOFF2 decompression (Brotli)
+
+## Features
+
+- **TrueType (TTF)** parsing - Signature: 0x00010000
+- **OpenType (OTF/CFF)** parsing - Signature: 'OTTO' (0x4F54544F)
+- **WOFF** web font parsing - Signature: 'wOFF' (0x774F4646)
+- **WOFF2** web font parsing - Signature: 'wOF2' (0x774F4632)
+
+All web font formats (WOFF/WOFF2) are automatically decompressed to standard TTF/OTF format before parsing.
 
 ## Usage
 
 This component is ready for immediate use via Task tool orchestration.
+
+### Example
+
+```rust
+use font_parser::OpenTypeFont;
+
+// Parse any supported font format (TTF, OTF, WOFF, WOFF2)
+let font_data = std::fs::read("path/to/font.woff2")?;
+let font = OpenTypeFont::parse(font_data)?;
+
+// Access font metrics
+let metrics = font.get_metrics();
+println!("Units per em: {}", metrics.units_per_em);
+```
 
 ## Development
 

@@ -9,6 +9,9 @@ description = "Parse OpenType, TrueType, WOFF, and WOFF2 font files"
 [dependencies]
 byteorder = "1.5"
 thiserror = "1.0"
+# WOFF/WOFF2 support
+flate2 = "1.0"  # zlib decompression for WOFF
+brotli = "3.4"  # Brotli decompression for WOFF2
 
 [dev-dependencies]
 criterion = "0.5"

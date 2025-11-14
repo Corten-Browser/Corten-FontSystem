@@ -152,10 +152,34 @@ impl fmt::Display for Tag {
 
 impl OpenTypeFont {
     /// Parse an OpenType/TrueType font from bytes
+    ///
+    /// This method supports multiple font formats:
+    /// - TrueType (0x00010000)
+    /// - OpenType/CFF (0x4F54544F or 'OTTO')
+    /// - WOFF (0x774F4646 or 'wOFF')
+    /// - WOFF2 (0x774F4632 or 'wOF2')
     pub fn parse(data: Vec<u8>) -> Result<Self, ParseError> {
         if data.len() < 12 {
             return Err(ParseError::CorruptedData("Font data too short".to_string()));
         }
+
+        // Check signature to determine format
+        let signature = u32::from_be_bytes([data[0], data[1], data[2], data[3]]);
+
+        // Handle WOFF and WOFF2 formats by decompressing first
+        let data = match signature {
+            0x774F4646 => {
+                // WOFF - decompress to TTF/OTF
+                let woff = crate::woff::WoffFont::parse(&data)?;
+                woff.ttf_data
+            }
+            0x774F4632 => {
+                // WOFF2 - decompress to TTF/OTF
+                let woff2 = crate::woff2::Woff2Font::parse(&data)?;
+                woff2.ttf_data
+            }
+            _ => data, // TTF/OTF - use as-is
+        };
 
         let mut cursor = Cursor::new(&data);
 
