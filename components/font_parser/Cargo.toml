@@ -1,0 +1,23 @@
+[package]
+name = "font_parser"
+version = "0.1.0"
+edition = "2021"
+authors = ["CortenBrowser Team"]
+license = "MIT OR Apache-2.0"
+description = "Parse OpenType, TrueType, WOFF, and WOFF2 font files"
+
+[dependencies]
+# Add dependencies based on component needs
+
+[dev-dependencies]
+criterion = "0.5"
+proptest = "1.4"
+test-case = "3.1"
+
+[lib]
+name = "font_parser"
+path = "src/lib.rs"
+
+[[bench]]
+name = "benchmarks"
+harness = false

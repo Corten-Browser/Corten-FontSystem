@@ -1,0 +1,15 @@
+dependencies:
+  imports:
+  - import_from: components.font_types
+    name: font_types
+    version: ^0.1.0
+estimated_tokens: 22000
+exports:
+  module: components.font_registry
+  public_api: []
+language: rust
+name: font_registry
+responsibility: Font discovery, loading, caching, and font matching algorithms
+tech_stack: Rust, fontconfig (Linux)
+type: library
+version: 0.1.0

@@ -1,0 +1,12 @@
+dependencies:
+  imports: []
+estimated_tokens: 8000
+exports:
+  module: components.font_types
+  public_api: []
+language: rust
+name: font_types
+responsibility: Common types, traits, enums, and interfaces for the font system
+tech_stack: Rust
+type: library
+version: 0.1.0

@@ -1,0 +1,15 @@
+dependencies:
+  imports:
+  - import_from: components.font_types
+    name: font_types
+    version: ^0.1.0
+estimated_tokens: 24000
+exports:
+  module: components.font_parser
+  public_api: []
+language: rust
+name: font_parser
+responsibility: Parse OpenType, TrueType, WOFF, and WOFF2 font files
+tech_stack: Rust, ttf-parser, byteorder
+type: library
+version: 0.1.0

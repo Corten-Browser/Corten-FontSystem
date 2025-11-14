@@ -1,0 +1,23 @@
+[package]
+name = "font_registry"
+version = "0.1.0"
+edition = "2021"
+authors = ["CortenBrowser Team"]
+license = "MIT OR Apache-2.0"
+description = "Font discovery, loading, caching, and font matching algorithms"
+
+[dependencies]
+# Add dependencies based on component needs
+
+[dev-dependencies]
+criterion = "0.5"
+proptest = "1.4"
+test-case = "3.1"
+
+[lib]
+name = "font_registry"
+path = "src/lib.rs"
+
+[[bench]]
+name = "benchmarks"
+harness = false
