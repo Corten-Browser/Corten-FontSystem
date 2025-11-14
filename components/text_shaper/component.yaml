@@ -1,0 +1,21 @@
+dependencies:
+  imports:
+  - import_from: components.font_types
+    name: font_types
+    version: ^0.1.0
+  - import_from: components.font_parser
+    name: font_parser
+    version: ^0.1.0
+  - import_from: components.font_registry
+    name: font_registry
+    version: ^0.1.0
+estimated_tokens: 28000
+exports:
+  module: components.text_shaper
+  public_api: []
+language: rust
+name: text_shaper
+responsibility: Text shaping, bidirectional text, line breaking, and OpenType features
+tech_stack: Rust, harfbuzz_rs (initial), unicode-bidi
+type: library
+version: 0.1.0

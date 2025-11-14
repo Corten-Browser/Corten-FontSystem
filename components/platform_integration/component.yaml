@@ -1,0 +1,18 @@
+dependencies:
+  imports:
+  - import_from: components.font_types
+    name: font_types
+    version: ^0.1.0
+  - import_from: components.font_registry
+    name: font_registry
+    version: ^0.1.0
+estimated_tokens: 12000
+exports:
+  module: components.platform_integration
+  public_api: []
+language: rust
+name: platform_integration
+responsibility: Platform-specific font discovery (Linux, Windows, macOS)
+tech_stack: Rust, fontconfig, dwrote, core-text
+type: library
+version: 0.1.0

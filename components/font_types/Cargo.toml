@@ -1,0 +1,19 @@
+[package]
+name = "font_types"
+version = "0.1.0"
+edition = "2021"
+authors = ["CortenBrowser Team"]
+license = "MIT OR Apache-2.0"
+description = "Common types, traits, enums, and interfaces for the font system"
+
+[dependencies]
+# Add dependencies based on component needs
+
+[dev-dependencies]
+criterion = "0.5"
+proptest = "1.4"
+test-case = "3.1"
+
+[lib]
+name = "font_types"
+path = "src/lib.rs"

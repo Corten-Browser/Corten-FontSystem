@@ -1,0 +1,37 @@
+[package]
+name = "font_registry"
+version = "0.1.0"
+edition = "2021"
+authors = ["CortenBrowser Team"]
+license = "MIT OR Apache-2.0"
+description = "Font discovery, loading, caching, and font matching algorithms"
+
+[dependencies]
+# Dependency on font_types for common types
+font_types = { path = "../font_types" }
+
+# Platform-specific font discovery
+platform_integration = { path = "../platform_integration" }
+
+# Error handling
+thiserror = "1.0"
+
+# Font parsing (for load_font_data implementation)
+ttf-parser = "0.20"
+
+[dev-dependencies]
+criterion = "0.5"
+proptest = "1.4"
+test-case = "3.1"
+
+[lib]
+name = "font_registry"
+path = "src/lib.rs"
+
+[[bench]]
+name = "font_loading"
+harness = false
+
+[[bench]]
+name = "font_matching"
+harness = false

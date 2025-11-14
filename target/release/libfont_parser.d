@@ -1,0 +1,1 @@
+/home/user/Corten-FontSystem/target/release/libfont_parser.rlib: /home/user/Corten-FontSystem/components/font_parser/src/error.rs /home/user/Corten-FontSystem/components/font_parser/src/lib.rs /home/user/Corten-FontSystem/components/font_parser/src/types.rs

@@ -1,0 +1,10 @@
+{
+  "project_name": "Corten-FontSystem",
+  "version": "0.1.0",
+  "lifecycle_state": "pre-release",
+  "api_locked": false,
+  "breaking_changes_policy": "encouraged",
+  "created_at": "2025-11-14",
+  "last_updated": "2025-11-14",
+  "components": []
+}

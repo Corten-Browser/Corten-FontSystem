@@ -1,0 +1,123 @@
+{
+  "component_name": "",
+  "timestamp": "2025-11-14T08:38:23.239427",
+  "passed": false,
+  "overall_score": 61,
+  "checks": [
+    {
+      "name": "Tests Pass",
+      "passed": true,
+      "score": 100,
+      "message": "46 tests passing",
+      "details": {
+        "passing": 46,
+        "failing": 0
+      }
+    },
+    {
+      "name": "Test Coverage",
+      "passed": false,
+      "score": 0,
+      "message": "Could not determine coverage",
+      "details": {}
+    },
+    {
+      "name": "TDD Compliance",
+      "passed": false,
+      "score": 2,
+      "message": "1 test commits, 9 feat commits",
+      "details": {
+        "test_commits": 1,
+        "feat_commits": 9,
+        "refactor_commits": 0,
+        "total_commits": 15
+      }
+    },
+    {
+      "name": "Linting",
+      "passed": true,
+      "score": 100,
+      "message": "No clippy warnings",
+      "details": {}
+    },
+    {
+      "name": "Formatting",
+      "passed": true,
+      "score": 100,
+      "message": "Code formatted correctly",
+      "details": {}
+    },
+    {
+      "name": "Code Complexity",
+      "passed": true,
+      "score": 80,
+      "message": "Complexity check not fully implemented (assumed \u226410)",
+      "details": {
+        "threshold": 10
+      }
+    },
+    {
+      "name": "Documentation",
+      "passed": true,
+      "score": 50,
+      "message": "README exists: True",
+      "details": {
+        "has_readme": true
+      }
+    },
+    {
+      "name": "Security",
+      "passed": true,
+      "score": 100,
+      "message": "No obvious security issues found",
+      "details": {}
+    },
+    {
+      "name": "Integration Tests",
+      "passed": false,
+      "score": 0,
+      "message": "No integration test files found",
+      "details": {
+        "directory_exists": true,
+        "test_files": 0,
+        "path": "tests/integration"
+      }
+    },
+    {
+      "name": "Contract Compatibility",
+      "passed": true,
+      "score": 100,
+      "message": "No contracts directory (not required)",
+      "details": {
+        "contracts_dir_exists": false
+      }
+    },
+    {
+      "name": "Dependency Validation",
+      "passed": false,
+      "score": 0,
+      "message": "No component manifests found (component.yaml missing)",
+      "details": {
+        "manifests_loaded": 0
+      }
+    },
+    {
+      "name": "Specification Compliance",
+      "passed": true,
+      "score": 100,
+      "message": "No specification file found (not required)",
+      "details": {
+        "spec_file": null
+      }
+    }
+  ],
+  "failures": [
+    "Coverage below 80%: Could not determine coverage",
+    "Integration tests: No integration test files found",
+    "Dependency validation: No component manifests found (component.yaml missing)"
+  ],
+  "warnings": [
+    "TDD compliance questionable: 1 test commits, 9 feat commits"
+  ],
+  "summary": "Quality Verification Report: \n============================================================\n\nStatus: \u274c FAILED\nOverall Score: 61/100\n\nChecks:\n  \u2705 Tests Pass: 46 tests passing (100/100)\n  \u274c Test Coverage: Could not determine coverage (0/100)\n  \u274c TDD Compliance: 1 test commits, 9 feat commits (2/100)\n  \u2705 Linting: No clippy warnings (100/100)\n  \u2705 Formatting: Code formatted correctly (100/100)\n  \u2705 Code Complexity: Complexity check not fully implemented (assumed \u226410) (80/100)\n  \u2705 Documentation: README exists: True (50/100)\n  \u2705 Security: No obvious security issues found (100/100)\n  \u274c Integration Tests: No integration test files found (0/100)\n  \u2705 Contract Compatibility: No contracts directory (not required) (100/100)\n  \u274c Dependency Validation: No component manifests found (component.yaml missing) (0/100)\n  \u2705 Specification Compliance: No specification file found (not required) (100/100)\n\nFailures:\n  \u274c Coverage below 80%: Could not determine coverage\n  \u274c Integration tests: No integration test files found\n  \u274c Dependency validation: No component manifests found (component.yaml missing)\n\nWarnings:\n  \u26a0\ufe0f  TDD compliance questionable: 1 test commits, 9 feat commits\n"
+}

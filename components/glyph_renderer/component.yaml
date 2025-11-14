@@ -1,0 +1,18 @@
+dependencies:
+  imports:
+  - import_from: components.font_types
+    name: font_types
+    version: ^0.1.0
+  - import_from: components.font_parser
+    name: font_parser
+    version: ^0.1.0
+estimated_tokens: 22000
+exports:
+  module: components.glyph_renderer
+  public_api: []
+language: rust
+name: glyph_renderer
+responsibility: Glyph rasterization, hinting, subpixel rendering, and glyph caching
+tech_stack: Rust, freetype-rs (initial)
+type: library
+version: 0.1.0

@@ -1,0 +1,185 @@
+component: font_types
+version: 0.1.0
+language: rust
+description: Common types, traits, and interfaces for font system
+
+public_api:
+  enums:
+    - name: FontWeight
+      description: Font weight values (100-900)
+      variants:
+        - Thin: 100
+        - ExtraLight: 200
+        - Light: 300
+        - Regular: 400
+        - Medium: 500
+        - SemiBold: 600
+        - Bold: 700
+        - ExtraBold: 800
+        - Black: 900
+
+    - name: FontStyle
+      description: Font style variations
+      variants:
+        - Normal
+        - Italic
+        - Oblique: f32  # angle in degrees
+
+    - name: FontStretch
+      description: Font stretch values
+      variants:
+        - UltraCondensed: 50
+        - ExtraCondensed: 62
+        - Condensed: 75
+        - SemiCondensed: 87
+        - Normal: 100
+        - SemiExpanded: 112
+        - Expanded: 125
+        - ExtraExpanded: 150
+        - UltraExpanded: 200
+
+    - name: Direction
+      description: Text direction
+      variants:
+        - LeftToRight
+        - RightToLeft
+        - TopToBottom
+        - BottomToTop
+
+    - name: RenderMode
+      description: Glyph rasterization mode
+      variants:
+        - Mono          # 1-bit monochrome
+        - Gray          # 8-bit grayscale
+        - SubpixelRgb   # Subpixel RGB
+        - SubpixelBgr   # Subpixel BGR
+        - SubpixelVrgb  # Vertical RGB
+        - SubpixelVbgr  # Vertical BGR
+
+  structs:
+    - name: FontDescriptor
+      description: Font selection descriptor
+      fields:
+        - name: family
+          type: Vec<String>
+          description: Font family names (fallback chain)
+        - name: weight
+          type: FontWeight
+        - name: style
+          type: FontStyle
+        - name: stretch
+          type: FontStretch
+        - name: size
+          type: f32
+          description: Font size in pixels
+
+    - name: FontMetrics
+      description: Font metrics and measurements
+      fields:
+        - name: units_per_em
+          type: u16
+        - name: ascent
+          type: f32
+        - name: descent
+          type: f32
+        - name: line_gap
+          type: f32
+        - name: cap_height
+          type: f32
+        - name: x_height
+          type: f32
+        - name: underline_position
+          type: f32
+        - name: underline_thickness
+          type: f32
+
+    - name: GlyphId
+      description: Glyph identifier
+      fields:
+        - name: id
+          type: u32
+
+    - name: Point
+      description: 2D point
+      fields:
+        - name: x
+          type: f32
+        - name: y
+          type: f32
+
+    - name: Vector
+      description: 2D vector
+      fields:
+        - name: x
+          type: f32
+        - name: y
+          type: f32
+
+    - name: PositionedGlyph
+      description: Glyph with position information
+      fields:
+        - name: glyph_id
+          type: GlyphId
+        - name: font_id
+          type: FontId
+        - name: position
+          type: Point
+        - name: advance
+          type: Vector
+        - name: offset
+          type: Vector
+
+    - name: ShapedText
+      description: Shaped text result
+      fields:
+        - name: glyphs
+          type: Vec<PositionedGlyph>
+        - name: width
+          type: f32
+        - name: height
+          type: f32
+        - name: baseline
+          type: f32
+
+    - name: GlyphBitmap
+      description: Rendered glyph bitmap
+      fields:
+        - name: width
+          type: u32
+        - name: height
+          type: u32
+        - name: left
+          type: i32
+          description: Bearing X
+        - name: top
+          type: i32
+          description: Bearing Y
+        - name: pitch
+          type: usize
+          description: Bytes per row
+        - name: data
+          type: Vec<u8>
+          description: Pixel data
+        - name: format
+          type: RenderMode
+
+  type_aliases:
+    - name: FontId
+      type: "usize"
+      description: Font identifier
+
+exports:
+  - FontWeight
+  - FontStyle
+  - FontStretch
+  - Direction
+  - RenderMode
+  - FontDescriptor
+  - FontMetrics
+  - GlyphId
+  - Point
+  - Vector
+  - PositionedGlyph
+  - ShapedText
+  - GlyphBitmap
+  - FontId

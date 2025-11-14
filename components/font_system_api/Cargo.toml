@@ -1,0 +1,28 @@
+[package]
+name = "font_system_api"
+version = "0.1.0"
+edition = "2021"
+authors = ["CortenBrowser Team"]
+license = "MIT OR Apache-2.0"
+description = "Public API and orchestration layer for the complete font system"
+
+[dependencies]
+font_types = { path = "../font_types" }
+font_parser = { path = "../font_parser" }
+font_registry = { path = "../font_registry" }
+text_shaper = { path = "../text_shaper" }
+glyph_renderer = { path = "../glyph_renderer" }
+platform_integration = { path = "../platform_integration" }
+
+[dev-dependencies]
+criterion = "0.5"
+proptest = "1.4"
+test-case = "3.1"
+
+[lib]
+name = "font_system_api"
+path = "src/lib.rs"
+
+[[bench]]
+name = "end_to_end"
+harness = false

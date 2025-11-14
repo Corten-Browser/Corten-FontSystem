@@ -1,0 +1,30 @@
+dependencies:
+  imports:
+  - import_from: components.font_types
+    name: font_types
+    version: ^0.1.0
+  - import_from: components.font_parser
+    name: font_parser
+    version: ^0.1.0
+  - import_from: components.font_registry
+    name: font_registry
+    version: ^0.1.0
+  - import_from: components.text_shaper
+    name: text_shaper
+    version: ^0.1.0
+  - import_from: components.glyph_renderer
+    name: glyph_renderer
+    version: ^0.1.0
+  - import_from: components.platform_integration
+    name: platform_integration
+    version: ^0.1.0
+estimated_tokens: 14000
+exports:
+  module: components.font_system_api
+  public_api: []
+language: rust
+name: font_system_api
+responsibility: Public API and orchestration layer for the complete font system
+tech_stack: Rust
+type: application
+version: 0.1.0

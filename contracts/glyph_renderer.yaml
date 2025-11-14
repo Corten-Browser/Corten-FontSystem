@@ -1,0 +1,72 @@
+component: glyph_renderer
+version: 0.1.0
+language: rust
+description: Glyph rasterization, hinting, subpixel rendering, GPU caching
+
+dependencies:
+  - font_types
+  - font_parser
+
+public_api:
+  structs:
+    - name: GlyphRenderer
+      description: Glyph rasterization engine
+      methods:
+        - name: new
+          description: Create new glyph renderer
+          returns: GlyphRenderer
+
+        - name: rasterize_glyph
+          description: Rasterize glyph to bitmap
+          parameters:
+            - name: font
+              type: "&OpenTypeFont"
+            - name: glyph_id
+              type: GlyphId
+            - name: size
+              type: f32
+            - name: mode
+              type: RenderMode
+          returns: Result<GlyphBitmap, RenderError>
+
+        - name: get_glyph_outline
+          description: Get glyph vector outline
+          parameters:
+            - name: font
+              type: "&OpenTypeFont"
+            - name: glyph_id
+              type: GlyphId
+          returns: Result<GlyphOutline, RenderError>
+
+        - name: clear_cache
+          description: Clear glyph cache
+          returns: ()
+
+        - name: cache_stats
+          description: Get cache statistics
+          returns: CacheStats
+
+    - name: CacheStats
+      description: Glyph cache statistics
+      fields:
+        - name: entries
+          type: usize
+        - name: hits
+          type: u64
+        - name: misses
+          type: u64
+        - name: memory_bytes
+          type: usize
+
+  enums:
+    - name: RenderError
+      description: Glyph rendering errors
+      variants:
+        - GlyphNotFound: GlyphId
+        - RasterizationFailed: String
+        - OutOfMemory
+
+exports:
+  - GlyphRenderer
+  - CacheStats
+  - RenderError

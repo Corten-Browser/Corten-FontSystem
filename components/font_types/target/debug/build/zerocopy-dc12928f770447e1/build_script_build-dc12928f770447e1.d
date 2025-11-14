@@ -1,0 +1,5 @@
+/home/user/Corten-FontSystem/components/font_types/target/debug/build/zerocopy-dc12928f770447e1/build_script_build-dc12928f770447e1.d: /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zerocopy-0.8.27/build.rs
+
+/home/user/Corten-FontSystem/components/font_types/target/debug/build/zerocopy-dc12928f770447e1/build_script_build-dc12928f770447e1: /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zerocopy-0.8.27/build.rs
+
+/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zerocopy-0.8.27/build.rs:
