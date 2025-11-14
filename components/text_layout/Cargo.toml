@@ -1,0 +1,37 @@
+[package]
+name = "text_layout"
+version = "0.1.0"
+edition = "2021"
+authors = ["CortenBrowser Team"]
+license = "MIT OR Apache-2.0"
+description = "Text layout engine: paragraph layout, line breaking, justification, and vertical text"
+
+[dependencies]
+# Font system dependencies
+font_types = { path = "../font_types" }
+text_shaper = { path = "../text_shaper" }
+
+# Unicode algorithms
+unicode-bidi = "0.3"
+unicode-linebreak = "0.1"
+unicode-segmentation = "1.10"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Data structures
+smallvec = "1.11"
+
+[dev-dependencies]
+criterion = "0.5"
+proptest = "1.4"
+test-case = "3.1"
+
+[lib]
+name = "text_layout"
+path = "src/lib.rs"
+
+[[bench]]
+name = "benchmarks"
+harness = false
