@@ -22,3 +22,6 @@ pub use font_registry::types::{FontDescriptor, FontId, FontMetrics};
 pub use font_types::types::GlyphId;
 pub use glyph_renderer::types::{GlyphBitmap, GlyphOutline, RenderMode};
 pub use text_shaper::types::ShapingOptions;
+pub use text_layout::{
+    JustificationMode, LayoutLine, LayoutOptions, LayoutResult, ParagraphLayout, TextDirection,
+};

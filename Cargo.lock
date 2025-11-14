@@ -437,6 +437,7 @@ dependencies = [
  "platform_integration",
  "proptest",
  "test-case",
+ "text_layout",
  "text_shaper",
 ]
 
