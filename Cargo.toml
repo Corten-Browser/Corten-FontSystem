@@ -1,0 +1,34 @@
+[workspace]
+members = [
+    "components/font_types",
+    "components/font_parser",
+    "components/font_registry",
+    "components/text_shaper",
+    "components/glyph_renderer",
+    "components/platform_integration",
+    "components/font_system_api",
+]
+
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["CortenBrowser Team"]
+license = "MIT OR Apache-2.0"
+
+# Workspace-wide dependencies (can be inherited by members)
+[workspace.dependencies]
+thiserror = "1.0"
+anyhow = "1.0"
+
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+
+[profile.test]
+opt-level = 1
