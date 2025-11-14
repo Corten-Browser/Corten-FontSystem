@@ -1,8 +1,13 @@
 //! Text shaper implementation using Harfbuzz
 
+use std::str::FromStr;
+
 use crate::types::{Script, ShapingError, ShapingOptions};
 use font_registry::{FontDescriptor as RegistryFontDescriptor, FontRegistry};
-use font_types::types::{FontDescriptor, FontId, ShapedText};
+use font_types::types::{
+    Direction, FontDescriptor, FontId, GlyphId, Point, PositionedGlyph, ShapedText, Vector,
+};
+use harfbuzz_rs::{Face, Font, Tag, UnicodeBuffer};
 
 /// Text shaping engine
 pub struct TextShaper<'a> {
@@ -31,7 +36,7 @@ impl<'a> TextShaper<'a> {
     /// * `text` - Text to shape
     /// * `font_id` - Font identifier
     /// * `size` - Font size in pixels
-    /// * `_options` - Shaping options (currently unused in minimal implementation)
+    /// * `options` - Shaping options
     ///
     /// # Returns
     ///
@@ -41,7 +46,7 @@ impl<'a> TextShaper<'a> {
         text: &str,
         font_id: FontId,
         size: f32,
-        _options: &ShapingOptions,
+        options: &ShapingOptions,
     ) -> Result<ShapedText, ShapingError> {
         // Validate input
         if text.is_empty() {
@@ -54,25 +59,116 @@ impl<'a> TextShaper<'a> {
         }
 
         // Get font face from registry
-        let _font_face = self
+        let font_face = self
             .registry
             .get_font_face(font_id)
             .ok_or(ShapingError::FontNotFound)?;
 
-        // Get font data - for now, we'll use a placeholder
-        // In a complete implementation, this would load actual font data
-        // This is a minimal implementation to make tests pass
+        // Get font data
+        let font_data = font_face.data();
 
-        // For now, return a simple shaped text with basic metrics
-        // This will be enhanced when we integrate with harfbuzz properly
-        let char_count = text.chars().count();
-        let avg_width = size * 0.6; // Rough estimate
+        // Create Harfbuzz font from font data
+        let hb_face = Face::from_bytes(font_data, 0);
+        let mut hb_font = Font::new(hb_face);
+
+        // Set font size (Harfbuzz uses 26.6 fixed point format)
+        let font_units_per_em = font_face.metrics.units_per_em as i32;
+        let scale = (size * 64.0) as i32; // Convert to 26.6 fixed point
+        hb_font.set_scale(scale, scale);
+        hb_font.set_ppem(size as u32, size as u32);
+
+        // Create buffer with text
+        let mut buffer = UnicodeBuffer::new();
+        buffer = buffer.add_str(text);
+
+        // Set buffer properties
+        buffer = buffer.set_direction(direction_to_hb_direction(options.direction));
+        buffer = buffer.set_script(script_to_tag(options.script));
+
+        if let Ok(lang) = harfbuzz_rs::Language::from_str(&options.language.tag) {
+            buffer = buffer.set_language(lang);
+        }
+
+        // Apply OpenType features
+        let features: Vec<harfbuzz_rs::Feature> = options
+            .features
+            .iter()
+            .filter_map(|(tag, value)| {
+                if tag.len() == 4 {
+                    let tag_bytes = tag.as_bytes();
+                    Some(harfbuzz_rs::Feature::new(
+                        Tag::new(
+                            tag_bytes[0] as char,
+                            tag_bytes[1] as char,
+                            tag_bytes[2] as char,
+                            tag_bytes[3] as char,
+                        ),
+                        *value,
+                        ..
+                    ))
+                } else {
+                    None
+                }
+            })
+            .collect();
+
+        // Shape the text
+        let output = harfbuzz_rs::shape(&hb_font, buffer, &features);
+
+        // Extract glyph info and positions
+        let positions = output.get_glyph_positions();
+        let infos = output.get_glyph_infos();
+
+        // Convert to our format
+        let mut glyphs = Vec::with_capacity(infos.len());
+        let mut cursor_x = 0.0;
+        let mut cursor_y = 0.0;
+        let mut total_width = 0.0;
+
+        for (info, pos) in infos.iter().zip(positions.iter()) {
+            // Convert from 26.6 fixed point to float
+            let x_advance = pos.x_advance as f32 / 64.0;
+            let y_advance = pos.y_advance as f32 / 64.0;
+            let x_offset = pos.x_offset as f32 / 64.0;
+            let y_offset = pos.y_offset as f32 / 64.0;
+
+            // Apply letter spacing
+            let adjusted_x_advance = x_advance + options.letter_spacing;
+
+            glyphs.push(PositionedGlyph {
+                glyph_id: GlyphId {
+                    id: info.codepoint,
+                },
+                font_id,
+                position: Point {
+                    x: cursor_x + x_offset,
+                    y: cursor_y + y_offset,
+                },
+                advance: Vector {
+                    x: adjusted_x_advance,
+                    y: y_advance,
+                },
+                offset: Vector {
+                    x: x_offset,
+                    y: y_offset,
+                },
+            });
+
+            cursor_x += adjusted_x_advance;
+            cursor_y += y_advance;
+            total_width = cursor_x;
+        }
+
+        // Calculate height and baseline from font metrics
+        let scale_factor = size / font_units_per_em as f32;
+        let height = (font_face.metrics.ascent - font_face.metrics.descent) * scale_factor;
+        let baseline = font_face.metrics.ascent * scale_factor;
 
         Ok(ShapedText {
-            glyphs: Vec::new(), // TODO: Populate with actual glyphs from harfbuzz
-            width: avg_width * char_count as f32,
-            height: size,
-            baseline: size * 0.8,
+            glyphs,
+            width: total_width,
+            height,
+            baseline,
         })
     }
 
@@ -123,31 +219,29 @@ impl<'a> TextShaper<'a> {
     }
 }
 
-/// Convert Script to harfbuzz script (placeholder for future use)
-#[allow(dead_code)]
-fn _script_to_string(script: Script) -> &'static str {
+/// Convert Script to harfbuzz Tag
+fn script_to_tag(script: Script) -> Tag {
     match script {
-        Script::Latin => "Latn",
-        Script::Arabic => "Arab",
-        Script::Hebrew => "Hebr",
-        Script::Cyrillic => "Cyrl",
-        Script::Greek => "Grek",
-        Script::Han => "Hani",
-        Script::Hangul => "Hang",
-        Script::Hiragana => "Hira",
-        Script::Katakana => "Kana",
-        Script::Common => "Zyyy",
+        Script::Latin => Tag::new('l', 'a', 't', 'n'),
+        Script::Arabic => Tag::new('a', 'r', 'a', 'b'),
+        Script::Hebrew => Tag::new('h', 'e', 'b', 'r'),
+        Script::Cyrillic => Tag::new('c', 'y', 'r', 'l'),
+        Script::Greek => Tag::new('g', 'r', 'e', 'k'),
+        Script::Han => Tag::new('h', 'a', 'n', 'i'),
+        Script::Hangul => Tag::new('h', 'a', 'n', 'g'),
+        Script::Hiragana => Tag::new('h', 'i', 'r', 'a'),
+        Script::Katakana => Tag::new('k', 'a', 'n', 'a'),
+        Script::Common => Tag::new('z', 'y', 'y', 'y'),
     }
 }
 
-/// Convert direction to harfbuzz direction (placeholder for Phase 2)
-#[allow(dead_code)]
-fn direction_to_hb_direction(direction: font_types::types::Direction) -> harfbuzz_rs::Direction {
+/// Convert direction to harfbuzz direction
+fn direction_to_hb_direction(direction: Direction) -> harfbuzz_rs::Direction {
     match direction {
-        font_types::types::Direction::LeftToRight => harfbuzz_rs::Direction::Ltr,
-        font_types::types::Direction::RightToLeft => harfbuzz_rs::Direction::Rtl,
-        font_types::types::Direction::TopToBottom => harfbuzz_rs::Direction::Ttb,
-        font_types::types::Direction::BottomToTop => harfbuzz_rs::Direction::Btt,
+        Direction::LeftToRight => harfbuzz_rs::Direction::Ltr,
+        Direction::RightToLeft => harfbuzz_rs::Direction::Rtl,
+        Direction::TopToBottom => harfbuzz_rs::Direction::Ttb,
+        Direction::BottomToTop => harfbuzz_rs::Direction::Btt,
     }
 }
 
@@ -156,15 +250,28 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_script_to_string() {
-        // Test that script conversion functions compile
-        let result = _script_to_string(Script::Latin);
-        assert_eq!(result, "Latn");
+    fn test_script_to_tag() {
+        // Test that script conversion works
+        assert_eq!(
+            script_to_tag(Script::Latin),
+            Tag::new('l', 'a', 't', 'n')
+        );
+        assert_eq!(
+            script_to_tag(Script::Arabic),
+            Tag::new('a', 'r', 'a', 'b')
+        );
     }
 
     #[test]
     fn test_direction_conversion() {
-        // Test that direction conversion functions compile
-        let _dir = direction_to_hb_direction(font_types::types::Direction::LeftToRight);
+        // Test that direction conversion works
+        assert_eq!(
+            direction_to_hb_direction(Direction::LeftToRight),
+            harfbuzz_rs::Direction::Ltr
+        );
+        assert_eq!(
+            direction_to_hb_direction(Direction::RightToLeft),
+            harfbuzz_rs::Direction::Rtl
+        );
     }
 }
