@@ -114,7 +114,7 @@ pub struct BoundingBox {
 }
 
 /// Glyph cache statistics
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub struct CacheStats {
     /// Number of cached entries
     pub entries: usize,
@@ -122,8 +122,16 @@ pub struct CacheStats {
     pub hits: u64,
     /// Number of cache misses
     pub misses: u64,
+    /// Number of cache evictions
+    pub evictions: u64,
     /// Total memory used by cache in bytes
     pub memory_bytes: usize,
+    /// Maximum number of entries
+    pub max_entries: usize,
+    /// Maximum memory in bytes
+    pub max_memory_bytes: usize,
+    /// Cache hit rate (hits / (hits + misses))
+    pub hit_rate: f64,
 }
 
 impl CacheStats {
@@ -133,7 +141,11 @@ impl CacheStats {
             entries: 0,
             hits: 0,
             misses: 0,
+            evictions: 0,
             memory_bytes: 0,
+            max_entries: 0,
+            max_memory_bytes: 0,
+            hit_rate: 0.0,
         }
     }
 }

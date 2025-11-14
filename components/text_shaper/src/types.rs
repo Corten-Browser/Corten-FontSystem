@@ -29,7 +29,7 @@ pub enum Script {
 }
 
 /// Language identifier with BCP 47 tag
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Language {
     /// BCP 47 language tag (e.g., "en-US", "fr-FR")
     pub tag: String,
@@ -77,4 +77,29 @@ pub struct ShapingOptions {
 
     /// Additional word spacing (in pixels)
     pub word_spacing: f32,
+}
+
+// Custom Hash implementation for ShapingOptions
+// HashMap doesn't implement Hash, so we convert to sorted vector for hashing
+impl std::hash::Hash for ShapingOptions {
+    fn hash<H: std::hash::Hasher>(&self, state: &mut H) {
+        self.script.hash(state);
+        self.language.hash(state);
+        // Direction needs to derive Hash in font_types, or we hash its discriminant
+        std::mem::discriminant(&self.direction).hash(state);
+
+        // Hash features as sorted vector
+        let mut features: Vec<_> = self.features.iter().collect();
+        features.sort_by_key(|(k, _)| *k);
+        for (key, value) in features {
+            key.hash(state);
+            value.hash(state);
+        }
+
+        self.kerning.hash(state);
+        self.ligatures.hash(state);
+        // Hash floats as their bit representation
+        self.letter_spacing.to_bits().hash(state);
+        self.word_spacing.to_bits().hash(state);
+    }
 }

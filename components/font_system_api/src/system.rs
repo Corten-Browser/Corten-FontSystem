@@ -1,6 +1,8 @@
 //! FontSystem implementation - main orchestration layer
 
-use crate::types::{FontError, FontSystemConfig};
+use crate::types::{
+    CacheConfig, FontError, FontSystemConfig, GlyphCacheConfig, ShapingCacheConfig,
+};
 use font_registry::types::{FontDescriptor, FontId, FontMetrics};
 use font_types::types::GlyphId;
 use glyph_renderer::types::{GlyphBitmap, GlyphOutline, RenderMode};
@@ -264,7 +266,18 @@ mod tests {
         // Then
         assert!(result.is_ok());
         let font_system = result.unwrap();
-        assert_eq!(font_system.config.cache_size_mb, 64);
+        assert_eq!(
+            font_system.config.cache_config.glyph_cache.max_entries,
+            10_000
+        );
+        assert_eq!(
+            font_system.config.cache_config.glyph_cache.max_memory_bytes,
+            100 * 1024 * 1024
+        );
+        assert_eq!(
+            font_system.config.cache_config.shaping_cache.max_entries,
+            1_000
+        );
         assert!(font_system.config.enable_subpixel);
         assert!(font_system.config.enable_hinting);
         assert!(font_system.config.load_system_fonts_on_init);
@@ -273,8 +286,20 @@ mod tests {
     #[test]
     fn test_font_system_new_with_custom_config() {
         // Given
+        let cache_config = CacheConfig {
+            glyph_cache: GlyphCacheConfig {
+                max_entries: 15_000,
+                max_memory_bytes: 150 * 1024 * 1024,
+                enable_statistics: false,
+            },
+            shaping_cache: ShapingCacheConfig {
+                max_entries: 1_500,
+                enable_statistics: false,
+            },
+        };
+
         let config = FontSystemConfig {
-            cache_size_mb: 128,
+            cache_config,
             enable_subpixel: false,
             enable_hinting: false,
             load_system_fonts_on_init: false,
@@ -286,7 +311,10 @@ mod tests {
         // Then
         assert!(result.is_ok());
         let font_system = result.unwrap();
-        assert_eq!(font_system.config.cache_size_mb, 128);
+        assert_eq!(
+            font_system.config.cache_config.glyph_cache.max_entries,
+            15_000
+        );
         assert!(!font_system.config.enable_subpixel);
         assert!(!font_system.config.enable_hinting);
         assert!(!font_system.config.load_system_fonts_on_init);

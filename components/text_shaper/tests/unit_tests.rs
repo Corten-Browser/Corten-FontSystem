@@ -1,6 +1,7 @@
 //! Unit tests for text_shaper
 //! This is an integration test file that tests the public API
 
+mod test_harfbuzz_integration;
 mod test_types {
     use std::collections::HashMap;
     use text_shaper::{Language, Script, ShapingError, ShapingOptions};

@@ -21,6 +21,7 @@ thiserror = "1.0"
 
 # Data structures
 rustc-hash = "1.1"
+lru = "0.12"  # LRU cache implementation
 
 [dev-dependencies]
 criterion = "0.5"

@@ -5,14 +5,43 @@
 
 pub mod types;
 
-use std::collections::HashMap;
+use lru::LruCache;
+use std::num::NonZeroUsize;
 use types::*;
 
 use freetype as ft;
 
+/// Default cache size (number of glyphs)
+const DEFAULT_CACHE_SIZE: usize = 10_000;
+
+/// Default memory limit in bytes (100 MB)
+const DEFAULT_MEMORY_LIMIT_BYTES: usize = 100 * 1024 * 1024;
+
 /// Glyph renderer with caching support
 pub struct GlyphRenderer {
     cache: GlyphCache,
+    config: CacheConfig,
+}
+
+/// Cache configuration
+#[derive(Debug, Clone)]
+pub struct CacheConfig {
+    /// Maximum number of cached glyphs
+    pub max_entries: usize,
+    /// Maximum memory usage in bytes
+    pub max_memory_bytes: usize,
+    /// Enable statistics tracking
+    pub enable_statistics: bool,
+}
+
+impl Default for CacheConfig {
+    fn default() -> Self {
+        Self {
+            max_entries: DEFAULT_CACHE_SIZE,
+            max_memory_bytes: DEFAULT_MEMORY_LIMIT_BYTES,
+            enable_statistics: true,
+        }
+    }
 }
 
 /// Glyph cache key
@@ -23,34 +52,97 @@ struct CacheKey {
     mode: RenderMode,
 }
 
-/// Internal glyph cache
+/// Internal glyph cache with LRU eviction
 struct GlyphCache {
-    entries: HashMap<CacheKey, GlyphBitmap>,
+    entries: LruCache<CacheKey, GlyphBitmap>,
+    stats: CacheStatistics,
+    memory_bytes: usize,
+    max_memory_bytes: usize,
+}
+
+/// Cache statistics
+#[derive(Debug, Clone, Default)]
+struct CacheStatistics {
     hits: u64,
     misses: u64,
+    evictions: u64,
 }
 
 impl GlyphCache {
-    fn new() -> Self {
+    fn new(max_entries: usize, max_memory_bytes: usize) -> Self {
         Self {
-            entries: HashMap::new(),
-            hits: 0,
-            misses: 0,
+            entries: LruCache::new(NonZeroUsize::new(max_entries).unwrap()),
+            stats: CacheStatistics::default(),
+            memory_bytes: 0,
+            max_memory_bytes,
+        }
+    }
+
+    fn get(&mut self, key: &CacheKey) -> Option<&GlyphBitmap> {
+        if let Some(bitmap) = self.entries.get(key) {
+            self.stats.hits += 1;
+            Some(bitmap)
+        } else {
+            self.stats.misses += 1;
+            None
+        }
+    }
+
+    fn insert(&mut self, key: CacheKey, bitmap: GlyphBitmap) {
+        let bitmap_size = bitmap.data.len();
+
+        // Check if adding this entry would exceed memory limit
+        if self.memory_bytes + bitmap_size > self.max_memory_bytes {
+            // Evict entries until we have space
+            self.evict_to_fit(bitmap_size);
+        }
+
+        // Insert into cache
+        if let Some((_, evicted_bitmap)) = self.entries.push(key, bitmap) {
+            // An entry was evicted by LRU
+            self.memory_bytes -= evicted_bitmap.data.len();
+            self.stats.evictions += 1;
+        }
+
+        self.memory_bytes += bitmap_size;
+    }
+
+    fn evict_to_fit(&mut self, required_bytes: usize) {
+        // Calculate target memory after eviction
+        let target_memory = self.max_memory_bytes.saturating_sub(required_bytes);
+
+        // Evict oldest entries until we're under target
+        while self.memory_bytes > target_memory && !self.entries.is_empty() {
+            if let Some((_, bitmap)) = self.entries.pop_lru() {
+                self.memory_bytes -= bitmap.data.len();
+                self.stats.evictions += 1;
+            } else {
+                break;
+            }
         }
     }
 
     fn clear(&mut self) {
         self.entries.clear();
+        self.memory_bytes = 0;
     }
 
     fn get_stats(&self) -> CacheStats {
-        let memory_bytes = self.entries.values().map(|bitmap| bitmap.data.len()).sum();
+        let hit_rate = if self.stats.hits + self.stats.misses > 0 {
+            self.stats.hits as f64 / (self.stats.hits + self.stats.misses) as f64
+        } else {
+            0.0
+        };
 
         CacheStats {
             entries: self.entries.len(),
-            hits: self.hits,
-            misses: self.misses,
-            memory_bytes,
+            hits: self.stats.hits,
+            misses: self.stats.misses,
+            evictions: self.stats.evictions,
+            memory_bytes: self.memory_bytes,
+            max_entries: self.entries.cap().get(),
+            max_memory_bytes: self.max_memory_bytes,
+            hit_rate,
         }
     }
 }
@@ -74,10 +166,16 @@ fn get_load_flags(mode: RenderMode) -> ft::face::LoadFlag {
 }
 
 impl GlyphRenderer {
-    /// Create a new glyph renderer
+    /// Create a new glyph renderer with default configuration
     pub fn new() -> Self {
+        Self::with_config(CacheConfig::default())
+    }
+
+    /// Create a new glyph renderer with custom configuration
+    pub fn with_config(config: CacheConfig) -> Self {
         Self {
-            cache: GlyphCache::new(),
+            cache: GlyphCache::new(config.max_entries, config.max_memory_bytes),
+            config,
         }
     }
 
@@ -98,13 +196,9 @@ impl GlyphRenderer {
         };
 
         // Check cache first
-        if let Some(bitmap) = self.cache.entries.get(&cache_key) {
-            self.cache.hits += 1;
+        if let Some(bitmap) = self.cache.get(&cache_key) {
             return Ok(bitmap.clone());
         }
-
-        // Cache miss
-        self.cache.misses += 1;
 
         // Check if font has data
         if font.data.is_empty() {
@@ -117,7 +211,7 @@ impl GlyphRenderer {
         let bitmap = self.rasterize_with_freetype(font, glyph_id, size, mode)?;
 
         // Store in cache
-        self.cache.entries.insert(cache_key, bitmap.clone());
+        self.cache.insert(cache_key, bitmap.clone());
 
         Ok(bitmap)
     }
@@ -326,7 +420,8 @@ mod tests {
     #[test]
     fn test_new_creates_renderer() {
         let renderer = GlyphRenderer::new();
-        assert!(renderer.cache.entries.is_empty());
+        let stats = renderer.cache_stats();
+        assert_eq!(stats.entries, 0);
     }
 
     #[test]

@@ -9,6 +9,7 @@ description = "Glyph rasterization, hinting, subpixel rendering, and glyph cachi
 [dependencies]
 freetype-rs = "0.36"
 # Note: freetype-rs provides FreeType library bindings for Rust
+lru = "0.12"  # LRU cache implementation
 
 [dev-dependencies]
 criterion = "0.5"

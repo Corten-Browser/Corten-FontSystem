@@ -1,5 +1,9 @@
 //! Text shaper implementation using Harfbuzz
 
+use std::cell::RefCell;
+use std::collections::hash_map::DefaultHasher;
+use std::hash::{Hash, Hasher};
+use std::num::NonZeroUsize;
 use std::str::FromStr;
 
 use crate::types::{Script, ShapingError, ShapingOptions};
@@ -8,15 +12,146 @@ use font_types::types::{
     Direction, FontDescriptor, FontId, GlyphId, Point, PositionedGlyph, ShapedText, Vector,
 };
 use harfbuzz_rs::{Face, Font, Tag, UnicodeBuffer};
+use lru::LruCache;
+
+/// Default shaping cache size
+const DEFAULT_SHAPING_CACHE_SIZE: usize = 1000;
+
+/// Shaping cache configuration
+#[derive(Debug, Clone)]
+pub struct ShapingCacheConfig {
+    /// Maximum number of cached shaping results
+    pub max_entries: usize,
+    /// Enable statistics tracking
+    pub enable_statistics: bool,
+}
+
+impl Default for ShapingCacheConfig {
+    fn default() -> Self {
+        Self {
+            max_entries: DEFAULT_SHAPING_CACHE_SIZE,
+            enable_statistics: true,
+        }
+    }
+}
+
+/// Cache key for shaped text
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+struct ShapingCacheKey {
+    /// Text to shape
+    text: String,
+    /// Font ID
+    font_id: FontId,
+    /// Size in fixed point (size * 10 for precision)
+    size_fixed: u32,
+    /// Hash of shaping options
+    options_hash: u64,
+}
+
+impl ShapingCacheKey {
+    fn new(text: &str, font_id: FontId, size: f32, options: &ShapingOptions) -> Self {
+        // Hash the options for cache key
+        let mut hasher = DefaultHasher::new();
+        options.hash(&mut hasher);
+        let options_hash = hasher.finish();
+
+        Self {
+            text: text.to_string(),
+            font_id,
+            size_fixed: (size * 10.0) as u32,
+            options_hash,
+        }
+    }
+}
+
+/// Shaping cache statistics
+#[derive(Debug, Clone, Copy, Default)]
+pub struct ShapingCacheStats {
+    /// Number of cache hits
+    pub hits: u64,
+    /// Number of cache misses
+    pub misses: u64,
+    /// Number of evictions
+    pub evictions: u64,
+    /// Current cache size
+    pub current_size: usize,
+    /// Maximum cache size
+    pub max_size: usize,
+    /// Cache hit rate
+    pub hit_rate: f64,
+}
+
+/// Shaping cache
+struct ShapingCache {
+    cache: LruCache<ShapingCacheKey, ShapedText>,
+    stats: CacheStatistics,
+}
+
+#[derive(Debug, Clone, Default)]
+struct CacheStatistics {
+    hits: u64,
+    misses: u64,
+    evictions: u64,
+}
+
+impl ShapingCache {
+    fn new(max_size: usize) -> Self {
+        Self {
+            cache: LruCache::new(NonZeroUsize::new(max_size).unwrap()),
+            stats: CacheStatistics::default(),
+        }
+    }
+
+    fn get(&mut self, key: &ShapingCacheKey) -> Option<&ShapedText> {
+        if let Some(shaped) = self.cache.get(key) {
+            self.stats.hits += 1;
+            Some(shaped)
+        } else {
+            self.stats.misses += 1;
+            None
+        }
+    }
+
+    fn insert(&mut self, key: ShapingCacheKey, value: ShapedText) {
+        if self.cache.push(key, value).is_some() {
+            self.stats.evictions += 1;
+        }
+    }
+
+    fn clear(&mut self) {
+        self.cache.clear();
+    }
+
+    fn get_stats(&self) -> ShapingCacheStats {
+        let hit_rate = if self.stats.hits + self.stats.misses > 0 {
+            self.stats.hits as f64 / (self.stats.hits + self.stats.misses) as f64
+        } else {
+            0.0
+        };
+
+        ShapingCacheStats {
+            hits: self.stats.hits,
+            misses: self.stats.misses,
+            evictions: self.stats.evictions,
+            current_size: self.cache.len(),
+            max_size: self.cache.cap().get(),
+            hit_rate,
+        }
+    }
+}
 
 /// Text shaping engine
 pub struct TextShaper<'a> {
     /// Reference to font registry
     registry: &'a FontRegistry,
+    /// Shaping cache with interior mutability
+    cache: Option<RefCell<ShapingCache>>,
+    /// Cache configuration
+    config: ShapingCacheConfig,
 }
 
 impl<'a> TextShaper<'a> {
-    /// Create new text shaper
+    /// Create new text shaper with default configuration
     ///
     /// # Arguments
     ///
@@ -26,7 +161,47 @@ impl<'a> TextShaper<'a> {
     ///
     /// New TextShaper instance
     pub fn new(registry: &'a FontRegistry) -> Self {
-        Self { registry }
+        Self::with_config(registry, ShapingCacheConfig::default())
+    }
+
+    /// Create new text shaper with custom configuration
+    ///
+    /// # Arguments
+    ///
+    /// * `registry` - Font registry containing loaded fonts
+    /// * `config` - Cache configuration
+    ///
+    /// # Returns
+    ///
+    /// New TextShaper instance
+    pub fn with_config(registry: &'a FontRegistry, config: ShapingCacheConfig) -> Self {
+        let cache = if config.enable_statistics {
+            Some(RefCell::new(ShapingCache::new(config.max_entries)))
+        } else {
+            None
+        };
+
+        Self {
+            registry,
+            cache,
+            config,
+        }
+    }
+
+    /// Get cache statistics
+    ///
+    /// # Returns
+    ///
+    /// Cache statistics if caching is enabled, None otherwise
+    pub fn cache_stats(&self) -> Option<ShapingCacheStats> {
+        self.cache.as_ref().map(|c| c.borrow().get_stats())
+    }
+
+    /// Clear the shaping cache
+    pub fn clear_cache(&self) {
+        if let Some(cache) = &self.cache {
+            cache.borrow_mut().clear();
+        }
     }
 
     /// Shape text with specific font
@@ -56,6 +231,14 @@ impl<'a> TextShaper<'a> {
                 height: 0.0,
                 baseline: 0.0,
             });
+        }
+
+        // Check cache first
+        if let Some(cache) = &self.cache {
+            let cache_key = ShapingCacheKey::new(text, font_id, size, options);
+            if let Some(shaped) = cache.borrow_mut().get(&cache_key) {
+                return Ok(shaped.clone());
+            }
         }
 
         // Get font face from registry
@@ -167,12 +350,20 @@ impl<'a> TextShaper<'a> {
         let height = (font_face.metrics.ascent - font_face.metrics.descent) * scale_factor;
         let baseline = font_face.metrics.ascent * scale_factor;
 
-        Ok(ShapedText {
+        let shaped_text = ShapedText {
             glyphs,
             width: total_width,
             height,
             baseline,
-        })
+        };
+
+        // Store in cache
+        if let Some(cache) = &self.cache {
+            let cache_key = ShapingCacheKey::new(text, font_id, size, options);
+            cache.borrow_mut().insert(cache_key, shaped_text.clone());
+        }
+
+        Ok(shaped_text)
     }
 
     /// Shape text with font fallback

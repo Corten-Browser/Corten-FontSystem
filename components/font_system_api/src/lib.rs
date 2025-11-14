@@ -6,12 +6,16 @@
 #![warn(missing_docs)]
 #![warn(clippy::all)]
 
+pub mod profiling;
 mod system;
 pub mod types;
 
 // Re-export public types
+pub use profiling::{
+    ComponentMemoryBreakdown, ComponentMemoryPercentages, MemoryProfiler, MemoryStats,
+};
 pub use system::{FontSystem, ShapedText};
-pub use types::{FontError, FontSystemConfig};
+pub use types::{CacheConfig, FontError, FontSystemConfig};
 
 // Re-export types from dependencies
 pub use font_registry::types::{FontDescriptor, FontId, FontMetrics};

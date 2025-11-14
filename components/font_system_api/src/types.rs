@@ -1,5 +1,62 @@
 //! Common types for font_system_api
 
+/// Cache configuration for font system components
+#[derive(Debug, Clone)]
+pub struct CacheConfig {
+    /// Glyph cache configuration
+    pub glyph_cache: GlyphCacheConfig,
+    /// Shaping cache configuration
+    pub shaping_cache: ShapingCacheConfig,
+}
+
+impl Default for CacheConfig {
+    fn default() -> Self {
+        Self {
+            glyph_cache: GlyphCacheConfig::default(),
+            shaping_cache: ShapingCacheConfig::default(),
+        }
+    }
+}
+
+/// Configuration for glyph renderer cache
+#[derive(Debug, Clone)]
+pub struct GlyphCacheConfig {
+    /// Maximum number of cached glyphs (default: 10,000)
+    pub max_entries: usize,
+    /// Maximum memory usage in bytes (default: 100 MB)
+    pub max_memory_bytes: usize,
+    /// Enable cache statistics tracking
+    pub enable_statistics: bool,
+}
+
+impl Default for GlyphCacheConfig {
+    fn default() -> Self {
+        Self {
+            max_entries: 10_000,
+            max_memory_bytes: 100 * 1024 * 1024, // 100 MB
+            enable_statistics: true,
+        }
+    }
+}
+
+/// Configuration for text shaping cache
+#[derive(Debug, Clone)]
+pub struct ShapingCacheConfig {
+    /// Maximum number of cached shaping results (default: 1,000)
+    pub max_entries: usize,
+    /// Enable cache statistics tracking
+    pub enable_statistics: bool,
+}
+
+impl Default for ShapingCacheConfig {
+    fn default() -> Self {
+        Self {
+            max_entries: 1_000,
+            enable_statistics: true,
+        }
+    }
+}
+
 /// FontError represents all possible errors in the font system
 #[derive(Debug, Clone, PartialEq)]
 pub enum FontError {
@@ -35,8 +92,8 @@ impl std::error::Error for FontError {}
 /// Configuration for FontSystem initialization
 #[derive(Debug, Clone)]
 pub struct FontSystemConfig {
-    /// Cache size in megabytes
-    pub cache_size_mb: usize,
+    /// Cache configuration for glyph rendering and text shaping
+    pub cache_config: CacheConfig,
     /// Enable subpixel rendering
     pub enable_subpixel: bool,
     /// Enable font hinting
@@ -48,7 +105,7 @@ pub struct FontSystemConfig {
 impl Default for FontSystemConfig {
     fn default() -> Self {
         Self {
-            cache_size_mb: 64,
+            cache_config: CacheConfig::default(),
             enable_subpixel: true,
             enable_hinting: true,
             load_system_fonts_on_init: true,
@@ -111,11 +168,49 @@ mod tests {
         assert!(debug_str.contains("FontNotFound"));
     }
 
+    // CacheConfig tests
+    #[test]
+    fn test_cache_config_default() {
+        let config = CacheConfig::default();
+        assert_eq!(config.glyph_cache.max_entries, 10_000);
+        assert_eq!(config.glyph_cache.max_memory_bytes, 100 * 1024 * 1024);
+        assert!(config.glyph_cache.enable_statistics);
+        assert_eq!(config.shaping_cache.max_entries, 1_000);
+        assert!(config.shaping_cache.enable_statistics);
+    }
+
+    #[test]
+    fn test_glyph_cache_config_custom() {
+        let config = GlyphCacheConfig {
+            max_entries: 20_000,
+            max_memory_bytes: 200 * 1024 * 1024,
+            enable_statistics: false,
+        };
+        assert_eq!(config.max_entries, 20_000);
+        assert_eq!(config.max_memory_bytes, 200 * 1024 * 1024);
+        assert!(!config.enable_statistics);
+    }
+
+    #[test]
+    fn test_shaping_cache_config_custom() {
+        let config = ShapingCacheConfig {
+            max_entries: 2_000,
+            enable_statistics: false,
+        };
+        assert_eq!(config.max_entries, 2_000);
+        assert!(!config.enable_statistics);
+    }
+
     // FontSystemConfig tests
     #[test]
     fn test_font_system_config_default() {
         let config = FontSystemConfig::default();
-        assert_eq!(config.cache_size_mb, 64);
+        assert_eq!(config.cache_config.glyph_cache.max_entries, 10_000);
+        assert_eq!(
+            config.cache_config.glyph_cache.max_memory_bytes,
+            100 * 1024 * 1024
+        );
+        assert_eq!(config.cache_config.shaping_cache.max_entries, 1_000);
         assert!(config.enable_subpixel);
         assert!(config.enable_hinting);
         assert!(config.load_system_fonts_on_init);
@@ -123,13 +218,25 @@ mod tests {
 
     #[test]
     fn test_font_system_config_custom() {
+        let cache_config = CacheConfig {
+            glyph_cache: GlyphCacheConfig {
+                max_entries: 15_000,
+                max_memory_bytes: 150 * 1024 * 1024,
+                enable_statistics: false,
+            },
+            shaping_cache: ShapingCacheConfig {
+                max_entries: 1_500,
+                enable_statistics: false,
+            },
+        };
+
         let config = FontSystemConfig {
-            cache_size_mb: 128,
+            cache_config,
             enable_subpixel: false,
             enable_hinting: false,
             load_system_fonts_on_init: false,
         };
-        assert_eq!(config.cache_size_mb, 128);
+        assert_eq!(config.cache_config.glyph_cache.max_entries, 15_000);
         assert!(!config.enable_subpixel);
         assert!(!config.enable_hinting);
         assert!(!config.load_system_fonts_on_init);
@@ -139,7 +246,10 @@ mod tests {
     fn test_font_system_config_clone() {
         let config = FontSystemConfig::default();
         let cloned = config.clone();
-        assert_eq!(config.cache_size_mb, cloned.cache_size_mb);
+        assert_eq!(
+            config.cache_config.glyph_cache.max_entries,
+            cloned.cache_config.glyph_cache.max_entries
+        );
         assert_eq!(config.enable_subpixel, cloned.enable_subpixel);
     }
 
@@ -148,6 +258,6 @@ mod tests {
         let config = FontSystemConfig::default();
         let debug_str = format!("{:?}", config);
         assert!(debug_str.contains("FontSystemConfig"));
-        assert!(debug_str.contains("cache_size_mb"));
+        assert!(debug_str.contains("cache_config"));
     }
 }
