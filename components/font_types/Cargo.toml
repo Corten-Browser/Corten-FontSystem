@@ -17,7 +17,3 @@ test-case = "3.1"
 [lib]
 name = "font_types"
 path = "src/lib.rs"
-
-[[bench]]
-name = "benchmarks"
-harness = false
