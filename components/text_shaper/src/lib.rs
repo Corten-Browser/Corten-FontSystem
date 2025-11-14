@@ -4,9 +4,11 @@
 #![warn(clippy::all)]
 
 pub mod types;
+pub mod shaper;
 
 // Re-export main types for convenience
 pub use types::{Language, Script, ShapingError, ShapingOptions};
+pub use shaper::TextShaper;
 
 #[cfg(test)]
 mod tests {
