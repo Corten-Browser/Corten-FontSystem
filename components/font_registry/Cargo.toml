@@ -7,7 +7,14 @@ license = "MIT OR Apache-2.0"
 description = "Font discovery, loading, caching, and font matching algorithms"
 
 [dependencies]
-# Add dependencies based on component needs
+# Dependency on font_types for common types
+font_types = { path = "../font_types" }
+
+# Error handling
+thiserror = "1.0"
+
+# Font parsing (for load_font_data implementation)
+ttf-parser = "0.20"
 
 [dev-dependencies]
 criterion = "0.5"
@@ -17,7 +24,3 @@ test-case = "3.1"
 [lib]
 name = "font_registry"
 path = "src/lib.rs"
-
-[[bench]]
-name = "benchmarks"
-harness = false
