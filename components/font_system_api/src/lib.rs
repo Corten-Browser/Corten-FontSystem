@@ -1,18 +1,20 @@
 //! font_system_api - Public API and orchestration layer for the complete font system
+//!
+//! This crate provides the main public API for the Corten Font System, orchestrating
+//! all font-related operations including loading, matching, shaping, and rendering.
 
 #![warn(missing_docs)]
 #![warn(clippy::all)]
 
-/// Module exports will be added during implementation
+mod system;
 pub mod types;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+// Re-export public types
+pub use system::{FontSystem, ShapedText};
+pub use types::{FontError, FontSystemConfig};
 
-    #[test]
-    fn test_placeholder() {
-        // Tests will be added during TDD
-        assert!(true);
-    }
-}
+// Re-export types from dependencies
+pub use font_registry::types::{FontDescriptor, FontId, FontMetrics};
+pub use font_types::types::GlyphId;
+pub use glyph_renderer::types::{GlyphBitmap, GlyphOutline, RenderMode};
+pub use text_shaper::types::ShapingOptions;

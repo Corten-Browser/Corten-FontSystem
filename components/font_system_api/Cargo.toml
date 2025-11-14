@@ -7,7 +7,12 @@ license = "MIT OR Apache-2.0"
 description = "Public API and orchestration layer for the complete font system"
 
 [dependencies]
-# Add dependencies based on component needs
+font_types = { path = "../font_types" }
+font_parser = { path = "../font_parser" }
+font_registry = { path = "../font_registry" }
+text_shaper = { path = "../text_shaper" }
+glyph_renderer = { path = "../glyph_renderer" }
+platform_integration = { path = "../platform_integration" }
 
 [dev-dependencies]
 criterion = "0.5"
@@ -17,7 +22,3 @@ test-case = "3.1"
 [lib]
 name = "font_system_api"
 path = "src/lib.rs"
-
-[[bench]]
-name = "benchmarks"
-harness = false
