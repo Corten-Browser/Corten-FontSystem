@@ -22,3 +22,7 @@ test-case = "3.1"
 [lib]
 name = "font_system_api"
 path = "src/lib.rs"
+
+[[bench]]
+name = "end_to_end"
+harness = false

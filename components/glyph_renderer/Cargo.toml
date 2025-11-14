@@ -18,3 +18,11 @@ test-case = "3.1"
 [lib]
 name = "glyph_renderer"
 path = "src/lib.rs"
+
+[[bench]]
+name = "glyph_rendering"
+harness = false
+
+[[bench]]
+name = "cache_performance"
+harness = false
