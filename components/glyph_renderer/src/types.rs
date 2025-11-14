@@ -23,15 +23,34 @@ pub enum RenderMode {
 /// OpenType font structure (stub - will come from font_parser)
 #[derive(Debug, Clone)]
 pub struct OpenTypeFont {
-    // Placeholder for font data
-    _data: Vec<u8>,
+    // Font data (actual TrueType/OpenType font bytes)
+    pub(crate) data: Vec<u8>,
+    // Face index (for TTC collections)
+    pub(crate) face_index: isize,
 }
 
 impl OpenTypeFont {
+    /// Create a font from raw font data
+    ///
+    /// # Arguments
+    /// * `data` - Raw TrueType or OpenType font data
+    /// * `face_index` - Face index (0 for single fonts, varies for TTC collections)
+    pub fn from_data(data: Vec<u8>, face_index: isize) -> Self {
+        Self { data, face_index }
+    }
+
     /// Create a temporary stub font for testing
     /// Note: This is a test helper stub. Will be replaced when font_parser is implemented.
     pub fn new_stub() -> Self {
-        Self { _data: Vec::new() }
+        Self {
+            data: Vec::new(),
+            face_index: 0,
+        }
+    }
+
+    /// Check if this font has any data
+    pub fn has_data(&self) -> bool {
+        !self.data.is_empty()
     }
 }
 
