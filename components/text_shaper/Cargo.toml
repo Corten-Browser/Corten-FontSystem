@@ -7,7 +7,20 @@ license = "MIT OR Apache-2.0"
 description = "Text shaping, bidirectional text, line breaking, and OpenType features"
 
 [dependencies]
-# Add dependencies based on component needs
+# Font system dependencies
+font_types = { path = "../font_types" }
+font_parser = { path = "../font_parser" }
+font_registry = { path = "../font_registry" }
+
+# Text shaping
+harfbuzz_rs = "2.0"
+unicode-bidi = "0.3"
+
+# Error handling
+thiserror = "1.0"
+
+# Data structures
+rustc-hash = "1.1"
 
 [dev-dependencies]
 criterion = "0.5"

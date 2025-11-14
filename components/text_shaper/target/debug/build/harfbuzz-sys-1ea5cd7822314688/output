@@ -1,0 +1,572 @@
+cargo:rerun-if-env-changed=HARFBUZZ_SYS_NO_PKG_CONFIG
+cargo:rerun-if-env-changed=HARFBUZZ_NO_PKG_CONFIG
+cargo:rerun-if-env-changed=PKG_CONFIG_x86_64-unknown-linux-gnu
+cargo:rerun-if-env-changed=PKG_CONFIG_x86_64_unknown_linux_gnu
+cargo:rerun-if-env-changed=HOST_PKG_CONFIG
+cargo:rerun-if-env-changed=PKG_CONFIG
+cargo:rerun-if-env-changed=HARFBUZZ_STATIC
+cargo:rerun-if-env-changed=HARFBUZZ_DYNAMIC
+cargo:rerun-if-env-changed=PKG_CONFIG_ALL_STATIC
+cargo:rerun-if-env-changed=PKG_CONFIG_ALL_DYNAMIC
+cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64-unknown-linux-gnu
+cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64_unknown_linux_gnu
+cargo:rerun-if-env-changed=HOST_PKG_CONFIG_PATH
+cargo:rerun-if-env-changed=PKG_CONFIG_PATH
+cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64-unknown-linux-gnu
+cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64_unknown_linux_gnu
+cargo:rerun-if-env-changed=HOST_PKG_CONFIG_LIBDIR
+cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR
+cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64-unknown-linux-gnu
+cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64_unknown_linux_gnu
+cargo:rerun-if-env-changed=HOST_PKG_CONFIG_SYSROOT_DIR
+cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR
+OUT_DIR = Some(/home/user/Corten-FontSystem/components/text_shaper/target/debug/build/harfbuzz-sys-1ea5cd7822314688/out)
+OPT_LEVEL = Some(0)
+TARGET = Some(x86_64-unknown-linux-gnu)
+CARGO_ENCODED_RUSTFLAGS = Some()
+HOST = Some(x86_64-unknown-linux-gnu)
+cargo:rerun-if-env-changed=CXX_x86_64-unknown-linux-gnu
+CXX_x86_64-unknown-linux-gnu = None
+cargo:rerun-if-env-changed=CXX_x86_64_unknown_linux_gnu
+CXX_x86_64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=HOST_CXX
+HOST_CXX = None
+cargo:rerun-if-env-changed=CXX
+CXX = None
+cargo:rerun-if-env-changed=CC_ENABLE_DEBUG_OUTPUT
+RUSTC_WRAPPER = None
+cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+CRATE_CC_NO_DEFAULTS = None
+DEBUG = Some(true)
+CARGO_CFG_TARGET_FEATURE = Some(fxsr,sse,sse2)
+cargo:rerun-if-env-changed=CXXFLAGS
+CXXFLAGS = None
+cargo:rerun-if-env-changed=HOST_CXXFLAGS
+HOST_CXXFLAGS = None
+cargo:rerun-if-env-changed=CXXFLAGS_x86_64_unknown_linux_gnu
+CXXFLAGS_x86_64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=CXXFLAGS_x86_64-unknown-linux-gnu
+CXXFLAGS_x86_64-unknown-linux-gnu = None
+cargo:warning=In file included from harfbuzz/src/hb-aat-layout.cc:32,
+cargo:warning=                 from harfbuzz/src/harfbuzz.cc:1:
+cargo:warning=harfbuzz/src/hb-aat-layout-ankr-table.hh: In member function 'const AAT::Anchor& AAT::ankr::get_anchor(hb_codepoint_t, unsigned int, unsigned int) const':
+cargo:warning=harfbuzz/src/hb-aat-layout-ankr-table.hh:70:25: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=   70 |     const GlyphAnchors &anchors = &(this+anchorData) + *offset;
+cargo:warning=      |                         ^~~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-ankr-table.hh:70:57: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const IntType<unsigned char, 1>*>((& OT::operator+<const AAT::ankr*>(((const AAT::ankr*)this), ((const AAT::ankr*)this)->AAT::ankr::anchorData)), (* offset))'
+cargo:warning=   70 |     const GlyphAnchors &anchors = &(this+anchorData) + *offset;
+cargo:warning=      |                                                         ^~~~~~
+cargo:warning=In file included from harfbuzz/src/hb-aat-layout-morx-table.hh:32,
+cargo:warning=                 from harfbuzz/src/hb-aat-layout-just-table.hh:32,
+cargo:warning=                 from harfbuzz/src/hb-aat-layout.cc:35:
+cargo:warning=harfbuzz/src/hb-ot-layout-common.hh: In member function 'bool OT::Script::subset(hb_subset_context_t*, OT::hb_subset_layout_context_t*, const OT::Tag*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-common.hh:598:22: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  598 |       const LangSys& ls = this+defaultLangSys;
+cargo:warning=      |                      ^~
+cargo:warning=harfbuzz/src/hb-ot-layout-common.hh:598:32: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const Script*>(((const OT::Script*)this), ((const OT::Script*)this)->OT::Script::defaultLangSys)'
+cargo:warning=  598 |       const LangSys& ls = this+defaultLangSys;
+cargo:warning=      |                                ^~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-common.hh: In lambda function:
+cargo:warning=harfbuzz/src/hb-ot-layout-common.hh:616:35: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  616 |                    const LangSys& d = this+defaultLangSys;
+cargo:warning=      |                                   ^
+cargo:warning=harfbuzz/src/hb-ot-layout-common.hh:616:44: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const Script*>(this, this->OT::Script::defaultLangSys)'
+cargo:warning=  616 |                    const LangSys& d = this+defaultLangSys;
+cargo:warning=      |                                            ^~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-common.hh:617:35: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  617 |                    const LangSys& l = this+record.offset;
+cargo:warning=      |                                   ^
+cargo:warning=harfbuzz/src/hb-ot-layout-common.hh:617:51: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const Script*>(this, record.OT::Record<OT::LangSys>::offset)'
+cargo:warning=  617 |                    const LangSys& l = this+record.offset;
+cargo:warning=      |                                                   ^~~~~~
+cargo:warning=In file included from harfbuzz/src/hb-ot-layout-gsubgpos.hh:38,
+cargo:warning=                 from harfbuzz/src/hb-ot-layout-gpos-table.hh:32,
+cargo:warning=                 from harfbuzz/src/hb-kern.hh:32,
+cargo:warning=                 from harfbuzz/src/hb-aat-layout-kerx-table.hh:31,
+cargo:warning=                 from harfbuzz/src/hb-aat-layout.cc:36:
+cargo:warning=harfbuzz/src/hb-ot-layout-gdef-table.hh: In member function 'unsigned int OT::AttachList::get_attach_points(hb_codepoint_t, unsigned int, unsigned int*, unsigned int*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gdef-table.hh:72:24: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=   72 |     const AttachPoint &points = this+attachPoint[index];
+cargo:warning=      |                        ^~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gdef-table.hh:72:55: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const AttachList*>(((const OT::AttachList*)this), (* &((const OT::AttachList*)this)->OT::AttachList::attachPoint.OT::ArrayOf<OT::OffsetTo<OT::AttachPoint, OT::IntType<short unsigned int, 2>, true>, OT::IntType<short unsigned int, 2> >::operator[](((int)index))))'
+cargo:warning=   72 |     const AttachPoint &points = this+attachPoint[index];
+cargo:warning=      |                                                       ^
+cargo:warning=harfbuzz/src/hb-ot-layout-gdef-table.hh: In member function 'unsigned int OT::LigCaretList::get_lig_carets(hb_font_t*, hb_direction_t, hb_codepoint_t, const OT::VariationStore&, unsigned int, unsigned int*, hb_position_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gdef-table.hh:368:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  368 |     const LigGlyph &lig_glyph = this+ligGlyph[index];
+cargo:warning=      |                     ^~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gdef-table.hh:368:52: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const LigCaretList*>(((const OT::LigCaretList*)this), (* &((const OT::LigCaretList*)this)->OT::LigCaretList::ligGlyph.OT::ArrayOf<OT::OffsetTo<OT::LigGlyph, OT::IntType<short unsigned int, 2>, true>, OT::IntType<short unsigned int, 2> >::operator[](((int)index))))'
+cargo:warning=  368 |     const LigGlyph &lig_glyph = this+ligGlyph[index];
+cargo:warning=      |                                                    ^
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'void OT::Rule::closure(OT::hb_closure_context_t*, OT::ContextClosureLookupContext&) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1381:41: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1381 |     const UnsizedArrayOf<LookupRecord> &lookupRecord = StructAfter<UnsizedArrayOf<LookupRecord>>
+cargo:warning=      |                                         ^~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1382:56: note: the temporary was destroyed at the end of the full expression 'StructAfter<OT::UnsizedArrayOf<OT::LookupRecord>, hb_array_t<const OT::IntType<short unsigned int, 2> > >(((const OT::Rule*)this)->OT::Rule::inputZ.OT::UnsizedArrayOf<OT::IntType<short unsigned int, 2> >::as_array(((((const OT::Rule*)this)->OT::Rule::inputCount.OT::IntType<short unsigned int, 2>::operator wide_type() != 0) ? (((const OT::Rule*)this)->OT::Rule::inputCount.OT::IntType<short unsigned int, 2>::operator wide_type() - 1) : 0)))'
+cargo:warning= 1381 |     const UnsizedArrayOf<LookupRecord> &lookupRecord = StructAfter<UnsizedArrayOf<LookupRecord>>
+cargo:warning=      |                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cargo:warning= 1382 |                                                        (inputZ.as_array ((inputCount ? inputCount - 1 : 0)));
+cargo:warning=      |                                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'void OT::Rule::closure_lookups(OT::hb_closure_lookups_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1393:41: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1393 |     const UnsizedArrayOf<LookupRecord> &lookupRecord = StructAfter<UnsizedArrayOf<LookupRecord>>
+cargo:warning=      |                                         ^~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1394:56: note: the temporary was destroyed at the end of the full expression 'StructAfter<OT::UnsizedArrayOf<OT::LookupRecord>, hb_array_t<const OT::IntType<short unsigned int, 2> > >(((const OT::Rule*)this)->OT::Rule::inputZ.OT::UnsizedArrayOf<OT::IntType<short unsigned int, 2> >::as_array(((((const OT::Rule*)this)->OT::Rule::inputCount.OT::IntType<short unsigned int, 2>::operator wide_type() != 0) ? (((const OT::Rule*)this)->OT::Rule::inputCount.OT::IntType<short unsigned int, 2>::operator wide_type() - 1) : 0)))'
+cargo:warning= 1393 |     const UnsizedArrayOf<LookupRecord> &lookupRecord = StructAfter<UnsizedArrayOf<LookupRecord>>
+cargo:warning=      |                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cargo:warning= 1394 |                                                        (inputZ.as_array (inputCount ? inputCount - 1 : 0));
+cargo:warning=      |                                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'void OT::Rule::collect_glyphs(OT::hb_collect_glyphs_context_t*, OT::ContextCollectGlyphsLookupContext&) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1401:41: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1401 |     const UnsizedArrayOf<LookupRecord> &lookupRecord = StructAfter<UnsizedArrayOf<LookupRecord>>
+cargo:warning=      |                                         ^~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1402:56: note: the temporary was destroyed at the end of the full expression 'StructAfter<OT::UnsizedArrayOf<OT::LookupRecord>, hb_array_t<const OT::IntType<short unsigned int, 2> > >(((const OT::Rule*)this)->OT::Rule::inputZ.OT::UnsizedArrayOf<OT::IntType<short unsigned int, 2> >::as_array(((((const OT::Rule*)this)->OT::Rule::inputCount.OT::IntType<short unsigned int, 2>::operator wide_type() != 0) ? (((const OT::Rule*)this)->OT::Rule::inputCount.OT::IntType<short unsigned int, 2>::operator wide_type() - 1) : 0)))'
+cargo:warning= 1401 |     const UnsizedArrayOf<LookupRecord> &lookupRecord = StructAfter<UnsizedArrayOf<LookupRecord>>
+cargo:warning=      |                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cargo:warning= 1402 |                                                        (inputZ.as_array (inputCount ? inputCount - 1 : 0));
+cargo:warning=      |                                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'bool OT::Rule::would_apply(OT::hb_would_apply_context_t*, OT::ContextApplyLookupContext&) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1412:41: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1412 |     const UnsizedArrayOf<LookupRecord> &lookupRecord = StructAfter<UnsizedArrayOf<LookupRecord>>
+cargo:warning=      |                                         ^~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1413:56: note: the temporary was destroyed at the end of the full expression 'StructAfter<OT::UnsizedArrayOf<OT::LookupRecord>, hb_array_t<const OT::IntType<short unsigned int, 2> > >(((const OT::Rule*)this)->OT::Rule::inputZ.OT::UnsizedArrayOf<OT::IntType<short unsigned int, 2> >::as_array(((((const OT::Rule*)this)->OT::Rule::inputCount.OT::IntType<short unsigned int, 2>::operator wide_type() != 0) ? (((const OT::Rule*)this)->OT::Rule::inputCount.OT::IntType<short unsigned int, 2>::operator wide_type() - 1) : 0)))'
+cargo:warning= 1412 |     const UnsizedArrayOf<LookupRecord> &lookupRecord = StructAfter<UnsizedArrayOf<LookupRecord>>
+cargo:warning=      |                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cargo:warning= 1413 |                                                        (inputZ.as_array (inputCount ? inputCount - 1 : 0));
+cargo:warning=      |                                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'bool OT::Rule::apply(OT::hb_ot_apply_context_t*, OT::ContextApplyLookupContext&) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1424:41: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1424 |     const UnsizedArrayOf<LookupRecord> &lookupRecord = StructAfter<UnsizedArrayOf<LookupRecord>>
+cargo:warning=      |                                         ^~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1425:56: note: the temporary was destroyed at the end of the full expression 'StructAfter<OT::UnsizedArrayOf<OT::LookupRecord>, hb_array_t<const OT::IntType<short unsigned int, 2> > >(((const OT::Rule*)this)->OT::Rule::inputZ.OT::UnsizedArrayOf<OT::IntType<short unsigned int, 2> >::as_array(((((const OT::Rule*)this)->OT::Rule::inputCount.OT::IntType<short unsigned int, 2>::operator wide_type() != 0) ? (((const OT::Rule*)this)->OT::Rule::inputCount.OT::IntType<short unsigned int, 2>::operator wide_type() - 1) : 0)))'
+cargo:warning= 1424 |     const UnsizedArrayOf<LookupRecord> &lookupRecord = StructAfter<UnsizedArrayOf<LookupRecord>>
+cargo:warning=      |                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cargo:warning= 1425 |                                                        (inputZ.as_array (inputCount ? inputCount - 1 : 0));
+cargo:warning=      |                                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'bool OT::Rule::serialize(hb_serialize_context_t*, const hb_map_t*, const hb_map_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1448:41: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1448 |     const UnsizedArrayOf<LookupRecord> &lookupRecord = StructAfter<UnsizedArrayOf<LookupRecord>>
+cargo:warning=      |                                         ^~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1449:56: note: the temporary was destroyed at the end of the full expression 'StructAfter<OT::UnsizedArrayOf<OT::LookupRecord>, hb_array_t<const OT::IntType<short unsigned int, 2> > >(((const OT::Rule*)this)->OT::Rule::inputZ.OT::UnsizedArrayOf<OT::IntType<short unsigned int, 2> >::as_array(((((const OT::Rule*)this)->OT::Rule::inputCount.OT::IntType<short unsigned int, 2>::operator wide_type() != 0) ? (((const OT::Rule*)this)->OT::Rule::inputCount.OT::IntType<short unsigned int, 2>::operator wide_type() - 1) : 0)))'
+cargo:warning= 1448 |     const UnsizedArrayOf<LookupRecord> &lookupRecord = StructAfter<UnsizedArrayOf<LookupRecord>>
+cargo:warning=      |                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cargo:warning= 1449 |                                                        (inputZ.as_array ((inputCount ? inputCount - 1 : 0)));
+cargo:warning=      |                                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'bool OT::ContextFormat1::would_apply(OT::hb_would_apply_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1672:20: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1672 |     const RuleSet &rule_set = this+ruleSet[(this+coverage).get_coverage (c->glyphs[0])];
+cargo:warning=      |                    ^~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1672:87: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ContextFormat1*>(((const OT::ContextFormat1*)this), (* &((const OT::ContextFormat1*)this)->OT::ContextFormat1::ruleSet.OT::ArrayOf<OT::OffsetTo<OT::RuleSet, OT::IntType<short unsigned int, 2>, true>, OT::IntType<short unsigned int, 2> >::operator[](((int)(& OT::operator+<const ContextFormat1*>(((const OT::ContextFormat1*)this), ((const OT::ContextFormat1*)this)->OT::ContextFormat1::coverage))->OT::Coverage::get_coverage(((hb_codepoint_t)(* c->OT::hb_would_apply_context_t::glyphs)))))))'
+cargo:warning= 1672 |     const RuleSet &rule_set = this+ruleSet[(this+coverage).get_coverage (c->glyphs[0])];
+cargo:warning=      |                                                                                       ^
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'bool OT::ContextFormat1::apply(OT::hb_ot_apply_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1689:20: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1689 |     const RuleSet &rule_set = this+ruleSet[index];
+cargo:warning=      |                    ^~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1689:49: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ContextFormat1*>(((const OT::ContextFormat1*)this), (* &((const OT::ContextFormat1*)this)->OT::ContextFormat1::ruleSet.OT::ArrayOf<OT::OffsetTo<OT::RuleSet, OT::IntType<short unsigned int, 2>, true>, OT::IntType<short unsigned int, 2> >::operator[](((int)index))))'
+cargo:warning= 1689 |     const RuleSet &rule_set = this+ruleSet[index];
+cargo:warning=      |                                                 ^
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'bool OT::ContextFormat2::intersects(const hb_set_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1748:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1748 |     const ClassDef &class_def = this+classDef;
+cargo:warning=      |                     ^~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1748:38: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ContextFormat2*>(((const OT::ContextFormat2*)this), ((const OT::ContextFormat2*)this)->OT::ContextFormat2::classDef)'
+cargo:warning= 1748 |     const ClassDef &class_def = this+classDef;
+cargo:warning=      |                                      ^~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'void OT::ContextFormat2::closure(OT::hb_closure_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1769:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1769 |     const ClassDef &class_def = this+classDef;
+cargo:warning=      |                     ^~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1769:38: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ContextFormat2*>(((const OT::ContextFormat2*)this), ((const OT::ContextFormat2*)this)->OT::ContextFormat2::classDef)'
+cargo:warning= 1769 |     const ClassDef &class_def = this+classDef;
+cargo:warning=      |                                      ^~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'void OT::ContextFormat2::collect_glyphs(OT::hb_collect_glyphs_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1801:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1801 |     const ClassDef &class_def = this+classDef;
+cargo:warning=      |                     ^~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1801:38: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ContextFormat2*>(((const OT::ContextFormat2*)this), ((const OT::ContextFormat2*)this)->OT::ContextFormat2::classDef)'
+cargo:warning= 1801 |     const ClassDef &class_def = this+classDef;
+cargo:warning=      |                                      ^~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'bool OT::ContextFormat2::would_apply(OT::hb_would_apply_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1815:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1815 |     const ClassDef &class_def = this+classDef;
+cargo:warning=      |                     ^~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1815:38: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ContextFormat2*>(((const OT::ContextFormat2*)this), ((const OT::ContextFormat2*)this)->OT::ContextFormat2::classDef)'
+cargo:warning= 1815 |     const ClassDef &class_def = this+classDef;
+cargo:warning=      |                                      ^~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1817:20: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1817 |     const RuleSet &rule_set = this+ruleSet[index];
+cargo:warning=      |                    ^~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1817:49: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ContextFormat2*>(((const OT::ContextFormat2*)this), (* &((const OT::ContextFormat2*)this)->OT::ContextFormat2::ruleSet.OT::ArrayOf<OT::OffsetTo<OT::RuleSet, OT::IntType<short unsigned int, 2>, true>, OT::IntType<short unsigned int, 2> >::operator[](((int)index))))'
+cargo:warning= 1817 |     const RuleSet &rule_set = this+ruleSet[index];
+cargo:warning=      |                                                 ^
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'bool OT::ContextFormat2::apply(OT::hb_ot_apply_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1833:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1833 |     const ClassDef &class_def = this+classDef;
+cargo:warning=      |                     ^~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1833:38: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ContextFormat2*>(((const OT::ContextFormat2*)this), ((const OT::ContextFormat2*)this)->OT::ContextFormat2::classDef)'
+cargo:warning= 1833 |     const ClassDef &class_def = this+classDef;
+cargo:warning=      |                                      ^~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1835:20: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1835 |     const RuleSet &rule_set = this+ruleSet[index];
+cargo:warning=      |                    ^~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:1835:49: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ContextFormat2*>(((const OT::ContextFormat2*)this), (* &((const OT::ContextFormat2*)this)->OT::ContextFormat2::ruleSet.OT::ArrayOf<OT::OffsetTo<OT::RuleSet, OT::IntType<short unsigned int, 2>, true>, OT::IntType<short unsigned int, 2> >::operator[](((int)index))))'
+cargo:warning= 1835 |     const RuleSet &rule_set = this+ruleSet[index];
+cargo:warning=      |                                                 ^
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'bool OT::ChainContextFormat1::would_apply(OT::hb_would_apply_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2575:25: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2575 |     const ChainRuleSet &rule_set = this+ruleSet[(this+coverage).get_coverage (c->glyphs[0])];
+cargo:warning=      |                         ^~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2575:92: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat1*>(((const OT::ChainContextFormat1*)this), (* &((const OT::ChainContextFormat1*)this)->OT::ChainContextFormat1::ruleSet.OT::ArrayOf<OT::OffsetTo<OT::ChainRuleSet, OT::IntType<short unsigned int, 2>, true>, OT::IntType<short unsigned int, 2> >::operator[](((int)(& OT::operator+<const ChainContextFormat1*>(((const OT::ChainContextFormat1*)this), ((const OT::ChainContextFormat1*)this)->OT::ChainContextFormat1::coverage))->OT::Coverage::get_coverage(((hb_codepoint_t)(* c->OT::hb_would_apply_context_t::glyphs)))))))'
+cargo:warning= 2575 |     const ChainRuleSet &rule_set = this+ruleSet[(this+coverage).get_coverage (c->glyphs[0])];
+cargo:warning=      |                                                                                            ^
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'bool OT::ChainContextFormat1::apply(OT::hb_ot_apply_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2591:25: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2591 |     const ChainRuleSet &rule_set = this+ruleSet[index];
+cargo:warning=      |                         ^~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2591:54: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat1*>(((const OT::ChainContextFormat1*)this), (* &((const OT::ChainContextFormat1*)this)->OT::ChainContextFormat1::ruleSet.OT::ArrayOf<OT::OffsetTo<OT::ChainRuleSet, OT::IntType<short unsigned int, 2>, true>, OT::IntType<short unsigned int, 2> >::operator[](((int)index))))'
+cargo:warning= 2591 |     const ChainRuleSet &rule_set = this+ruleSet[index];
+cargo:warning=      |                                                      ^
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'bool OT::ChainContextFormat2::intersects(const hb_set_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2649:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2649 |     const ClassDef &backtrack_class_def = this+backtrackClassDef;
+cargo:warning=      |                     ^~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2649:48: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), ((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::backtrackClassDef)'
+cargo:warning= 2649 |     const ClassDef &backtrack_class_def = this+backtrackClassDef;
+cargo:warning=      |                                                ^~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2650:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2650 |     const ClassDef &input_class_def = this+inputClassDef;
+cargo:warning=      |                     ^~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2650:44: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), ((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::inputClassDef)'
+cargo:warning= 2650 |     const ClassDef &input_class_def = this+inputClassDef;
+cargo:warning=      |                                            ^~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2651:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2651 |     const ClassDef &lookahead_class_def = this+lookaheadClassDef;
+cargo:warning=      |                     ^~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2651:48: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), ((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::lookaheadClassDef)'
+cargo:warning= 2651 |     const ClassDef &lookahead_class_def = this+lookaheadClassDef;
+cargo:warning=      |                                                ^~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'void OT::ChainContextFormat2::closure(OT::hb_closure_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2673:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2673 |     const ClassDef &backtrack_class_def = this+backtrackClassDef;
+cargo:warning=      |                     ^~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2673:48: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), ((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::backtrackClassDef)'
+cargo:warning= 2673 |     const ClassDef &backtrack_class_def = this+backtrackClassDef;
+cargo:warning=      |                                                ^~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2674:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2674 |     const ClassDef &input_class_def = this+inputClassDef;
+cargo:warning=      |                     ^~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2674:44: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), ((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::inputClassDef)'
+cargo:warning= 2674 |     const ClassDef &input_class_def = this+inputClassDef;
+cargo:warning=      |                                            ^~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2675:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2675 |     const ClassDef &lookahead_class_def = this+lookaheadClassDef;
+cargo:warning=      |                     ^~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2675:48: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), ((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::lookaheadClassDef)'
+cargo:warning= 2675 |     const ClassDef &lookahead_class_def = this+lookaheadClassDef;
+cargo:warning=      |                                                ^~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'void OT::ChainContextFormat2::collect_glyphs(OT::hb_collect_glyphs_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2709:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2709 |     const ClassDef &backtrack_class_def = this+backtrackClassDef;
+cargo:warning=      |                     ^~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2709:48: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), ((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::backtrackClassDef)'
+cargo:warning= 2709 |     const ClassDef &backtrack_class_def = this+backtrackClassDef;
+cargo:warning=      |                                                ^~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2710:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2710 |     const ClassDef &input_class_def = this+inputClassDef;
+cargo:warning=      |                     ^~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2710:44: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), ((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::inputClassDef)'
+cargo:warning= 2710 |     const ClassDef &input_class_def = this+inputClassDef;
+cargo:warning=      |                                            ^~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2711:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2711 |     const ClassDef &lookahead_class_def = this+lookaheadClassDef;
+cargo:warning=      |                     ^~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2711:48: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), ((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::lookaheadClassDef)'
+cargo:warning= 2711 |     const ClassDef &lookahead_class_def = this+lookaheadClassDef;
+cargo:warning=      |                                                ^~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'bool OT::ChainContextFormat2::would_apply(OT::hb_would_apply_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2728:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2728 |     const ClassDef &backtrack_class_def = this+backtrackClassDef;
+cargo:warning=      |                     ^~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2728:48: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), ((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::backtrackClassDef)'
+cargo:warning= 2728 |     const ClassDef &backtrack_class_def = this+backtrackClassDef;
+cargo:warning=      |                                                ^~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2729:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2729 |     const ClassDef &input_class_def = this+inputClassDef;
+cargo:warning=      |                     ^~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2729:44: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), ((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::inputClassDef)'
+cargo:warning= 2729 |     const ClassDef &input_class_def = this+inputClassDef;
+cargo:warning=      |                                            ^~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2730:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2730 |     const ClassDef &lookahead_class_def = this+lookaheadClassDef;
+cargo:warning=      |                     ^~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2730:48: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), ((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::lookaheadClassDef)'
+cargo:warning= 2730 |     const ClassDef &lookahead_class_def = this+lookaheadClassDef;
+cargo:warning=      |                                                ^~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2733:25: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2733 |     const ChainRuleSet &rule_set = this+ruleSet[index];
+cargo:warning=      |                         ^~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2733:54: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), (* &((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::ruleSet.OT::ArrayOf<OT::OffsetTo<OT::ChainRuleSet, OT::IntType<short unsigned int, 2>, true>, OT::IntType<short unsigned int, 2> >::operator[](((int)index))))'
+cargo:warning= 2733 |     const ChainRuleSet &rule_set = this+ruleSet[index];
+cargo:warning=      |                                                      ^
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh: In member function 'bool OT::ChainContextFormat2::apply(OT::hb_ot_apply_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2751:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2751 |     const ClassDef &backtrack_class_def = this+backtrackClassDef;
+cargo:warning=      |                     ^~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2751:48: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), ((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::backtrackClassDef)'
+cargo:warning= 2751 |     const ClassDef &backtrack_class_def = this+backtrackClassDef;
+cargo:warning=      |                                                ^~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2752:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2752 |     const ClassDef &input_class_def = this+inputClassDef;
+cargo:warning=      |                     ^~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2752:44: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), ((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::inputClassDef)'
+cargo:warning= 2752 |     const ClassDef &input_class_def = this+inputClassDef;
+cargo:warning=      |                                            ^~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2753:21: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2753 |     const ClassDef &lookahead_class_def = this+lookaheadClassDef;
+cargo:warning=      |                     ^~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2753:48: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), ((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::lookaheadClassDef)'
+cargo:warning= 2753 |     const ClassDef &lookahead_class_def = this+lookaheadClassDef;
+cargo:warning=      |                                                ^~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2756:25: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2756 |     const ChainRuleSet &rule_set = this+ruleSet[index];
+cargo:warning=      |                         ^~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsubgpos.hh:2756:54: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const ChainContextFormat2*>(((const OT::ChainContextFormat2*)this), (* &((const OT::ChainContextFormat2*)this)->OT::ChainContextFormat2::ruleSet.OT::ArrayOf<OT::OffsetTo<OT::ChainRuleSet, OT::IntType<short unsigned int, 2>, true>, OT::IntType<short unsigned int, 2> >::operator[](((int)index))))'
+cargo:warning= 2756 |     const ChainRuleSet &rule_set = this+ruleSet[index];
+cargo:warning=      |                                                      ^
+cargo:warning=harfbuzz/src/hb-ot-layout-gpos-table.hh: In member function 'bool OT::MarkArray::apply(OT::hb_ot_apply_context_t*, unsigned int, unsigned int, const OT::AnchorMatrix&, unsigned int, unsigned int) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gpos-table.hh:643:19: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  643 |     const Anchor& mark_anchor = this + record.markAnchor;
+cargo:warning=      |                   ^~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gpos-table.hh:643:47: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const MarkArray*>(((const OT::MarkArray*)this), record.OT::MarkRecord::markAnchor)'
+cargo:warning=  643 |     const Anchor& mark_anchor = this + record.markAnchor;
+cargo:warning=      |                                               ^~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gpos-table.hh: In member function 'void OT::MarkLigPosFormat1::collect_variation_indices(OT::hb_collect_variation_indices_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gpos-table.hh:2057:26: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2057 |     const LigatureArray& lig_array = this+ligatureArray;
+cargo:warning=      |                          ^~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gpos-table.hh:2057:43: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const MarkLigPosFormat1*>(((const OT::MarkLigPosFormat1*)this), ((const OT::MarkLigPosFormat1*)this)->OT::MarkLigPosFormat1::ligatureArray)'
+cargo:warning= 2057 |     const LigatureArray& lig_array = this+ligatureArray;
+cargo:warning=      |                                           ^~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gpos-table.hh: In member function 'bool OT::MarkLigPosFormat1::apply(OT::hb_ot_apply_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gpos-table.hh:2103:26: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 2103 |     const LigatureArray& lig_array = this+ligatureArray;
+cargo:warning=      |                          ^~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gpos-table.hh:2103:43: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const MarkLigPosFormat1*>(((const OT::MarkLigPosFormat1*)this), ((const OT::MarkLigPosFormat1*)this)->OT::MarkLigPosFormat1::ligatureArray)'
+cargo:warning= 2103 |     const LigatureArray& lig_array = this+ligatureArray;
+cargo:warning=      |                                           ^~~~~~~~~~~~~
+cargo:warning=In file included from harfbuzz/src/hb-aat-layout.cc:38:
+cargo:warning=harfbuzz/src/hb-aat-layout-trak-table.hh: In member function 'bool AAT::trak::apply(AAT::hb_aat_apply_context_t*) const':
+cargo:warning=harfbuzz/src/hb-aat-layout-trak-table.hh:173:24: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  173 |       const TrackData &trackData = this+horizData;
+cargo:warning=      |                        ^~~~~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-trak-table.hh:173:41: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const AAT::trak*>(((const AAT::trak*)this), ((const AAT::trak*)this)->AAT::trak::horizData)'
+cargo:warning=  173 |       const TrackData &trackData = this+horizData;
+cargo:warning=      |                                         ^~~~~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-trak-table.hh:186:24: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  186 |       const TrackData &trackData = this+vertData;
+cargo:warning=      |                        ^~~~~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-trak-table.hh:186:41: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const AAT::trak*>(((const AAT::trak*)this), ((const AAT::trak*)this)->AAT::trak::vertData)'
+cargo:warning=  186 |       const TrackData &trackData = this+vertData;
+cargo:warning=      |                                         ^~~~~~~~
+cargo:warning=In file included from harfbuzz/src/hb-face.cc:33,
+cargo:warning=                 from harfbuzz/src/harfbuzz.cc:8:
+cargo:warning=harfbuzz/src/hb-open-file.hh: In member function 'const OT::OpenTypeFontFace& OT::ResourceForkHeader::get_face(unsigned int, unsigned int*) const':
+cargo:warning=harfbuzz/src/hb-open-file.hh:406:29: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  406 |     const OpenTypeFontFace &face = (this+map).get_face (idx, &(this+data));
+cargo:warning=      |                             ^~~~
+cargo:warning=harfbuzz/src/hb-open-file.hh:406:56: note: the temporary was destroyed at the end of the full expression '(& OT::operator+<const ResourceForkHeader*>(((const OT::ResourceForkHeader*)this), ((const OT::ResourceForkHeader*)this)->OT::ResourceForkHeader::map))->OT::ResourceMap::get_face(idx, ((const void*)(& OT::operator+<const ResourceForkHeader*>(((const OT::ResourceForkHeader*)this), ((const OT::ResourceForkHeader*)this)->OT::ResourceForkHeader::data))))'
+cargo:warning=  406 |     const OpenTypeFontFace &face = (this+map).get_face (idx, &(this+data));
+cargo:warning=      |                                    ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+cargo:warning=In file included from harfbuzz/src/hb-ot-color.cc:35,
+cargo:warning=                 from harfbuzz/src/harfbuzz.cc:15:
+cargo:warning=harfbuzz/src/hb-ot-color-colr-table.hh: In member function 'unsigned int OT::COLR::get_glyph_layers(hb_codepoint_t, unsigned int, unsigned int*, hb_ot_color_layer_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-color-colr-table.hh:104:28: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  104 |     const BaseGlyphRecord &record = (this+baseGlyphsZ).bsearch (numBaseGlyphs, glyph);
+cargo:warning=      |                            ^~~~~~
+cargo:warning=harfbuzz/src/hb-ot-color-colr-table.hh:104:64: note: the temporary was destroyed at the end of the full expression '(& OT::operator+<const COLR*>(((const OT::COLR*)this), ((const OT::COLR*)this)->OT::COLR::baseGlyphsZ))->OT::SortedUnsizedArrayOf<OT::BaseGlyphRecord>::bsearch<unsigned int>(((const OT::COLR*)this)->OT::COLR::numBaseGlyphs.OT::IntType<short unsigned int, 2>::operator wide_type(), glyph, (* & NullHelper<OT::BaseGlyphRecord>::get_null()))'
+cargo:warning=  104 |     const BaseGlyphRecord &record = (this+baseGlyphsZ).bsearch (numBaseGlyphs, glyph);
+cargo:warning=      |                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~
+cargo:warning=In file included from harfbuzz/src/hb-ot-face.cc:42,
+cargo:warning=                 from harfbuzz/src/harfbuzz.cc:16:
+cargo:warning=harfbuzz/src/hb-ot-layout-gsub-table.hh: In member function 'bool OT::LigatureSet::apply(OT::hb_ot_apply_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsub-table.hh:920:23: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  920 |       const Ligature &lig = this+ligature[i];
+cargo:warning=      |                       ^~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsub-table.hh:920:44: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const LigatureSet*>(((const OT::LigatureSet*)this), (* &((const OT::LigatureSet*)this)->OT::LigatureSet::ligature.OT::ArrayOf<OT::OffsetTo<OT::Ligature, OT::IntType<short unsigned int, 2>, true>, OT::IntType<short unsigned int, 2> >::operator[](((int)i))))'
+cargo:warning=  920 |       const Ligature &lig = this+ligature[i];
+cargo:warning=      |                                            ^
+cargo:warning=harfbuzz/src/hb-ot-layout-gsub-table.hh: In member function 'bool OT::LigatureSubstFormat1::would_apply(OT::hb_would_apply_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsub-table.hh:1019:24: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1019 |     const LigatureSet &lig_set = this+ligatureSet[index];
+cargo:warning=      |                        ^~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsub-table.hh:1019:56: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const LigatureSubstFormat1*>(((const OT::LigatureSubstFormat1*)this), (* &((const OT::LigatureSubstFormat1*)this)->OT::LigatureSubstFormat1::ligatureSet.OT::ArrayOf<OT::OffsetTo<OT::LigatureSet, OT::IntType<short unsigned int, 2>, true>, OT::IntType<short unsigned int, 2> >::operator[](((int)index))))'
+cargo:warning= 1019 |     const LigatureSet &lig_set = this+ligatureSet[index];
+cargo:warning=      |                                                        ^
+cargo:warning=harfbuzz/src/hb-ot-layout-gsub-table.hh: In member function 'bool OT::LigatureSubstFormat1::apply(OT::hb_ot_apply_context_t*) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-gsub-table.hh:1030:24: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning= 1030 |     const LigatureSet &lig_set = this+ligatureSet[index];
+cargo:warning=      |                        ^~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-gsub-table.hh:1030:56: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const LigatureSubstFormat1*>(((const OT::LigatureSubstFormat1*)this), (* &((const OT::LigatureSubstFormat1*)this)->OT::LigatureSubstFormat1::ligatureSet.OT::ArrayOf<OT::OffsetTo<OT::LigatureSet, OT::IntType<short unsigned int, 2>, true>, OT::IntType<short unsigned int, 2> >::operator[](((int)index))))'
+cargo:warning= 1030 |     const LigatureSet &lig_set = this+ligatureSet[index];
+cargo:warning=      |                                                        ^
+cargo:warning=In file included from harfbuzz/src/hb-ot-font.cc:44,
+cargo:warning=                 from harfbuzz/src/harfbuzz.cc:17:
+cargo:warning=harfbuzz/src/hb-ot-stat-table.hh: In member function 'bool OT::STAT::get_value(hb_tag_t, float*) const':
+cargo:warning=harfbuzz/src/hb-ot-stat-table.hh:316:24: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  316 |       const AxisValue& axis_value = (this + axis_values[i]);
+cargo:warning=      |                        ^~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-stat-table.hh:316:58: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const STAT*>(((const OT::STAT*)this), (* &((hb_iter_t<hb_array_t<const OT::OffsetTo<OT::AxisValue> >, const OT::OffsetTo<OT::AxisValue>&>*)(& axis_values))->hb_iter_t<hb_array_t<const OT::OffsetTo<OT::AxisValue> >, const OT::OffsetTo<OT::AxisValue>&>::operator[](i)))'
+cargo:warning=  316 |       const AxisValue& axis_value = (this + axis_values[i]);
+cargo:warning=      |                                                          ^
+cargo:warning=harfbuzz/src/hb-ot-stat-table.hh: In member function 'hb_ot_name_id_t OT::STAT::get_axis_record_name_id(unsigned int) const':
+cargo:warning=harfbuzz/src/hb-ot-stat-table.hh:332:27: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  332 |     const StatAxisRecord &axis_record = get_design_axes ()[axis_record_index];
+cargo:warning=      |                           ^~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-stat-table.hh:332:77: note: the temporary was destroyed at the end of the full expression '((const hb_iter_t<hb_array_t<const OT::StatAxisRecord>, const OT::StatAxisRecord&>*)(&((const OT::STAT*)this)->OT::STAT::get_design_axes()))->hb_iter_t<hb_array_t<const OT::StatAxisRecord>, const OT::StatAxisRecord&>::operator[](axis_record_index)'
+cargo:warning=  332 |     const StatAxisRecord &axis_record = get_design_axes ()[axis_record_index];
+cargo:warning=      |                                                                             ^
+cargo:warning=harfbuzz/src/hb-ot-stat-table.hh: In member function 'hb_ot_name_id_t OT::STAT::get_axis_value_name_id(unsigned int) const':
+cargo:warning=harfbuzz/src/hb-ot-stat-table.hh:341:22: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  341 |     const AxisValue &axis_value = (this + get_axis_value_offsets ()[axis_value_index]);
+cargo:warning=      |                      ^~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-stat-table.hh:341:85: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const STAT*>(((const OT::STAT*)this), (* &((const hb_iter_t<hb_array_t<const OT::OffsetTo<OT::AxisValue> >, const OT::OffsetTo<OT::AxisValue>&>*)(&((const OT::STAT*)this)->OT::STAT::get_axis_value_offsets()))->hb_iter_t<hb_array_t<const OT::OffsetTo<OT::AxisValue> >, const OT::OffsetTo<OT::AxisValue>&>::operator[](axis_value_index)))'
+cargo:warning=  341 |     const AxisValue &axis_value = (this + get_axis_value_offsets ()[axis_value_index]);
+cargo:warning=      |                                                                                     ^
+cargo:warning=In file included from harfbuzz/src/hb-ot-layout.cc:49,
+cargo:warning=                 from harfbuzz/src/harfbuzz.cc:18:
+cargo:warning=harfbuzz/src/hb-ot-layout-base-table.hh: In member function 'hb_position_t OT::BaseCoordFormat3::get_coord(hb_font_t*, const OT::VariationStore&, hb_direction_t) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-base-table.hh:89:19: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=   89 |     const Device &device = this+deviceTable;
+cargo:warning=      |                   ^~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-base-table.hh:89:33: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const BaseCoordFormat3*>(((const OT::BaseCoordFormat3*)this), ((const OT::BaseCoordFormat3*)this)->OT::BaseCoordFormat3::deviceTable)'
+cargo:warning=   89 |     const Device &device = this+deviceTable;
+cargo:warning=      |                                 ^~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-base-table.hh: In member function 'bool OT::Axis::get_baseline(hb_tag_t, hb_tag_t, hb_tag_t, const OT::BaseCoord**) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-base-table.hh:381:23: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  381 |     const BaseScript &base_script = (this+baseScriptList).get_base_script (script_tag);
+cargo:warning=      |                       ^~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-base-table.hh:381:75: note: the temporary was destroyed at the end of the full expression '(& OT::operator+<const Axis*>(((const OT::Axis*)this), ((const OT::Axis*)this)->OT::Axis::baseScriptList))->OT::BaseScriptList::get_base_script(script_tag)'
+cargo:warning=  381 |     const BaseScript &base_script = (this+baseScriptList).get_base_script (script_tag);
+cargo:warning=      |                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-base-table.hh: In member function 'bool OT::Axis::get_min_max(hb_tag_t, hb_tag_t, hb_tag_t, const OT::BaseCoord**, const OT::BaseCoord**) const':
+cargo:warning=harfbuzz/src/hb-ot-layout-base-table.hh:400:23: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  400 |     const BaseScript &base_script = (this+baseScriptList).get_base_script (script_tag);
+cargo:warning=      |                       ^~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-ot-layout-base-table.hh:400:75: note: the temporary was destroyed at the end of the full expression '(& OT::operator+<const Axis*>(((const OT::Axis*)this), ((const OT::Axis*)this)->OT::Axis::baseScriptList))->OT::BaseScriptList::get_base_script(script_tag)'
+cargo:warning=  400 |     const BaseScript &base_script = (this+baseScriptList).get_base_script (script_tag);
+cargo:warning=      |                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh: In instantiation of 'AAT::KerxSubTableFormat1<KernSubTableHeader>::driver_context_t::driver_context_t(const AAT::KerxSubTableFormat1<KernSubTableHeader>*, AAT::hb_aat_apply_context_t*) [with KernSubTableHeader = AAT::KerxSubTableHeader]':
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:352:22:   required from 'bool AAT::KerxSubTableFormat1<KernSubTableHeader>::apply(AAT::hb_aat_apply_context_t*) const [with KernSubTableHeader = AAT::KerxSubTableHeader]'
+cargo:warning=harfbuzz/src/hb-aat-layout-common.hh:810:55:   required from 'hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t AAT::hb_aat_apply_context_t::dispatch(const T&) [with T = AAT::KerxSubTableFormat1<AAT::KerxSubTableHeader>; hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:777:13:   required from 'typename context_t::return_t AAT::KerxSubTable::dispatch(context_t*, Ts&& ...) const [with context_t = AAT::hb_aat_apply_context_t; Ts = {}; typename context_t::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:916:22:   required from 'bool AAT::KerxTable<T>::apply(AAT::hb_aat_apply_context_t*) const [with T = AAT::kerx]'
+cargo:warning=harfbuzz/src/hb-aat-layout.cc:290:14:   required from here
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:338:34: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  338 |     const UnsizedArrayOf<FWORD> &kernAction;
+cargo:warning=      |                                  ^~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:226:37: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const AAT::StateTable<AAT::ExtendedTypes, AAT::Format1Entry<true>::EntryData>*>((&((AAT::KerxSubTableFormat1<AAT::KerxSubTableHeader>::driver_context_t*)this)->AAT::KerxSubTableFormat1<AAT::KerxSubTableHeader>::driver_context_t::table->AAT::KerxSubTableFormat1<AAT::KerxSubTableHeader>::machine), ((AAT::KerxSubTableFormat1<AAT::KerxSubTableHeader>::driver_context_t*)this)->AAT::KerxSubTableFormat1<AAT::KerxSubTableHeader>::driver_context_t::table->AAT::KerxSubTableFormat1<AAT::KerxSubTableHeader>::kernAction)'
+cargo:warning=  226 |         kernAction (&table->machine + table->kernAction),
+cargo:warning=      |                     ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh: In instantiation of 'int AAT::KerxSubTableFormat2<KernSubTableHeader>::get_kerning(hb_codepoint_t, hb_codepoint_t, AAT::hb_aat_apply_context_t*) const [with KernSubTableHeader = AAT::KerxSubTableHeader; hb_codepoint_t = unsigned int]':
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:425:20:   required from 'int AAT::KerxSubTableFormat2<KernSubTableHeader>::accelerator_t::get_kerning(hb_codepoint_t, hb_codepoint_t) const [with KernSubTableHeader = AAT::KerxSubTableHeader; hb_codepoint_t = unsigned int]'
+cargo:warning=harfbuzz/src/hb-kern.hh:79:47:   required from 'void OT::hb_kern_machine_t<Driver>::kern(hb_font_t*, hb_buffer_t*, hb_mask_t, bool) const [with Driver = AAT::KerxSubTableFormat2<AAT::KerxSubTableHeader>::accelerator_t; hb_font_t = hb_font_t; hb_buffer_t = hb_buffer_t; hb_mask_t = unsigned int]'
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:410:18:   required from 'bool AAT::KerxSubTableFormat2<KernSubTableHeader>::apply(AAT::hb_aat_apply_context_t*) const [with KernSubTableHeader = AAT::KerxSubTableHeader]'
+cargo:warning=harfbuzz/src/hb-aat-layout-common.hh:810:55:   required from 'hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t AAT::hb_aat_apply_context_t::dispatch(const T&) [with T = AAT::KerxSubTableFormat2<AAT::KerxSubTableHeader>; hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:778:13:   required from 'typename context_t::return_t AAT::KerxSubTable::dispatch(context_t*, Ts&& ...) const [with context_t = AAT::hb_aat_apply_context_t; Ts = {}; typename context_t::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:916:22:   required from 'bool AAT::KerxTable<T>::apply(AAT::hb_aat_apply_context_t*) const [with T = AAT::kerx]'
+cargo:warning=harfbuzz/src/hb-aat-layout.cc:290:14:   required from here
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:389:34: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  389 |     const UnsizedArrayOf<FWORD> &arrayZ = this+array;
+cargo:warning=      |                                  ^~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:389:47: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const AAT::KerxSubTableFormat2<AAT::KerxSubTableHeader>*>(((const AAT::KerxSubTableFormat2<AAT::KerxSubTableHeader>*)this), ((const AAT::KerxSubTableFormat2<AAT::KerxSubTableHeader>*)this)->AAT::KerxSubTableFormat2<AAT::KerxSubTableHeader>::array)'
+cargo:warning=  389 |     const UnsizedArrayOf<FWORD> &arrayZ = this+array;
+cargo:warning=      |                                           ~~~~^~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh: In instantiation of 'AAT::KerxSubTableFormat1<KernSubTableHeader>::driver_context_t::driver_context_t(const AAT::KerxSubTableFormat1<KernSubTableHeader>*, AAT::hb_aat_apply_context_t*) [with KernSubTableHeader = OT::KernOTSubTableHeader]':
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:352:22:   required from 'bool AAT::KerxSubTableFormat1<KernSubTableHeader>::apply(AAT::hb_aat_apply_context_t*) const [with KernSubTableHeader = OT::KernOTSubTableHeader]'
+cargo:warning=harfbuzz/src/hb-aat-layout-common.hh:810:55:   required from 'hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t AAT::hb_aat_apply_context_t::dispatch(const T&) [with T = AAT::KerxSubTableFormat1<OT::KernOTSubTableHeader>; hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-ot-kern-table.hh:137:13:   required from 'typename context_t::return_t OT::KernSubTable<KernSubTableHeader>::dispatch(context_t*, Ts&& ...) const [with context_t = AAT::hb_aat_apply_context_t; Ts = {}; KernSubTableHeader = OT::KernOTSubTableHeader; typename context_t::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:916:22:   required from 'bool AAT::KerxTable<T>::apply(AAT::hb_aat_apply_context_t*) const [with T = OT::KernOT]'
+cargo:warning=harfbuzz/src/hb-aat-layout-common.hh:810:55:   required from 'hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t AAT::hb_aat_apply_context_t::dispatch(const T&) [with T = OT::KernOT; hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-ot-kern-table.hh:328:13:   required from 'typename context_t::return_t OT::kern::dispatch(context_t*, Ts&& ...) const [with context_t = AAT::hb_aat_apply_context_t; Ts = {}; typename context_t::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-ot-kern-table.hh:320:21:   required from here
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:338:34: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  338 |     const UnsizedArrayOf<FWORD> &kernAction;
+cargo:warning=      |                                  ^~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:226:37: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const AAT::StateTable<AAT::ObsoleteTypes, void>*>((&((AAT::KerxSubTableFormat1<OT::KernOTSubTableHeader>::driver_context_t*)this)->AAT::KerxSubTableFormat1<OT::KernOTSubTableHeader>::driver_context_t::table->AAT::KerxSubTableFormat1<OT::KernOTSubTableHeader>::machine), ((AAT::KerxSubTableFormat1<OT::KernOTSubTableHeader>::driver_context_t*)this)->AAT::KerxSubTableFormat1<OT::KernOTSubTableHeader>::driver_context_t::table->AAT::KerxSubTableFormat1<OT::KernOTSubTableHeader>::kernAction)'
+cargo:warning=  226 |         kernAction (&table->machine + table->kernAction),
+cargo:warning=      |                     ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh: In instantiation of 'AAT::KerxSubTableFormat1<KernSubTableHeader>::driver_context_t::driver_context_t(const AAT::KerxSubTableFormat1<KernSubTableHeader>*, AAT::hb_aat_apply_context_t*) [with KernSubTableHeader = OT::KernAATSubTableHeader]':
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:352:22:   required from 'bool AAT::KerxSubTableFormat1<KernSubTableHeader>::apply(AAT::hb_aat_apply_context_t*) const [with KernSubTableHeader = OT::KernAATSubTableHeader]'
+cargo:warning=harfbuzz/src/hb-aat-layout-common.hh:810:55:   required from 'hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t AAT::hb_aat_apply_context_t::dispatch(const T&) [with T = AAT::KerxSubTableFormat1<OT::KernAATSubTableHeader>; hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-ot-kern-table.hh:137:13:   required from 'typename context_t::return_t OT::KernSubTable<KernSubTableHeader>::dispatch(context_t*, Ts&& ...) const [with context_t = AAT::hb_aat_apply_context_t; Ts = {}; KernSubTableHeader = OT::KernAATSubTableHeader; typename context_t::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:916:22:   required from 'bool AAT::KerxTable<T>::apply(AAT::hb_aat_apply_context_t*) const [with T = OT::KernAAT]'
+cargo:warning=harfbuzz/src/hb-aat-layout-common.hh:810:55:   required from 'hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t AAT::hb_aat_apply_context_t::dispatch(const T&) [with T = OT::KernAAT; hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-ot-kern-table.hh:330:13:   required from 'typename context_t::return_t OT::kern::dispatch(context_t*, Ts&& ...) const [with context_t = AAT::hb_aat_apply_context_t; Ts = {}; typename context_t::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-ot-kern-table.hh:320:21:   required from here
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:338:34: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  338 |     const UnsizedArrayOf<FWORD> &kernAction;
+cargo:warning=      |                                  ^~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:226:37: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const AAT::StateTable<AAT::ObsoleteTypes, void>*>((&((AAT::KerxSubTableFormat1<OT::KernAATSubTableHeader>::driver_context_t*)this)->AAT::KerxSubTableFormat1<OT::KernAATSubTableHeader>::driver_context_t::table->AAT::KerxSubTableFormat1<OT::KernAATSubTableHeader>::machine), ((AAT::KerxSubTableFormat1<OT::KernAATSubTableHeader>::driver_context_t*)this)->AAT::KerxSubTableFormat1<OT::KernAATSubTableHeader>::driver_context_t::table->AAT::KerxSubTableFormat1<OT::KernAATSubTableHeader>::kernAction)'
+cargo:warning=  226 |         kernAction (&table->machine + table->kernAction),
+cargo:warning=      |                     ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh: In instantiation of 'int AAT::KerxSubTableFormat2<KernSubTableHeader>::get_kerning(hb_codepoint_t, hb_codepoint_t, AAT::hb_aat_apply_context_t*) const [with KernSubTableHeader = OT::KernOTSubTableHeader; hb_codepoint_t = unsigned int]':
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:425:20:   required from 'int AAT::KerxSubTableFormat2<KernSubTableHeader>::accelerator_t::get_kerning(hb_codepoint_t, hb_codepoint_t) const [with KernSubTableHeader = OT::KernOTSubTableHeader; hb_codepoint_t = unsigned int]'
+cargo:warning=harfbuzz/src/hb-kern.hh:79:47:   required from 'void OT::hb_kern_machine_t<Driver>::kern(hb_font_t*, hb_buffer_t*, hb_mask_t, bool) const [with Driver = AAT::KerxSubTableFormat2<OT::KernOTSubTableHeader>::accelerator_t; hb_font_t = hb_font_t; hb_buffer_t = hb_buffer_t; hb_mask_t = unsigned int]'
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:410:18:   required from 'bool AAT::KerxSubTableFormat2<KernSubTableHeader>::apply(AAT::hb_aat_apply_context_t*) const [with KernSubTableHeader = OT::KernOTSubTableHeader]'
+cargo:warning=harfbuzz/src/hb-aat-layout-common.hh:810:55:   required from 'hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t AAT::hb_aat_apply_context_t::dispatch(const T&) [with T = AAT::KerxSubTableFormat2<OT::KernOTSubTableHeader>; hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-ot-kern-table.hh:139:13:   required from 'typename context_t::return_t OT::KernSubTable<KernSubTableHeader>::dispatch(context_t*, Ts&& ...) const [with context_t = AAT::hb_aat_apply_context_t; Ts = {}; KernSubTableHeader = OT::KernOTSubTableHeader; typename context_t::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:916:22:   required from 'bool AAT::KerxTable<T>::apply(AAT::hb_aat_apply_context_t*) const [with T = OT::KernOT]'
+cargo:warning=harfbuzz/src/hb-aat-layout-common.hh:810:55:   required from 'hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t AAT::hb_aat_apply_context_t::dispatch(const T&) [with T = OT::KernOT; hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-ot-kern-table.hh:328:13:   required from 'typename context_t::return_t OT::kern::dispatch(context_t*, Ts&& ...) const [with context_t = AAT::hb_aat_apply_context_t; Ts = {}; typename context_t::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-ot-kern-table.hh:320:21:   required from here
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:389:34: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  389 |     const UnsizedArrayOf<FWORD> &arrayZ = this+array;
+cargo:warning=      |                                  ^~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:389:47: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const AAT::KerxSubTableFormat2<KernOTSubTableHeader>*>(((const AAT::KerxSubTableFormat2<OT::KernOTSubTableHeader>*)this), ((const AAT::KerxSubTableFormat2<OT::KernOTSubTableHeader>*)this)->AAT::KerxSubTableFormat2<OT::KernOTSubTableHeader>::array)'
+cargo:warning=  389 |     const UnsizedArrayOf<FWORD> &arrayZ = this+array;
+cargo:warning=      |                                           ~~~~^~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh: In instantiation of 'int AAT::KerxSubTableFormat2<KernSubTableHeader>::get_kerning(hb_codepoint_t, hb_codepoint_t, AAT::hb_aat_apply_context_t*) const [with KernSubTableHeader = OT::KernAATSubTableHeader; hb_codepoint_t = unsigned int]':
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:425:20:   required from 'int AAT::KerxSubTableFormat2<KernSubTableHeader>::accelerator_t::get_kerning(hb_codepoint_t, hb_codepoint_t) const [with KernSubTableHeader = OT::KernAATSubTableHeader; hb_codepoint_t = unsigned int]'
+cargo:warning=harfbuzz/src/hb-kern.hh:79:47:   required from 'void OT::hb_kern_machine_t<Driver>::kern(hb_font_t*, hb_buffer_t*, hb_mask_t, bool) const [with Driver = AAT::KerxSubTableFormat2<OT::KernAATSubTableHeader>::accelerator_t; hb_font_t = hb_font_t; hb_buffer_t = hb_buffer_t; hb_mask_t = unsigned int]'
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:410:18:   required from 'bool AAT::KerxSubTableFormat2<KernSubTableHeader>::apply(AAT::hb_aat_apply_context_t*) const [with KernSubTableHeader = OT::KernAATSubTableHeader]'
+cargo:warning=harfbuzz/src/hb-aat-layout-common.hh:810:55:   required from 'hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t AAT::hb_aat_apply_context_t::dispatch(const T&) [with T = AAT::KerxSubTableFormat2<OT::KernAATSubTableHeader>; hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-ot-kern-table.hh:139:13:   required from 'typename context_t::return_t OT::KernSubTable<KernSubTableHeader>::dispatch(context_t*, Ts&& ...) const [with context_t = AAT::hb_aat_apply_context_t; Ts = {}; KernSubTableHeader = OT::KernAATSubTableHeader; typename context_t::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:916:22:   required from 'bool AAT::KerxTable<T>::apply(AAT::hb_aat_apply_context_t*) const [with T = OT::KernAAT]'
+cargo:warning=harfbuzz/src/hb-aat-layout-common.hh:810:55:   required from 'hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t AAT::hb_aat_apply_context_t::dispatch(const T&) [with T = OT::KernAAT; hb_dispatch_context_t<AAT::hb_aat_apply_context_t, bool, 0>::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-ot-kern-table.hh:330:13:   required from 'typename context_t::return_t OT::kern::dispatch(context_t*, Ts&& ...) const [with context_t = AAT::hb_aat_apply_context_t; Ts = {}; typename context_t::return_t = bool]'
+cargo:warning=harfbuzz/src/hb-ot-kern-table.hh:320:21:   required from here
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:389:34: warning: possibly dangling reference to a temporary [-Wdangling-reference]
+cargo:warning=  389 |     const UnsizedArrayOf<FWORD> &arrayZ = this+array;
+cargo:warning=      |                                  ^~~~~~
+cargo:warning=harfbuzz/src/hb-aat-layout-kerx-table.hh:389:47: note: the temporary was destroyed at the end of the full expression 'OT::operator+<const AAT::KerxSubTableFormat2<KernAATSubTableHeader>*>(((const AAT::KerxSubTableFormat2<OT::KernAATSubTableHeader>*)this), ((const AAT::KerxSubTableFormat2<OT::KernAATSubTableHeader>*)this)->AAT::KerxSubTableFormat2<OT::KernAATSubTableHeader>::array)'
+cargo:warning=  389 |     const UnsizedArrayOf<FWORD> &arrayZ = this+array;
+cargo:warning=      |                                           ~~~~^~~~~~
+cargo:rerun-if-env-changed=AR_x86_64-unknown-linux-gnu
+AR_x86_64-unknown-linux-gnu = None
+cargo:rerun-if-env-changed=AR_x86_64_unknown_linux_gnu
+AR_x86_64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=HOST_AR
+HOST_AR = None
+cargo:rerun-if-env-changed=AR
+AR = None
+cargo:rerun-if-env-changed=ARFLAGS
+ARFLAGS = None
+cargo:rerun-if-env-changed=HOST_ARFLAGS
+HOST_ARFLAGS = None
+cargo:rerun-if-env-changed=ARFLAGS_x86_64_unknown_linux_gnu
+ARFLAGS_x86_64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=ARFLAGS_x86_64-unknown-linux-gnu
+ARFLAGS_x86_64-unknown-linux-gnu = None
+cargo:rustc-link-lib=static=embedded_harfbuzz
+cargo:rustc-link-search=native=/home/user/Corten-FontSystem/components/text_shaper/target/debug/build/harfbuzz-sys-1ea5cd7822314688/out
+cargo:rerun-if-env-changed=CXXSTDLIB_x86_64-unknown-linux-gnu
+CXXSTDLIB_x86_64-unknown-linux-gnu = None
+cargo:rerun-if-env-changed=CXXSTDLIB_x86_64_unknown_linux_gnu
+CXXSTDLIB_x86_64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=HOST_CXXSTDLIB
+HOST_CXXSTDLIB = None
+cargo:rerun-if-env-changed=CXXSTDLIB
+CXXSTDLIB = None
+cargo:rustc-link-lib=stdc++
+cargo:include=/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/harfbuzz-sys-0.5.0/harfbuzz/src

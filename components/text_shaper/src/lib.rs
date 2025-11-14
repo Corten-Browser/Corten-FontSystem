@@ -3,8 +3,10 @@
 #![warn(missing_docs)]
 #![warn(clippy::all)]
 
-/// Module exports will be added during implementation
 pub mod types;
+
+// Re-export main types for convenience
+pub use types::{Language, Script, ShapingError, ShapingOptions};
 
 #[cfg(test)]
 mod tests {
