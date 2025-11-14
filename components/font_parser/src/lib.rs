@@ -3,16 +3,12 @@
 #![warn(missing_docs)]
 #![warn(clippy::all)]
 
-/// Module exports will be added during implementation
+mod error;
 pub mod types;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_placeholder() {
-        // Tests will be added during TDD
-        assert!(true);
-    }
-}
+// Public exports
+pub use error::ParseError;
+pub use types::{
+    BoundingBox, CMapTable, Contour, FontMetrics, GlyphId, GlyphOutline, OpenTypeFont, Tag,
+    TagParseError,
+};
