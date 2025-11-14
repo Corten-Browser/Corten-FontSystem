@@ -1,0 +1,90 @@
+component: font_registry
+version: 0.1.0
+language: rust
+description: Font discovery, loading, caching, and matching
+
+dependencies:
+  - font_types
+
+public_api:
+  structs:
+    - name: FontRegistry
+      description: Font registry and cache
+      methods:
+        - name: new
+          description: Create new font registry
+          returns: FontRegistry
+
+        - name: load_system_fonts
+          description: Load system fonts
+          returns: Result<usize, RegistryError>
+          description_detail: Returns count of fonts loaded
+
+        - name: load_font_file
+          description: Load font from file path
+          parameters:
+            - name: path
+              type: "&Path"
+          returns: Result<FontId, RegistryError>
+
+        - name: load_font_data
+          description: Load font from memory
+          parameters:
+            - name: data
+              type: Vec<u8>
+          returns: Result<FontId, RegistryError>
+
+        - name: match_font
+          description: Find best matching font
+          parameters:
+            - name: descriptor
+              type: "&FontDescriptor"
+          returns: Option<FontId>
+
+        - name: get_font_face
+          description: Get loaded font face
+          parameters:
+            - name: font_id
+              type: FontId
+          returns: Option<&FontFace>
+
+        - name: get_font_metrics
+          description: Get font metrics
+          parameters:
+            - name: font_id
+              type: FontId
+            - name: size
+              type: f32
+          returns: Option<FontMetrics>
+
+    - name: FontFace
+      description: Loaded font face
+      fields:
+        - name: id
+          type: FontId
+        - name: family_name
+          type: String
+        - name: postscript_name
+          type: String
+        - name: weight
+          type: FontWeight
+        - name: style
+          type: FontStyle
+        - name: stretch
+          type: FontStretch
+        - name: metrics
+          type: FontMetrics
+
+  enums:
+    - name: RegistryError
+      description: Font registry errors
+      variants:
+        - FileNotFound: String
+        - InvalidFont: String
+        - DuplicateFont
+        - SystemFontsUnavailable
+
+exports:
+  - FontRegistry
+  - FontFace
+  - RegistryError

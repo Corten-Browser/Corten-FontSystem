@@ -1,0 +1,83 @@
+component: font_parser
+version: 0.1.0
+language: rust
+description: Parse OpenType, TrueType, WOFF, and WOFF2 font files
+
+dependencies:
+  - font_types
+
+public_api:
+  structs:
+    - name: OpenTypeFont
+      description: Parsed OpenType font
+      methods:
+        - name: parse
+          description: Parse font from bytes
+          parameters:
+            - name: data
+              type: Vec<u8>
+          returns: Result<OpenTypeFont, ParseError>
+
+        - name: get_table
+          description: Get raw table data
+          parameters:
+            - name: tag
+              type: Tag
+          returns: Option<&[u8]>
+
+        - name: get_metrics
+          description: Get font metrics
+          returns: FontMetrics
+
+        - name: get_cmap
+          description: Get character to glyph mapping table
+          returns: Option<CMapTable>
+
+        - name: get_glyph_outline
+          description: Get glyph outline
+          parameters:
+            - name: glyph_id
+              type: GlyphId
+          returns: Option<GlyphOutline>
+
+    - name: Tag
+      description: OpenType table tag (4-byte identifier)
+      methods:
+        - name: from_str
+          parameters:
+            - name: s
+              type: "&str"
+          returns: Tag
+
+    - name: CMapTable
+      description: Character mapping table
+      methods:
+        - name: get_glyph
+          parameters:
+            - name: codepoint
+              type: char
+          returns: Option<GlyphId>
+
+    - name: GlyphOutline
+      description: Vector glyph outline
+      fields:
+        - name: contours
+          type: Vec<Contour>
+        - name: bounds
+          type: BoundingBox
+
+  enums:
+    - name: ParseError
+      description: Font parsing errors
+      variants:
+        - InvalidFormat
+        - MissingTable: String
+        - CorruptedData: String
+        - UnsupportedVersion
+
+exports:
+  - OpenTypeFont
+  - Tag
+  - CMapTable
+  - GlyphOutline
+  - ParseError

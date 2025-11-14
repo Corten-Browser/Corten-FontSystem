@@ -1,0 +1,64 @@
+component: platform_integration
+version: 0.1.0
+language: rust
+description: Platform-specific font discovery (Linux, Windows, macOS)
+
+dependencies:
+  - font_types
+  - font_registry
+
+public_api:
+  functions:
+    - name: discover_system_fonts
+      description: Discover system fonts for current platform
+      returns: Vec<PathBuf>
+
+    - name: get_default_font_families
+      description: Get platform default font families
+      returns: HashMap<FontCategory, Vec<String>>
+
+    - name: get_font_config_path
+      description: Get platform font configuration directory
+      returns: Option<PathBuf>
+
+  enums:
+    - name: FontCategory
+      description: Font categories
+      variants:
+        - Serif
+        - SansSerif
+        - Monospace
+        - Cursive
+        - Fantasy
+        - Emoji
+
+    - name: Platform
+      description: Supported platforms
+      variants:
+        - Linux
+        - Windows
+        - MacOS
+        - Unknown
+
+  structs:
+    - name: PlatformFontInfo
+      description: Platform-specific font information
+      fields:
+        - name: family_name
+          type: String
+        - name: path
+          type: PathBuf
+        - name: weight
+          type: FontWeight
+        - name: style
+          type: FontStyle
+        - name: is_system_font
+          type: bool
+
+exports:
+  - discover_system_fonts
+  - get_default_font_families
+  - get_font_config_path
+  - FontCategory
+  - Platform
+  - PlatformFontInfo

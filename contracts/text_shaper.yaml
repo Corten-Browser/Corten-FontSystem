@@ -1,0 +1,102 @@
+component: text_shaper
+version: 0.1.0
+language: rust
+description: Text shaping, bidi, line breaking, OpenType features
+
+dependencies:
+  - font_types
+  - font_parser
+  - font_registry
+
+public_api:
+  structs:
+    - name: TextShaper
+      description: Text shaping engine
+      methods:
+        - name: new
+          description: Create new text shaper
+          parameters:
+            - name: registry
+              type: "&FontRegistry"
+          returns: TextShaper
+
+        - name: shape_text
+          description: Shape text with specific font
+          parameters:
+            - name: text
+              type: "&str"
+            - name: font_id
+              type: FontId
+            - name: size
+              type: f32
+            - name: options
+              type: "&ShapingOptions"
+          returns: Result<ShapedText, ShapingError>
+
+        - name: shape_text_with_fallback
+          description: Shape text with font fallback
+          parameters:
+            - name: text
+              type: "&str"
+            - name: descriptor
+              type: "&FontDescriptor"
+            - name: options
+              type: "&ShapingOptions"
+          returns: Result<ShapedText, ShapingError>
+
+    - name: ShapingOptions
+      description: Text shaping options
+      fields:
+        - name: script
+          type: Script
+        - name: language
+          type: Language
+        - name: direction
+          type: Direction
+        - name: features
+          type: HashMap<String, u32>
+          description: OpenType features
+        - name: kerning
+          type: bool
+        - name: ligatures
+          type: bool
+        - name: letter_spacing
+          type: f32
+        - name: word_spacing
+          type: f32
+
+    - name: Script
+      description: Unicode script
+      variants:
+        - Latin
+        - Arabic
+        - Hebrew
+        - Cyrillic
+        - Greek
+        - Han
+        - Hangul
+        - Hiragana
+        - Katakana
+        - Common
+
+    - name: Language
+      description: Language tag
+      fields:
+        - name: tag
+          type: String
+          description: BCP 47 language tag
+
+  enums:
+    - name: ShapingError
+      description: Text shaping errors
+      variants:
+        - FontNotFound
+        - InvalidText: String
+        - UnsupportedScript: String
+
+exports:
+  - TextShaper
+  - ShapingOptions
+  - Script
+  - Language
+  - ShapingError
