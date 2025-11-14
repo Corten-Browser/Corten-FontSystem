@@ -67,6 +67,9 @@ impl<'a> TextShaper<'a> {
         // Get font data
         let font_data = font_face.data();
 
+        // Handle Option<&[u8]> from lazy loading
+        let font_data = font_data.ok_or(ShapingError::FontNotFound)?;
+
         // Create Harfbuzz font from font data
         let hb_face = Face::from_bytes(font_data, 0);
         let mut hb_font = Font::new(hb_face);
