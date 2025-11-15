@@ -142,6 +142,18 @@ impl Tag {
         // Safety: We only create Tags from valid UTF-8 strings or bytes
         std::str::from_utf8(&self.0).unwrap_or("????")
     }
+
+    // Standard variation axis tags
+    /// Weight axis tag ('wght')
+    pub const WEIGHT: Tag = Tag(*b"wght");
+    /// Width axis tag ('wdth')
+    pub const WIDTH: Tag = Tag(*b"wdth");
+    /// Slant axis tag ('slnt')
+    pub const SLANT: Tag = Tag(*b"slnt");
+    /// Optical size axis tag ('opsz')
+    pub const OPTICAL_SIZE: Tag = Tag(*b"opsz");
+    /// Italic axis tag ('ital')
+    pub const ITALIC: Tag = Tag(*b"ital");
 }
 
 impl fmt::Display for Tag {
@@ -152,10 +164,34 @@ impl fmt::Display for Tag {
 
 impl OpenTypeFont {
     /// Parse an OpenType/TrueType font from bytes
+    ///
+    /// This method supports multiple font formats:
+    /// - TrueType (0x00010000)
+    /// - OpenType/CFF (0x4F54544F or 'OTTO')
+    /// - WOFF (0x774F4646 or 'wOFF')
+    /// - WOFF2 (0x774F4632 or 'wOF2')
     pub fn parse(data: Vec<u8>) -> Result<Self, ParseError> {
         if data.len() < 12 {
             return Err(ParseError::CorruptedData("Font data too short".to_string()));
         }
+
+        // Check signature to determine format
+        let signature = u32::from_be_bytes([data[0], data[1], data[2], data[3]]);
+
+        // Handle WOFF and WOFF2 formats by decompressing first
+        let data = match signature {
+            0x774F4646 => {
+                // WOFF - decompress to TTF/OTF
+                let woff = crate::woff::WoffFont::parse(&data)?;
+                woff.ttf_data
+            }
+            0x774F4632 => {
+                // WOFF2 - decompress to TTF/OTF
+                let woff2 = crate::woff2::Woff2Font::parse(&data)?;
+                woff2.ttf_data
+            }
+            _ => data, // TTF/OTF - use as-is
+        };
 
         let mut cursor = Cursor::new(&data);
 
@@ -287,6 +323,168 @@ impl OpenTypeFont {
         // Stub implementation - returns None
         // Full implementation would parse glyf table
         None
+    }
+
+    /// Check if this is a variable font
+    ///
+    /// Returns true if the font contains an 'fvar' table, which indicates
+    /// it supports OpenType Font Variations.
+    pub fn is_variable(&self) -> bool {
+        self.has_table("fvar".parse().unwrap())
+    }
+
+    /// Get font variations table (fvar)
+    ///
+    /// Returns the parsed fvar table if this is a variable font, or None otherwise.
+    /// The fvar table defines the available variation axes and named instances.
+    pub fn get_fvar(&self) -> Option<crate::variable_fonts::FvarTable> {
+        let data = self.get_table("fvar".parse().unwrap())?;
+        crate::variable_fonts::FvarTable::parse(data).ok()
+    }
+
+    /// Get axis variations table (avar)
+    ///
+    /// Returns the parsed avar table if present, or None otherwise.
+    /// The avar table defines non-linear axis value mappings.
+    pub fn get_avar(&self) -> Option<crate::variable_fonts::AvarTable> {
+        let fvar = self.get_fvar()?;
+        let data = self.get_table("avar".parse().unwrap())?;
+        crate::variable_fonts::AvarTable::parse(data, fvar.axes.len()).ok()
+    }
+
+    /// Get available variation axes
+    ///
+    /// Returns a list of all variation axes defined in the font's fvar table.
+    /// Each axis specifies a design dimension (e.g., weight, width) with min/max bounds.
+    pub fn get_variation_axes(&self) -> Vec<crate::variable_fonts::VariationAxis> {
+        self.get_fvar().map(|fvar| fvar.axes).unwrap_or_default()
+    }
+
+    /// Get named instances
+    ///
+    /// Returns a list of all named instances defined in the font's fvar table.
+    /// Named instances are predefined coordinate sets (e.g., "Bold", "Light").
+    pub fn get_named_instances(&self) -> Vec<crate::variable_fonts::NamedInstance> {
+        self.get_fvar()
+            .map(|fvar| fvar.instances)
+            .unwrap_or_default()
+    }
+
+    /// Validate variation coordinates
+    ///
+    /// Checks that all coordinates are within the valid range for their respective axes.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if:
+    /// - The font is not a variable font
+    /// - Any coordinate value is outside the axis bounds
+    pub fn validate_coordinates(
+        &self,
+        coords: &crate::variable_fonts::VariationCoordinates,
+    ) -> Result<(), ParseError> {
+        let fvar = self
+            .get_fvar()
+            .ok_or_else(|| ParseError::CorruptedData("Not a variable font".to_string()))?;
+
+        // Validate each coordinate is within bounds
+        for (tag, value) in &coords.values {
+            if let Some(axis) = fvar.get_axis(*tag) {
+                if *value < axis.min_value || *value > axis.max_value {
+                    return Err(ParseError::CorruptedData(format!(
+                        "Coordinate {} out of range [{}, {}] for axis {}",
+                        value, axis.min_value, axis.max_value, tag
+                    )));
+                }
+            }
+        }
+
+        Ok(())
+    }
+
+    /// Check if this font has color glyphs
+    ///
+    /// Returns true if the font contains any color font tables (COLR, CBDT, sbix, or SVG).
+    pub fn is_color_font(&self) -> bool {
+        self.has_table("COLR".parse().unwrap())
+            || self.has_table("CBDT".parse().unwrap())
+            || self.has_table("sbix".parse().unwrap())
+            || self.has_table("SVG ".parse().unwrap())
+    }
+
+    /// Get supported color formats
+    ///
+    /// Returns a list of all color font formats supported by this font.
+    pub fn get_color_formats(&self) -> Vec<crate::color_fonts::ColorFormat> {
+        let mut formats = Vec::new();
+
+        if self.has_table("COLR".parse().unwrap()) {
+            formats.push(crate::color_fonts::ColorFormat::ColrCpal);
+        }
+        if self.has_table("CBDT".parse().unwrap()) {
+            formats.push(crate::color_fonts::ColorFormat::Cbdt);
+        }
+        if self.has_table("sbix".parse().unwrap()) {
+            formats.push(crate::color_fonts::ColorFormat::Sbix);
+        }
+        if self.has_table("SVG ".parse().unwrap()) {
+            formats.push(crate::color_fonts::ColorFormat::Svg);
+        }
+
+        formats
+    }
+
+    /// Get color palette table (CPAL)
+    ///
+    /// Returns the parsed CPAL table if present, which defines color palettes
+    /// used by the COLR table for layered color glyphs.
+    pub fn get_cpal(&self) -> Option<crate::color_fonts::CpalTable> {
+        let data = self.get_table("CPAL".parse().unwrap())?;
+        crate::color_fonts::CpalTable::parse(data).ok()
+    }
+
+    /// Get color layers table (COLR)
+    ///
+    /// Returns the parsed COLR table if present, which defines layered color glyphs
+    /// using palette colors from the CPAL table.
+    pub fn get_colr(&self) -> Option<crate::color_fonts::ColrTable> {
+        let data = self.get_table("COLR".parse().unwrap())?;
+        crate::color_fonts::ColrTable::parse(data).ok()
+    }
+
+    /// Get color bitmap table (CBDT)
+    ///
+    /// Returns the parsed CBDT table if present, which contains embedded color
+    /// bitmap data for glyphs (commonly used for emoji).
+    pub fn get_cbdt(&self) -> Option<crate::color_fonts::CbdtTable> {
+        let data = self.get_table("CBDT".parse().unwrap())?;
+        crate::color_fonts::CbdtTable::parse(data).ok()
+    }
+
+    /// Get SVG table
+    ///
+    /// Returns the parsed SVG table if present, which contains SVG glyph definitions.
+    pub fn get_svg(&self) -> Option<crate::color_fonts::SvgTable> {
+        let data = self.get_table("SVG ".parse().unwrap())?;
+        crate::color_fonts::SvgTable::parse(data).ok()
+    }
+
+    /// Check if a specific glyph has color layers
+    ///
+    /// Returns true if the glyph has color layers defined in the COLR table.
+    pub fn has_color_layers(&self, glyph_id: GlyphId) -> bool {
+        if let Some(colr) = self.get_colr() {
+            return colr.is_color_glyph(glyph_id);
+        }
+        false
+    }
+
+    /// Get color layers for a glyph
+    ///
+    /// Returns the color layers for a specific glyph if defined in the COLR table.
+    pub fn get_color_layers(&self, glyph_id: GlyphId) -> Option<Vec<crate::color_fonts::Layer>> {
+        let colr = self.get_colr()?;
+        colr.get_layers(glyph_id).cloned()
     }
 }
 

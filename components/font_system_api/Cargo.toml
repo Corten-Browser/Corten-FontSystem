@@ -11,6 +11,7 @@ font_types = { path = "../font_types" }
 font_parser = { path = "../font_parser" }
 font_registry = { path = "../font_registry" }
 text_shaper = { path = "../text_shaper" }
+text_layout = { path = "../text_layout" }
 glyph_renderer = { path = "../glyph_renderer" }
 platform_integration = { path = "../platform_integration" }
 
