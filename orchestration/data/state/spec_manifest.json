@@ -1,6 +1,9 @@
 {
-  "spec_file": null,
-  "queue_initialized": false,
-  "last_sync": null,
-  "task_count": 0
+  "spec_file": "specifications/font-system-specification.md",
+  "queue_initialized": true,
+  "last_sync": "2025-11-23T23:46:48.970660",
+  "task_count": 48,
+  "spec_files": [
+    "specifications/font-system-specification.md"
+  ]
 }

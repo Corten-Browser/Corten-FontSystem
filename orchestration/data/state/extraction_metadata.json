@@ -1,0 +1,18 @@
+{
+  "last_extraction": "2025-11-23T23:46:48.970836",
+  "extraction_method": "automated",
+  "spec_files": [
+    {
+      "path": "specifications/font-system-specification.md",
+      "features_extracted": 48,
+      "extraction_method": "automated",
+      "last_processed": "2025-11-23T23:46:48.970889"
+    }
+  ],
+  "total_features": 48,
+  "automated_features": 48,
+  "llm_features": 0,
+  "llm_extraction_complete": false,
+  "llm_extraction_timestamp": null,
+  "automated_extraction_success": true
+}
