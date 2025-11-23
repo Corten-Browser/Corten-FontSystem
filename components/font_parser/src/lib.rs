@@ -9,6 +9,7 @@
 //! - TrueType hinting (cvt, fpgm, prep tables)
 //! - Embedded bitmap fonts (EBDT/EBLC)
 //! - OpenType features (GSUB, GPOS)
+//! - Security validation and limits
 
 #![warn(missing_docs)]
 #![warn(clippy::all)]
@@ -22,8 +23,11 @@ pub mod features;
 pub mod gpos;
 pub mod gsub;
 mod hinting;
+pub mod limits;
+pub mod security;
 mod svg;
 pub mod types;
+pub mod validation;
 mod variable_fonts;
 mod woff;
 mod woff2;
@@ -87,4 +91,21 @@ pub use bitmap::{
     BigGlyphMetrics, BitmapGlyph, BitmapScaleRecord, BitmapSizeRecord, EbdtTable, EblcTable,
     EbscTable, GlyphIdOffsetPair, IndexSubTable, IndexSubTableHeader, SbitLineMetrics,
     SmallGlyphMetrics,
+};
+
+// Security module exports
+pub use limits::{
+    LimitExceeded, SecurityLimits, MAX_FONT_SIZE, MAX_GLYPH_COUNT, MAX_RECURSION_DEPTH,
+    MAX_TABLE_COUNT, OPERATION_TIMEOUT_MS,
+};
+
+pub use security::{
+    calculate_checksum, calculate_head_checksum, validate_checksum, BoundsChecker,
+    IpcMessageHeader, IpcMessageType, IpcValidator, MemoryTracker, RecursionGuard, RecursionScope,
+    SandboxConfig, SandboxResult, SecurityContext, TimeoutGuard,
+};
+
+pub use validation::{
+    quick_validate, FontSanitizer, FontValidator, ValidationError, ValidationResult,
+    ValidationWarning,
 };
