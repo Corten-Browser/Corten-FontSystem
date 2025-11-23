@@ -1,18 +1,35 @@
 {
-  "last_extraction": "2025-11-23T23:46:48.970836",
-  "extraction_method": "automated",
+  "last_extraction": "2025-11-23T23:58:00.000000",
+  "extraction_method": "hybrid",
   "spec_files": [
     {
       "path": "specifications/font-system-specification.md",
-      "features_extracted": 48,
-      "extraction_method": "automated",
-      "last_processed": "2025-11-23T23:46:48.970889"
+      "features_extracted": 95,
+      "automated_features": 48,
+      "llm_features": 47,
+      "extraction_method": "hybrid",
+      "last_processed": "2025-11-23T23:58:00.000000"
     }
   ],
-  "total_features": 48,
+  "total_features": 95,
   "automated_features": 48,
-  "llm_features": 0,
-  "llm_extraction_complete": false,
-  "llm_extraction_timestamp": null,
-  "automated_extraction_success": true
+  "llm_features": 47,
+  "llm_extraction_complete": true,
+  "llm_extraction_timestamp": "2025-11-23T23:58:00.000000",
+  "automated_extraction_success": true,
+  "detected_language": "Rust",
+  "language_confidence": "high",
+  "templates_applied": [
+    "fonts-font-loader",
+    "fonts-text-shaping",
+    "fonts-font-rasterization"
+  ],
+  "feature_categories": {
+    "milestone_checklist": 48,
+    "module_structure": 6,
+    "public_api": 18,
+    "browser_integration": 8,
+    "security": 10,
+    "integration_points": 5
+  }
 }
