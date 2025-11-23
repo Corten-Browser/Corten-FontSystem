@@ -1,10 +1,28 @@
 //! font_parser - Parse OpenType, TrueType, WOFF, and WOFF2 font files
+//!
+//! This crate provides comprehensive parsing for font files including:
+//! - OpenType and TrueType fonts
+//! - WOFF and WOFF2 compressed formats
+//! - Variable fonts (fvar, avar tables)
+//! - Color fonts (COLR/CPAL, CBDT/CBLC, SVG)
+//! - CFF/CFF2 PostScript outlines
+//! - TrueType hinting (cvt, fpgm, prep tables)
+//! - Embedded bitmap fonts (EBDT/EBLC)
+//! - OpenType features (GSUB, GPOS)
 
 #![warn(missing_docs)]
 #![warn(clippy::all)]
 
+// Internal modules
+mod bitmap;
+mod cff;
 mod color_fonts;
 mod error;
+pub mod features;
+pub mod gpos;
+pub mod gsub;
+mod hinting;
+mod svg;
 pub mod types;
 mod variable_fonts;
 mod woff;
@@ -24,3 +42,49 @@ pub use variable_fonts::{
 };
 pub use woff::WoffFont;
 pub use woff2::Woff2Font;
+
+// GSUB exports
+pub use gsub::{
+    AlternateSubst, ChainContextRule, ChainingContextSubst, ContextRule, ContextSubst, Coverage,
+    FeatureList, FeatureRecord, GsubTable, LangSys, Ligature, LigatureSubst, Lookup as GsubLookup,
+    LookupFlags, LookupList as GsubLookupList, LookupType as GsubLookupType, MultipleSubst,
+    ScriptList, ScriptRecord, SingleSubst, SubstLookupRecord, SubtableData as GsubSubtableData,
+};
+
+// GPOS exports
+pub use gpos::{
+    AnchorPoint, GposTable, Lookup as GposLookup, LookupList as GposLookupList,
+    LookupType as GposLookupType, MarkRecord, MarkToBaseSubtable, PairAdjustmentSubtable,
+    PairValueRecord, SingleAdjustmentSubtable, SubtableData as GposSubtableData, ValueRecord,
+};
+
+// Feature selection exports
+pub use features::{
+    default_features, kerning_and_ligatures, kerning_only, tags, FeatureApplicator, FeatureQuery,
+    FeatureSelection,
+};
+
+// CFF/CFF2 exports (PostScript outlines)
+pub use cff::{
+    Cff2FontDict, Cff2Table, Cff2TopDict, CffTable, CharStringCommand, ItemVariationData,
+    ItemVariationStore, PrivateDict, TopDict,
+};
+
+// TrueType hinting exports
+pub use hinting::{
+    decode_instructions, CvtTable, FpgmTable, GraphicsState, HintInstruction, HintingState,
+    MaxpHintingInfo, PrepTable, RoundState,
+};
+
+// SVG-in-OpenType exports
+pub use svg::{
+    extract_glyph_svg, parse_viewbox, validate_svg, SvgDocumentRecord, SvgDocumentTable,
+    SvgElement, SvgGlyphInfo, SvgParseOptions,
+};
+
+// Bitmap fonts exports (EBDT/EBLC)
+pub use bitmap::{
+    BigGlyphMetrics, BitmapGlyph, BitmapScaleRecord, BitmapSizeRecord, EbdtTable, EblcTable,
+    EbscTable, GlyphIdOffsetPair, IndexSubTable, IndexSubTableHeader, SbitLineMetrics,
+    SmallGlyphMetrics,
+};
