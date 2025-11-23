@@ -33,6 +33,7 @@
 #![warn(clippy::all)]
 
 pub mod browser;
+pub mod browser_integration;
 pub mod messages;
 pub mod profiling;
 mod system;
@@ -50,6 +51,15 @@ pub use browser::{BrowserComponent, ComponentMetrics, FontSystemBrowserComponent
 pub use messages::{
     ComponentMessage, ComponentResponse, LoadWebFontRequest, RasterizeGlyphRequest,
     ShapeTextRequest,
+};
+
+// Re-export browser integration types (CSS, rendering, network, CORS, preferences)
+pub use browser_integration::{
+    BrowserFontPreferences, CorsError, CorsResult, CorsValidator, CssFontRequest,
+    CssFontResolver, CssFontResponse, CssFontStretch, CssFontStyle, CssFontWeight,
+    FontPreferences, FontSmoothing, RenderText, RenderingEngineInterface, RenderingStats,
+    ShapedGlyph, ShapedRun, WebFontDownloadState, WebFontDownloader, WebFontRequest,
+    WebFontResponse,
 };
 
 // Re-export types from dependencies
