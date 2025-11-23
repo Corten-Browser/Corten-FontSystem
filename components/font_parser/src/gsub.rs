@@ -618,12 +618,12 @@ impl GsubTable {
         let default_lang_sys_offset = cursor.read_u16::<BigEndian>()? as usize;
         let lang_sys_count = cursor.read_u16::<BigEndian>()?;
 
-        let default_lang_sys = if default_lang_sys_offset > 0 && default_lang_sys_offset < data.len()
-        {
-            Some(Self::parse_lang_sys(&data[default_lang_sys_offset..])?)
-        } else {
-            None
-        };
+        let default_lang_sys =
+            if default_lang_sys_offset > 0 && default_lang_sys_offset < data.len() {
+                Some(Self::parse_lang_sys(&data[default_lang_sys_offset..])?)
+            } else {
+                None
+            };
 
         let mut lang_sys = HashMap::new();
         for _ in 0..lang_sys_count {
@@ -1255,7 +1255,7 @@ mod tests {
         let coverage = Coverage { glyphs };
 
         let ligature_ff = Ligature {
-            ligature_glyph: 100,   // 'ff' ligature
+            ligature_glyph: 100,  // 'ff' ligature
             components: vec![10], // second 'f'
         };
 

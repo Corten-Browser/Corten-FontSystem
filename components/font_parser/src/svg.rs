@@ -37,9 +37,7 @@ impl SvgDocumentTable {
     /// Parse SVG table from raw bytes
     pub fn parse(data: &[u8]) -> Result<Self, ParseError> {
         if data.len() < 10 {
-            return Err(ParseError::CorruptedData(
-                "SVG table too short".to_string(),
-            ));
+            return Err(ParseError::CorruptedData("SVG table too short".to_string()));
         }
 
         let mut cursor = Cursor::new(data);

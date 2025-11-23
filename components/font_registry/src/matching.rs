@@ -199,8 +199,9 @@ impl FontMatcher {
                 self.calculate_weight_score(descriptor.weight, font.weight) * self.weight_weight;
             font_match.style_score =
                 self.calculate_style_score(descriptor.style, font.style) * self.style_weight;
-            font_match.stretch_score =
-                self.calculate_stretch_score(descriptor.stretch, font.stretch) * self.stretch_weight;
+            font_match.stretch_score = self
+                .calculate_stretch_score(descriptor.stretch, font.stretch)
+                * self.stretch_weight;
             font_match.calculate_total();
 
             if let Some(ref best) = best_match {
@@ -396,8 +397,10 @@ impl FontSubstitution {
         // Common Windows fonts to cross-platform alternatives
         self.direct_mappings
             .insert("Arial".to_lowercase(), "Liberation Sans".to_string());
-        self.direct_mappings
-            .insert("Times New Roman".to_lowercase(), "Liberation Serif".to_string());
+        self.direct_mappings.insert(
+            "Times New Roman".to_lowercase(),
+            "Liberation Serif".to_string(),
+        );
         self.direct_mappings
             .insert("Courier New".to_lowercase(), "Liberation Mono".to_string());
         self.direct_mappings

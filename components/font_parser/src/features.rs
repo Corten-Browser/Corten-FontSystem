@@ -221,7 +221,10 @@ impl<'a> FeatureApplicator<'a> {
         let mut indices = Vec::new();
 
         // Get feature indices for script/language
-        let script = self.selection.script.unwrap_or_else(|| Tag::new("DFLT").unwrap());
+        let script = self
+            .selection
+            .script
+            .unwrap_or_else(|| Tag::new("DFLT").unwrap());
         let feature_indices = gsub.get_feature_indices(script, self.selection.language);
 
         // For each feature index, if the feature is enabled, add its lookups
@@ -369,9 +372,7 @@ impl<'a> FeatureQuery<'a> {
 
     /// Check if ligatures are available
     pub fn has_ligatures(&self) -> bool {
-        self.has_feature(tags::LIGA)
-            || self.has_feature(tags::CLIG)
-            || self.has_feature(tags::DLIG)
+        self.has_feature(tags::LIGA) || self.has_feature(tags::CLIG) || self.has_feature(tags::DLIG)
     }
 
     /// Check if kerning is available

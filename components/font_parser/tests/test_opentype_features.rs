@@ -41,9 +41,7 @@ fn test_gsub_table_unsupported_version() {
 
 #[test]
 fn test_gsub_supported_features_empty() {
-    let data = [
-        0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    ];
+    let data = [0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
 
     let gsub = GsubTable::parse(&data).unwrap();
     assert!(gsub.supported_features().is_empty());
@@ -86,9 +84,7 @@ fn test_gpos_table_unsupported_version() {
 
 #[test]
 fn test_gpos_kerning_empty() {
-    let data = [
-        0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    ];
+    let data = [0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
 
     let gpos = GposTable::parse(&data).unwrap();
     assert!(gpos.get_kerning(10, 20).is_none());
@@ -257,9 +253,7 @@ fn test_feature_applicator_kerning_disabled() {
     let mut selection = FeatureSelection::new();
     selection.disable(tags::KERN);
 
-    let data = [
-        0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    ];
+    let data = [0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
     let gpos = GposTable::parse(&data).unwrap();
 
     let applicator = FeatureApplicator::new(None, Some(&gpos), &selection);
@@ -331,7 +325,7 @@ fn test_opentype_font_gsub_gpos_absent() {
     data.extend_from_slice(&[0x5F, 0x0F, 0x3C, 0xF5]); // magicNumber
     data.extend_from_slice(&[0x00, 0x00]); // flags
     data.extend_from_slice(&[0x03, 0xE8]); // unitsPerEm = 1000
-    // Fill rest with zeros
+                                           // Fill rest with zeros
     data.extend_from_slice(&[0; 36]);
 
     let font = OpenTypeFont::parse(data).unwrap();

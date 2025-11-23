@@ -55,11 +55,10 @@ pub use messages::{
 
 // Re-export browser integration types (CSS, rendering, network, CORS, preferences)
 pub use browser_integration::{
-    BrowserFontPreferences, CorsError, CorsResult, CorsValidator, CssFontRequest,
-    CssFontResolver, CssFontResponse, CssFontStretch, CssFontStyle, CssFontWeight,
-    FontPreferences, FontSmoothing, RenderText, RenderingEngineInterface, RenderingStats,
-    ShapedGlyph, ShapedRun, WebFontDownloadState, WebFontDownloader, WebFontRequest,
-    WebFontResponse,
+    BrowserFontPreferences, CorsError, CorsResult, CorsValidator, CssFontRequest, CssFontResolver,
+    CssFontResponse, CssFontStretch, CssFontStyle, CssFontWeight, FontPreferences, FontSmoothing,
+    RenderText, RenderingEngineInterface, RenderingStats, ShapedGlyph, ShapedRun,
+    WebFontDownloadState, WebFontDownloader, WebFontRequest, WebFontResponse,
 };
 
 // Re-export types from dependencies

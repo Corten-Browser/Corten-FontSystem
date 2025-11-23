@@ -172,11 +172,15 @@ impl WebFontManager {
     /// Result indicating success or error
     pub fn register(&mut self, declaration: FontFaceDeclaration) -> Result<(), RegistryError> {
         if declaration.family.is_empty() {
-            return Err(RegistryError::InvalidFont("Empty font family name".to_string()));
+            return Err(RegistryError::InvalidFont(
+                "Empty font family name".to_string(),
+            ));
         }
 
         if declaration.sources.is_empty() {
-            return Err(RegistryError::InvalidFont("No font sources specified".to_string()));
+            return Err(RegistryError::InvalidFont(
+                "No font sources specified".to_string(),
+            ));
         }
 
         let web_font = WebFont {
@@ -536,10 +540,9 @@ fn parse_unicode_range_value(value: &str) -> Vec<UnicodeRange> {
             let hex_part = &part[2..];
             if let Some((start, end)) = hex_part.split_once('-') {
                 // Range
-                if let (Ok(s), Ok(e)) = (
-                    u32::from_str_radix(start, 16),
-                    u32::from_str_radix(end, 16),
-                ) {
+                if let (Ok(s), Ok(e)) =
+                    (u32::from_str_radix(start, 16), u32::from_str_radix(end, 16))
+                {
                     ranges.push(UnicodeRange::range(s, e));
                 }
             } else if hex_part.contains('?') {

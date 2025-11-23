@@ -8,7 +8,9 @@
 //! - Browser shell preferences (FEAT-095)
 
 use crate::types::FontError;
-use font_registry::types::{FontDescriptor, FontId, FontMetrics, FontStretch, FontStyle, FontWeight};
+use font_registry::types::{
+    FontDescriptor, FontId, FontMetrics, FontStretch, FontStyle, FontWeight,
+};
 use std::collections::HashMap;
 
 // ============================================================================
@@ -399,7 +401,9 @@ impl WebFontDownloader {
 
     /// Queue a font download
     pub fn queue_download(&mut self, request: &WebFontRequest) -> bool {
-        let active_count = self.downloads.values()
+        let active_count = self
+            .downloads
+            .values()
             .filter(|s| **s == WebFontDownloadState::Downloading)
             .count();
 
@@ -407,7 +411,8 @@ impl WebFontDownloader {
             return false;
         }
 
-        self.downloads.insert(request.url.clone(), WebFontDownloadState::Pending);
+        self.downloads
+            .insert(request.url.clone(), WebFontDownloadState::Pending);
         true
     }
 
@@ -440,7 +445,8 @@ impl WebFontDownloader {
 
     /// Get number of active downloads
     pub fn active_count(&self) -> usize {
-        self.downloads.values()
+        self.downloads
+            .values()
             .filter(|s| **s == WebFontDownloadState::Downloading)
             .count()
     }
@@ -678,7 +684,10 @@ impl std::fmt::Debug for BrowserFontPreferences {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("BrowserFontPreferences")
             .field("preferences", &self.preferences)
-            .field("observers", &format!("[{} observers]", self.observers.len()))
+            .field(
+                "observers",
+                &format!("[{} observers]", self.observers.len()),
+            )
             .finish()
     }
 }
@@ -859,7 +868,10 @@ mod tests {
     fn test_cors_validator_blocked() {
         let validator = CorsValidator::new();
         let result = validator.validate("https://example.com", None, false);
-        assert!(matches!(result, CorsResult::Blocked(CorsError::MissingAllowOrigin)));
+        assert!(matches!(
+            result,
+            CorsResult::Blocked(CorsError::MissingAllowOrigin)
+        ));
     }
 
     #[test]
@@ -886,7 +898,13 @@ mod tests {
 
     #[test]
     fn test_extract_origin() {
-        assert_eq!(extract_origin("https://example.com/path"), "https://example.com");
-        assert_eq!(extract_origin("http://localhost:8080/font.woff"), "http://localhost:8080");
+        assert_eq!(
+            extract_origin("https://example.com/path"),
+            "https://example.com"
+        );
+        assert_eq!(
+            extract_origin("http://localhost:8080/font.woff"),
+            "http://localhost:8080"
+        );
     }
 }

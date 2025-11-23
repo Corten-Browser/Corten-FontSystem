@@ -275,7 +275,9 @@ impl EblcTable {
     }
 
     /// Parse a bitmap size record
-    fn parse_bitmap_size_record(cursor: &mut Cursor<&[u8]>) -> Result<BitmapSizeRecord, ParseError> {
+    fn parse_bitmap_size_record(
+        cursor: &mut Cursor<&[u8]>,
+    ) -> Result<BitmapSizeRecord, ParseError> {
         let index_subtable_array_offset = cursor.read_u32::<BigEndian>()?;
         let index_subtables_size = cursor.read_u32::<BigEndian>()?;
         let number_of_index_subtables = cursor.read_u32::<BigEndian>()?;
@@ -351,14 +353,11 @@ impl EblcTable {
         }
 
         // Find closest match
-        self.bitmap_sizes
-            .iter()
-            .enumerate()
-            .min_by_key(|(_, s)| {
-                let diff_x = (s.ppem_x as i16 - ppem as i16).abs();
-                let diff_y = (s.ppem_y as i16 - ppem as i16).abs();
-                diff_x.min(diff_y)
-            })
+        self.bitmap_sizes.iter().enumerate().min_by_key(|(_, s)| {
+            let diff_x = (s.ppem_x as i16 - ppem as i16).abs();
+            let diff_y = (s.ppem_y as i16 - ppem as i16).abs();
+            diff_x.min(diff_y)
+        })
     }
 
     /// Check if a glyph has a bitmap at a specific strike
@@ -555,7 +554,9 @@ impl EbscTable {
 
     /// Find a scaling substitution for a given PPEM
     pub fn find_substitution(&self, ppem: u8) -> Option<&BitmapScaleRecord> {
-        self.strikes.iter().find(|s| s.ppem_x == ppem || s.ppem_y == ppem)
+        self.strikes
+            .iter()
+            .find(|s| s.ppem_x == ppem || s.ppem_y == ppem)
     }
 }
 

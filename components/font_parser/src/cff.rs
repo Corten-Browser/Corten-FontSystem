@@ -199,9 +199,7 @@ impl CffTable {
     /// Parse CFF table from raw bytes
     pub fn parse(data: &[u8]) -> Result<Self, ParseError> {
         if data.len() < 4 {
-            return Err(ParseError::CorruptedData(
-                "CFF data too short".to_string(),
-            ));
+            return Err(ParseError::CorruptedData("CFF data too short".to_string()));
         }
 
         let mut cursor = Cursor::new(data);
@@ -266,7 +264,10 @@ impl CffTable {
     }
 
     /// Parse Name INDEX
-    fn parse_name_index(data: &[u8], cursor: &mut Cursor<&[u8]>) -> Result<Vec<String>, ParseError> {
+    fn parse_name_index(
+        data: &[u8],
+        cursor: &mut Cursor<&[u8]>,
+    ) -> Result<Vec<String>, ParseError> {
         let index_data = Self::parse_index(data, cursor)?;
         let mut names = Vec::new();
         for name_data in index_data {
@@ -774,9 +775,7 @@ impl Cff2Table {
     /// Parse CFF2 table from raw bytes
     pub fn parse(data: &[u8]) -> Result<Self, ParseError> {
         if data.len() < 5 {
-            return Err(ParseError::CorruptedData(
-                "CFF2 data too short".to_string(),
-            ));
+            return Err(ParseError::CorruptedData("CFF2 data too short".to_string()));
         }
 
         let mut cursor = Cursor::new(data);
@@ -1122,8 +1121,8 @@ mod tests {
         // Version 2 should fail for CFF (expects version 1)
         let data = vec![
             2, 0, // Version 2.0
-            4,  // Header size
-            2,  // Off size
+            4, // Header size
+            2, // Off size
             0, 0, // Empty Name INDEX count
         ];
         let result = CffTable::parse(&data);
@@ -1135,7 +1134,7 @@ mod tests {
         // Version 1 should fail for CFF2 (expects version 2)
         let data = vec![
             1, 0, // Version 1.0
-            5,  // Header size
+            5, // Header size
             0, 0, // Top dict length
         ];
         let result = Cff2Table::parse(&data);

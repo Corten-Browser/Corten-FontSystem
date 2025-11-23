@@ -142,9 +142,7 @@ impl FontCoverage {
 
     /// Get unsupported characters from a string
     pub fn unsupported_chars(&self, text: &str) -> Vec<char> {
-        text.chars()
-            .filter(|ch| !self.supports_char(*ch))
-            .collect()
+        text.chars().filter(|ch| !self.supports_char(*ch)).collect()
     }
 
     /// Check if font supports a Unicode block
@@ -163,7 +161,10 @@ fn calculate_coverage_stats(codepoints: &HashSet<u32>) -> CoverageStats {
     CoverageStats {
         total_glyphs: codepoints.len(),
         latin_coverage: calculate_block_coverage(codepoints, unicode_blocks::BASIC_LATIN),
-        extended_latin_coverage: calculate_block_coverage(codepoints, unicode_blocks::LATIN_EXTENDED_A),
+        extended_latin_coverage: calculate_block_coverage(
+            codepoints,
+            unicode_blocks::LATIN_EXTENDED_A,
+        ),
         cyrillic_coverage: calculate_block_coverage(codepoints, unicode_blocks::CYRILLIC),
         greek_coverage: calculate_block_coverage(codepoints, unicode_blocks::GREEK),
         cjk_coverage: calculate_block_coverage(codepoints, unicode_blocks::CJK_UNIFIED),

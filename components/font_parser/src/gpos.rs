@@ -123,10 +123,7 @@ pub struct ValueRecord {
 impl ValueRecord {
     /// Check if the value record is empty (no adjustments)
     pub fn is_empty(&self) -> bool {
-        self.x_placement == 0
-            && self.y_placement == 0
-            && self.x_advance == 0
-            && self.y_advance == 0
+        self.x_placement == 0 && self.y_placement == 0 && self.x_advance == 0 && self.y_advance == 0
     }
 
     fn parse(cursor: &mut Cursor<&[u8]>, format: u16) -> Result<Self, ParseError> {
@@ -279,7 +276,11 @@ pub struct ClassKerning {
 
 impl PairAdjustmentSubtable {
     /// Get kerning for a glyph pair
-    pub fn get_kerning(&self, first: GlyphId, second: GlyphId) -> Option<(ValueRecord, ValueRecord)> {
+    pub fn get_kerning(
+        &self,
+        first: GlyphId,
+        second: GlyphId,
+    ) -> Option<(ValueRecord, ValueRecord)> {
         if !self.coverage.contains(first) {
             return None;
         }
@@ -476,9 +477,7 @@ impl GposTable {
             LookupType::PairAdjustment => Ok(SubtableData::PairAdjustment(
                 Self::parse_pair_adjustment(data)?,
             )),
-            LookupType::MarkToBase => {
-                Ok(SubtableData::MarkToBase(Self::parse_mark_to_base(data)?))
-            }
+            LookupType::MarkToBase => Ok(SubtableData::MarkToBase(Self::parse_mark_to_base(data)?)),
             _ => Ok(SubtableData::Raw(data.to_vec())),
         }
     }
@@ -763,14 +762,8 @@ mod tests {
             LookupType::try_from(1).unwrap(),
             LookupType::SingleAdjustment
         );
-        assert_eq!(
-            LookupType::try_from(2).unwrap(),
-            LookupType::PairAdjustment
-        );
-        assert_eq!(
-            LookupType::try_from(4).unwrap(),
-            LookupType::MarkToBase
-        );
+        assert_eq!(LookupType::try_from(2).unwrap(), LookupType::PairAdjustment);
+        assert_eq!(LookupType::try_from(4).unwrap(), LookupType::MarkToBase);
         assert!(LookupType::try_from(100).is_err());
     }
 
