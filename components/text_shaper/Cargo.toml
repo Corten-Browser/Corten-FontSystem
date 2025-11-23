@@ -22,6 +22,9 @@ thiserror = "1.0"
 # Data structures
 rustc-hash = "1.1"
 lru = "0.12"  # LRU cache implementation
+rayon = "1.8"  # Parallel iterators
+smallvec = "1.11"  # Stack-allocated small vectors
+parking_lot = "0.12"  # Faster synchronization primitives
 
 [dev-dependencies]
 criterion = "0.5"
@@ -34,4 +37,8 @@ path = "src/lib.rs"
 
 [[bench]]
 name = "benchmarks"
+harness = false
+
+[[bench]]
+name = "parallel_benchmarks"
 harness = false

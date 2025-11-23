@@ -290,7 +290,7 @@ impl<'a> TextShaper<'a> {
                             tag_bytes[3] as char,
                         ),
                         *value,
-                        ..
+                        ..,
                     ))
                 } else {
                     None
@@ -322,9 +322,7 @@ impl<'a> TextShaper<'a> {
             let adjusted_x_advance = x_advance + options.letter_spacing;
 
             glyphs.push(PositionedGlyph {
-                glyph_id: GlyphId {
-                    id: info.codepoint,
-                },
+                glyph_id: GlyphId { id: info.codepoint },
                 font_id,
                 position: Point {
                     x: cursor_x + x_offset,
@@ -446,14 +444,8 @@ mod tests {
     #[test]
     fn test_script_to_tag() {
         // Test that script conversion works
-        assert_eq!(
-            script_to_tag(Script::Latin),
-            Tag::new('l', 'a', 't', 'n')
-        );
-        assert_eq!(
-            script_to_tag(Script::Arabic),
-            Tag::new('a', 'r', 'a', 'b')
-        );
+        assert_eq!(script_to_tag(Script::Latin), Tag::new('l', 'a', 't', 'n'));
+        assert_eq!(script_to_tag(Script::Arabic), Tag::new('a', 'r', 'a', 'b'));
     }
 
     #[test]

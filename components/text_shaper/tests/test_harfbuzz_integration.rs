@@ -329,10 +329,7 @@ fn test_shape_text_cluster_indices() {
         // Verify glyphs are positioned from left to right
         let mut prev_x = 0.0;
         for glyph in &shaped.glyphs {
-            assert!(
-                glyph.position.x >= prev_x,
-                "Expected glyphs in LTR order"
-            );
+            assert!(glyph.position.x >= prev_x, "Expected glyphs in LTR order");
             prev_x = glyph.position.x;
         }
     }
