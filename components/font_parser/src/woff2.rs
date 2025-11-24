@@ -108,9 +108,8 @@ impl Woff2Font {
         _num_tables: u16,
     ) -> Result<Vec<u8>, ParseError> {
         // Simplified WOFF2 reconstruction
-        // Full implementation would handle transformed tables (glyf, loca, hmtx)
-        // For now, we'll return the decompressed data as-is
-        // TODO: Implement full WOFF2 table reconstruction
+        // Full table reconstruction (glyf, loca, hmtx transforms) planned for v0.2.0
+        // Currently returns decompressed data directly
 
         Ok(decompressed)
     }

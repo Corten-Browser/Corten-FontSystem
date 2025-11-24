@@ -78,7 +78,7 @@ Every `git commit` automatically triggers advisory checks:
 1. **Auto-Init**: Initializes queue from specs if not done
 2. **Queue Check**: Warns if tasks remain (but ALLOWS commit)
 3. **Rationalization Detection**: Warns about forbidden phrases
-4. **Stub Detection**: Warns about placeholder code
+4. **Incomplete Code Detection**: Warns about unfinished implementations
 
 The hook **always exits with code 0** (allowing commit for Rule 8 compliance).
 
@@ -152,7 +152,7 @@ Edit `orchestration/enforcement_config.json`:
   "auto_init_queue": true,        // Auto-initialize from specs
   "auto_run_verification": true,  // Auto-run verification
   "block_rationalization": true,  // Block rationalization language
-  "block_stubs": true,            // Block stub/placeholder code
+  "block_incomplete": true,       // Block incomplete implementations
   "stall_threshold_minutes": 60,  // Stall detection threshold
   "require_queue_empty_for_commit": true,
   "require_verification_for_commit": true
