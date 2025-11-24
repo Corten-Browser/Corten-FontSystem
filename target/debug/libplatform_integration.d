@@ -1,1 +1,0 @@
-/home/user/Corten-FontSystem/target/debug/libplatform_integration.rlib: /home/user/Corten-FontSystem/components/platform_integration/src/lib.rs /home/user/Corten-FontSystem/components/platform_integration/src/types.rs

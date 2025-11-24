@@ -10,6 +10,9 @@ description = "Glyph rasterization, hinting, subpixel rendering, and glyph cachi
 freetype-rs = "0.36"
 # Note: freetype-rs provides FreeType library bindings for Rust
 lru = "0.12"  # LRU cache implementation
+rayon = "1.8"  # Parallel iterators
+smallvec = "1.11"  # Stack-allocated small vectors
+parking_lot = "0.12"  # Faster synchronization primitives
 
 [dev-dependencies]
 criterion = "0.5"
@@ -26,4 +29,8 @@ harness = false
 
 [[bench]]
 name = "cache_performance"
+harness = false
+
+[[bench]]
+name = "pool_performance"
 harness = false

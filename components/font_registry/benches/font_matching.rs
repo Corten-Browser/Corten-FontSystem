@@ -4,7 +4,7 @@
 //! registry sizes and descriptor complexity.
 
 use criterion::{black_box, criterion_group, criterion_main, BenchmarkId, Criterion, Throughput};
-use font_registry::{FontRegistry, FontDescriptor, FontWeight, FontStyle, FontStretch};
+use font_registry::{FontDescriptor, FontRegistry, FontStretch, FontStyle, FontWeight};
 
 /// Benchmark font matching with default descriptor
 fn bench_match_font_default(c: &mut Criterion) {

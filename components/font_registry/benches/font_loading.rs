@@ -3,7 +3,7 @@
 //! Tests the performance of loading fonts from various sources.
 
 use criterion::{black_box, criterion_group, criterion_main, BenchmarkId, Criterion, Throughput};
-use font_registry::{FontRegistry, FontDescriptor};
+use font_registry::{FontDescriptor, FontRegistry};
 use std::path::PathBuf;
 
 /// Benchmark loading a single font file

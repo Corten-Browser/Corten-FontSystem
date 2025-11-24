@@ -1,0 +1,51 @@
+[package]
+name = "font_parser-fuzz"
+version = "0.0.0"
+authors = ["Automatically generated"]
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+arbitrary = { version = "1", features = ["derive"] }
+
+[dependencies.font_parser]
+path = ".."
+
+# Prevent this from interfering with workspaces
+[workspace]
+members = ["."]
+
+[profile.release]
+debug = 1
+
+[[bin]]
+name = "fuzz_font_parser"
+path = "fuzz_targets/fuzz_font_parser.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_checksum"
+path = "fuzz_targets/fuzz_checksum.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_bounds_checker"
+path = "fuzz_targets/fuzz_bounds_checker.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_ipc_validator"
+path = "fuzz_targets/fuzz_ipc_validator.rs"
+test = false
+doc = false
+bench = false

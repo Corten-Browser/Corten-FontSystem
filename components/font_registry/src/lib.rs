@@ -20,12 +20,27 @@
 #![warn(missing_docs)]
 #![warn(clippy::all)]
 
+pub mod coverage;
+pub mod matching;
 pub mod registry;
 pub mod types;
+pub mod web_fonts;
 
 // Re-export main types for convenience
 pub use registry::FontRegistry;
 pub use types::{
     FontDescriptor, FontFace, FontId, FontMetrics, FontStretch, FontStyle, FontWeight,
     RegistryError,
+};
+
+// Re-export coverage types
+pub use coverage::{CoverageFallbackManager, CoverageStats, FontCoverage};
+
+// Re-export matching types
+pub use matching::{FontMatch, FontMatcher, FontSubstitution, SubstitutionConfig};
+
+// Re-export web font types
+pub use web_fonts::{
+    FontDisplay, FontFaceDeclaration, FontLoadState, FontSource, FontWeightRange, UnicodeRange,
+    WebFont, WebFontManager,
 };

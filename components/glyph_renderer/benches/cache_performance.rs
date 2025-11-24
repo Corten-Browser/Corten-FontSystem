@@ -3,8 +3,8 @@
 //! Tests cache hit rates, memory usage, and cache eviction performance.
 
 use criterion::{black_box, criterion_group, criterion_main, BenchmarkId, Criterion, Throughput};
+use glyph_renderer::types::{GlyphId, OpenTypeFont, RenderMode};
 use glyph_renderer::GlyphRenderer;
-use glyph_renderer::types::{RenderMode, GlyphId, OpenTypeFont};
 
 /// Create a stub font for benchmarking
 fn create_stub_font() -> OpenTypeFont {
@@ -18,25 +18,29 @@ fn bench_cache_scalability(c: &mut Criterion) {
 
     for cache_size in [10, 50, 100, 500, 1000].iter() {
         group.throughput(Throughput::Elements(*cache_size as u64));
-        group.bench_with_input(BenchmarkId::from_parameter(cache_size), cache_size, |b, &size| {
-            let mut renderer = GlyphRenderer::new();
-            let font = create_stub_font();
+        group.bench_with_input(
+            BenchmarkId::from_parameter(cache_size),
+            cache_size,
+            |b, &size| {
+                let mut renderer = GlyphRenderer::new();
+                let font = create_stub_font();
 
-            // Pre-populate cache with 'size' glyphs
-            for i in 0..size {
-                let _ = renderer.rasterize_glyph(
-                    &font,
-                    GlyphId(i as u16 % 256),
-                    16.0,
-                    RenderMode::Gray,
-                );
-            }
+                // Pre-populate cache with 'size' glyphs
+                for i in 0..size {
+                    let _ = renderer.rasterize_glyph(
+                        &font,
+                        GlyphId(i as u16 % 256),
+                        16.0,
+                        RenderMode::Gray,
+                    );
+                }
 
-            b.iter(|| {
-                let stats = renderer.cache_stats();
-                black_box(stats);
-            });
-        });
+                b.iter(|| {
+                    let stats = renderer.cache_stats();
+                    black_box(stats);
+                });
+            },
+        );
     }
     group.finish();
 }
@@ -47,23 +51,27 @@ fn bench_cache_hit_rate(c: &mut Criterion) {
 
     // Different working set sizes vs cache size
     for working_set in [10, 50, 100, 200].iter() {
-        group.bench_with_input(BenchmarkId::from_parameter(working_set), working_set, |b, &size| {
-            let mut renderer = GlyphRenderer::new();
-            let font = create_stub_font();
+        group.bench_with_input(
+            BenchmarkId::from_parameter(working_set),
+            working_set,
+            |b, &size| {
+                let mut renderer = GlyphRenderer::new();
+                let font = create_stub_font();
 
-            b.iter(|| {
-                // Access glyphs in working set pattern
-                for i in 0..1000 {
-                    let glyph_id = GlyphId((i % size) as u16);
-                    let _ = renderer.rasterize_glyph(
-                        black_box(&font),
-                        black_box(glyph_id),
-                        black_box(16.0),
-                        black_box(RenderMode::Gray),
-                    );
-                }
-            });
-        });
+                b.iter(|| {
+                    // Access glyphs in working set pattern
+                    for i in 0..1000 {
+                        let glyph_id = GlyphId((i % size) as u16);
+                        let _ = renderer.rasterize_glyph(
+                            black_box(&font),
+                            black_box(glyph_id),
+                            black_box(16.0),
+                            black_box(RenderMode::Gray),
+                        );
+                    }
+                });
+            },
+        );
     }
     group.finish();
 }
@@ -162,25 +170,29 @@ fn bench_cache_stats_overhead(c: &mut Criterion) {
     let mut group = c.benchmark_group("cache_stats_overhead");
 
     for cache_size in [10, 100, 1000, 10000].iter() {
-        group.bench_with_input(BenchmarkId::from_parameter(cache_size), cache_size, |b, &size| {
-            let mut renderer = GlyphRenderer::new();
-            let font = create_stub_font();
+        group.bench_with_input(
+            BenchmarkId::from_parameter(cache_size),
+            cache_size,
+            |b, &size| {
+                let mut renderer = GlyphRenderer::new();
+                let font = create_stub_font();
 
-            // Pre-populate cache
-            for i in 0..size {
-                let _ = renderer.rasterize_glyph(
-                    &font,
-                    GlyphId((i % 256) as u16),
-                    16.0,
-                    RenderMode::Gray,
-                );
-            }
+                // Pre-populate cache
+                for i in 0..size {
+                    let _ = renderer.rasterize_glyph(
+                        &font,
+                        GlyphId((i % 256) as u16),
+                        16.0,
+                        RenderMode::Gray,
+                    );
+                }
 
-            b.iter(|| {
-                let stats = renderer.cache_stats();
-                black_box(stats);
-            });
-        });
+                b.iter(|| {
+                    let stats = renderer.cache_stats();
+                    black_box(stats);
+                });
+            },
+        );
     }
     group.finish();
 }

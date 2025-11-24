@@ -9,7 +9,7 @@ use std::str::FromStr;
 
 /// OpenType table tag (4-byte identifier)
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub struct Tag([u8; 4]);
+pub struct Tag(pub [u8; 4]);
 
 /// Table record in the font directory
 #[derive(Debug, Clone)]
@@ -485,6 +485,67 @@ impl OpenTypeFont {
     pub fn get_color_layers(&self, glyph_id: GlyphId) -> Option<Vec<crate::color_fonts::Layer>> {
         let colr = self.get_colr()?;
         colr.get_layers(glyph_id).cloned()
+    }
+
+    /// Get GSUB (Glyph Substitution) table
+    ///
+    /// Returns the parsed GSUB table if present, which defines glyph substitutions
+    /// for features like ligatures, alternates, and contextual substitutions.
+    pub fn get_gsub(&self) -> Option<crate::gsub::GsubTable> {
+        let data = self.get_table("GSUB".parse().unwrap())?;
+        crate::gsub::GsubTable::parse(data).ok()
+    }
+
+    /// Get GPOS (Glyph Positioning) table
+    ///
+    /// Returns the parsed GPOS table if present, which defines glyph positioning
+    /// adjustments for features like kerning and mark positioning.
+    pub fn get_gpos(&self) -> Option<crate::gpos::GposTable> {
+        let data = self.get_table("GPOS".parse().unwrap())?;
+        crate::gpos::GposTable::parse(data).ok()
+    }
+
+    /// Check if this font has ligatures
+    ///
+    /// Returns true if the font contains a GSUB table with ligature features.
+    pub fn has_ligatures(&self) -> bool {
+        if let Some(gsub) = self.get_gsub() {
+            let liga = Tag::new("liga").unwrap();
+            let clig = Tag::new("clig").unwrap();
+            return gsub.has_feature(liga) || gsub.has_feature(clig);
+        }
+        false
+    }
+
+    /// Check if this font has kerning
+    ///
+    /// Returns true if the font contains kerning information in GPOS or kern tables.
+    pub fn has_kerning(&self) -> bool {
+        // Check GPOS table
+        if let Some(gpos) = self.get_gpos() {
+            let kern = Tag::new("kern").unwrap();
+            if gpos.has_feature(kern) {
+                return true;
+            }
+        }
+        // Also check for legacy kern table
+        self.has_table("kern".parse().unwrap())
+    }
+
+    /// Get supported OpenType features
+    ///
+    /// Returns a list of all OpenType feature tags supported by this font.
+    pub fn supported_features(&self) -> Vec<Tag> {
+        let mut features = Vec::new();
+        if let Some(gsub) = self.get_gsub() {
+            features.extend(gsub.supported_features());
+        }
+        if let Some(gpos) = self.get_gpos() {
+            features.extend(gpos.supported_features());
+        }
+        features.sort_by(|a, b| a.as_str().cmp(b.as_str()));
+        features.dedup();
+        features
     }
 }
 

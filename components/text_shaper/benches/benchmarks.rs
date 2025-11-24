@@ -7,15 +7,17 @@
 //! They will measure actual performance once text shaping is fully implemented.
 
 use criterion::{black_box, criterion_group, criterion_main, BenchmarkId, Criterion, Throughput};
-use text_shaper::{TextShaper, ShapingOptions, Language, Script};
 use font_registry::FontRegistry;
 use std::collections::HashMap;
+use text_shaper::{Language, Script, ShapingOptions, TextShaper};
 
 /// Create default shaping options for benchmarking
 fn default_shaping_options() -> ShapingOptions {
     ShapingOptions {
         script: Script::Latin,
-        language: Language { tag: "en-US".to_string() },
+        language: Language {
+            tag: "en-US".to_string(),
+        },
         direction: font_types::types::Direction::LeftToRight,
         features: HashMap::new(),
         kerning: true,
@@ -76,23 +78,27 @@ fn bench_shape_scalability(c: &mut Criterion) {
 
     for char_count in [10, 50, 100, 500, 1000].iter() {
         group.throughput(Throughput::Elements(*char_count as u64));
-        group.bench_with_input(BenchmarkId::from_parameter(char_count), char_count, |b, &count| {
-            let text: String = "a".repeat(count);
-            let registry = FontRegistry::new();
-            let shaper = TextShaper::new(&registry);
-            let options = default_shaping_options();
-            let font_id: font_types::types::FontId = 0;
-            let size = 16.0;
+        group.bench_with_input(
+            BenchmarkId::from_parameter(char_count),
+            char_count,
+            |b, &count| {
+                let text: String = "a".repeat(count);
+                let registry = FontRegistry::new();
+                let shaper = TextShaper::new(&registry);
+                let options = default_shaping_options();
+                let font_id: font_types::types::FontId = 0;
+                let size = 16.0;
 
-            b.iter(|| {
-                let _ = shaper.shape_text(
-                    black_box(&text),
-                    black_box(font_id),
-                    black_box(size),
-                    black_box(&options),
-                );
-            });
-        });
+                b.iter(|| {
+                    let _ = shaper.shape_text(
+                        black_box(&text),
+                        black_box(font_id),
+                        black_box(size),
+                        black_box(&options),
+                    );
+                });
+            },
+        );
     }
     group.finish();
 }

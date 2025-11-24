@@ -68,24 +68,28 @@ fn bench_full_page_render(c: &mut Criterion) {
 
     for char_count in [100, 500, 1000, 5000].iter() {
         group.throughput(Throughput::Elements(*char_count as u64));
-        group.bench_with_input(BenchmarkId::from_parameter(char_count), char_count, |b, &count| {
-            let config = FontSystemConfig::default();
-            let mut system = FontSystem::new(config).expect("Failed to create system");
-            let text: String = "a".repeat(count);
+        group.bench_with_input(
+            BenchmarkId::from_parameter(char_count),
+            char_count,
+            |b, &count| {
+                let config = FontSystemConfig::default();
+                let mut system = FontSystem::new(config).expect("Failed to create system");
+                let text: String = "a".repeat(count);
 
-            b.iter(|| {
-                // In real benchmark: shape entire text
-                // let shaped = system.shape_text(&text, &options)
+                b.iter(|| {
+                    // In real benchmark: shape entire text
+                    // let shaped = system.shape_text(&text, &options)
 
-                // In real benchmark: render all glyphs
-                // for glyph in shaped.glyphs {
-                //     system.render_glyph(glyph)
-                // }
+                    // In real benchmark: render all glyphs
+                    // for glyph in shaped.glyphs {
+                    //     system.render_glyph(glyph)
+                    // }
 
-                black_box(&system);
-                black_box(&text);
-            });
-        });
+                    black_box(&system);
+                    black_box(&text);
+                });
+            },
+        );
     }
     group.finish();
 }
@@ -97,7 +101,10 @@ fn bench_typical_scenarios(c: &mut Criterion) {
     let scenarios = [
         ("short_label", "OK"),
         ("button_text", "Submit Form"),
-        ("paragraph", "The quick brown fox jumps over the lazy dog. This is a typical paragraph of text."),
+        (
+            "paragraph",
+            "The quick brown fox jumps over the lazy dog. This is a typical paragraph of text.",
+        ),
         ("heading", "Main Application Title"),
     ];
 
@@ -126,7 +133,7 @@ fn bench_typical_scenarios(c: &mut Criterion) {
 fn bench_font_switching(c: &mut Criterion) {
     c.bench_function("font_switching", |b| {
         let config = FontSystemConfig::default();
-            let mut system = FontSystem::new(config).expect("Failed to create system");
+        let mut system = FontSystem::new(config).expect("Failed to create system");
 
         b.iter(|| {
             // In real benchmark: switch between fonts
@@ -144,7 +151,7 @@ fn bench_font_switching(c: &mut Criterion) {
 fn bench_multi_font_text(c: &mut Criterion) {
     c.bench_function("multi_font_text", |b| {
         let config = FontSystemConfig::default();
-            let mut system = FontSystem::new(config).expect("Failed to create system");
+        let mut system = FontSystem::new(config).expect("Failed to create system");
         let text = "English 中文 العربية"; // Mixed scripts
 
         b.iter(|| {
@@ -163,24 +170,28 @@ fn bench_repeated_rendering(c: &mut Criterion) {
 
     for iterations in [10, 100, 1000].iter() {
         group.throughput(Throughput::Elements(*iterations as u64));
-        group.bench_with_input(BenchmarkId::from_parameter(iterations), iterations, |b, &iters| {
-            let config = FontSystemConfig::default();
-            let mut system = FontSystem::new(config).expect("Failed to create system");
-            let text = "Cached Text";
+        group.bench_with_input(
+            BenchmarkId::from_parameter(iterations),
+            iterations,
+            |b, &iters| {
+                let config = FontSystemConfig::default();
+                let mut system = FontSystem::new(config).expect("Failed to create system");
+                let text = "Cached Text";
 
-            b.iter(|| {
-                for _ in 0..iters {
-                    // In real benchmark: shape and render same text
-                    // let shaped = system.shape_text(text, &options)
-                    // for glyph in shaped.glyphs {
-                    //     system.render_glyph(glyph)
-                    // }
+                b.iter(|| {
+                    for _ in 0..iters {
+                        // In real benchmark: shape and render same text
+                        // let shaped = system.shape_text(text, &options)
+                        // for glyph in shaped.glyphs {
+                        //     system.render_glyph(glyph)
+                        // }
 
-                    black_box(&system);
-                    black_box(text);
-                }
-            });
-        });
+                        black_box(&system);
+                        black_box(text);
+                    }
+                });
+            },
+        );
     }
     group.finish();
 }
@@ -190,10 +201,12 @@ fn bench_memory_overhead(c: &mut Criterion) {
     c.bench_function("memory_overhead", |b| {
         b.iter(|| {
             // Create multiple font systems to measure per-instance overhead
-            let systems: Vec<_> = (0..10).map(|_| {
-                let config = FontSystemConfig::default();
-                FontSystem::new(config).expect("Failed to create system")
-            }).collect();
+            let systems: Vec<_> = (0..10)
+                .map(|_| {
+                    let config = FontSystemConfig::default();
+                    FontSystem::new(config).expect("Failed to create system")
+                })
+                .collect();
             black_box(systems);
         });
     });
@@ -220,7 +233,7 @@ fn bench_system_cleanup(c: &mut Criterion) {
 fn bench_concurrent_rendering(c: &mut Criterion) {
     c.bench_function("concurrent_rendering", |b| {
         let config = FontSystemConfig::default();
-            let mut system = FontSystem::new(config).expect("Failed to create system");
+        let mut system = FontSystem::new(config).expect("Failed to create system");
         let texts = ["Text A", "Text B", "Text C", "Text D"];
 
         b.iter(|| {
@@ -241,14 +254,22 @@ fn bench_concurrent_rendering(c: &mut Criterion) {
 fn bench_realistic_content(c: &mut Criterion) {
     c.bench_function("realistic_content", |b| {
         let config = FontSystemConfig::default();
-            let mut system = FontSystem::new(config).expect("Failed to create system");
+        let mut system = FontSystem::new(config).expect("Failed to create system");
 
         // Realistic document with headings, paragraphs, lists
         let content = vec![
             ("heading1", "Document Title", 24.0),
             ("heading2", "Section 1: Introduction", 18.0),
-            ("paragraph", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 12.0),
-            ("paragraph", "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 12.0),
+            (
+                "paragraph",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                12.0,
+            ),
+            (
+                "paragraph",
+                "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                12.0,
+            ),
             ("heading2", "Section 2: Details", 18.0),
             ("list_item", "• First item", 12.0),
             ("list_item", "• Second item", 12.0),

@@ -4,8 +4,8 @@
 //! modes, and with different fonts.
 
 use criterion::{black_box, criterion_group, criterion_main, BenchmarkId, Criterion, Throughput};
+use glyph_renderer::types::{GlyphId, OpenTypeFont, RenderMode};
 use glyph_renderer::GlyphRenderer;
-use glyph_renderer::types::{RenderMode, GlyphId, OpenTypeFont};
 
 /// Create a stub font for benchmarking
 fn create_stub_font() -> OpenTypeFont {
@@ -141,10 +141,7 @@ fn bench_get_outline(c: &mut Criterion) {
         let glyph_id = GlyphId(65);
 
         b.iter(|| {
-            let _ = renderer.get_glyph_outline(
-                black_box(&font),
-                black_box(glyph_id),
-            );
+            let _ = renderer.get_glyph_outline(black_box(&font), black_box(glyph_id));
         });
     });
 }

@@ -6,7 +6,15 @@
 use std::collections::HashMap;
 use std::path::PathBuf;
 
+pub mod coretext;
+pub mod directwrite;
 pub mod types;
+
+// Re-export platform-specific modules
+pub use coretext::{
+    CoreTextFontCollection, CoreTextTypesetter, GlyphRun, TypesetLine, TypesetResult,
+};
+pub use directwrite::{DirectWriteFontCollection, DirectWriteTextAnalyzer, ScriptRun};
 
 pub use types::{FontCategory, FontStyle, FontWeight, Platform, PlatformFontInfo};
 

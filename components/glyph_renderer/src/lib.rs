@@ -1,9 +1,35 @@
 //! glyph_renderer - Glyph rasterization, hinting, subpixel rendering, and glyph caching
+//!
+//! This crate provides glyph rasterization capabilities including:
+//! - FreeType-based rasterization (current primary)
+//! - Native Rust rasterizer (gradual replacement for FreeType)
+//! - Glyph caching with LRU eviction
+//! - Subpixel rendering support
+//! - GPU-optimized texture atlas caching (FEAT-045)
+//! - Memory pooling for reduced allocations (FEAT-047)
+//! - Performance instrumentation (FEAT-030)
 
 #![warn(missing_docs)]
 #![warn(clippy::all)]
 
+pub mod cache;
+pub mod native_rasterizer;
+pub mod perf;
+pub mod pool;
 pub mod types;
+
+// Re-export native rasterizer types
+pub use native_rasterizer::{HintingMode, NativeRasterizer, RasterizeError};
+
+// Re-export performance optimization types
+pub use cache::{
+    AtlasRegion, CachedGlyph, GpuCacheConfig, GpuCacheKey, GpuCacheStats, GpuGlyphCache,
+};
+pub use perf::{
+    disable_instrumentation, enable_instrumentation, is_instrumentation_enabled, MemoryTracker,
+    TimingCollector, TimingScope, TimingStats,
+};
+pub use pool::{ArenaStats, BufferPool, BufferPoolStats, GlyphArena, MemoryPool, PoolConfig};
 
 use lru::LruCache;
 use std::num::NonZeroUsize;
