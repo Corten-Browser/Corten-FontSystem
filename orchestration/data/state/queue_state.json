@@ -6,13 +6,13 @@
       "description": "system fonts on Linux/Windows/macOS",
       "feature_id": "FEAT-001",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-verb",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-002",
@@ -20,13 +20,13 @@
       "description": "TTF/OTF files",
       "feature_id": "FEAT-002",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-verb",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-003",
@@ -34,13 +34,13 @@
       "description": "Basic font registry",
       "feature_id": "FEAT-003",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-004",
@@ -48,13 +48,13 @@
       "description": "Font matching by family name",
       "feature_id": "FEAT-004",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-005",
@@ -62,13 +62,13 @@
       "description": "Harfbuzz for text shaping",
       "feature_id": "FEAT-005",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-verb",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-006",
@@ -76,13 +76,13 @@
       "description": "Basic Latin text shaping",
       "feature_id": "FEAT-006",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-007",
@@ -90,13 +90,13 @@
       "description": "Glyph positioning",
       "feature_id": "FEAT-007",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-008",
@@ -104,13 +104,13 @@
       "description": "FreeType rasterization",
       "feature_id": "FEAT-008",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-009",
@@ -118,13 +118,13 @@
       "description": "font metrics",
       "feature_id": "FEAT-009",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-verb",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-010",
@@ -132,13 +132,13 @@
       "description": "font fallback chain",
       "feature_id": "FEAT-010",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-verb",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-011",
@@ -146,13 +146,13 @@
       "description": "Unicode script detection",
       "feature_id": "FEAT-011",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-012",
@@ -160,13 +160,13 @@
       "description": "Coverage-based fallback",
       "feature_id": "FEAT-012",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-013",
@@ -174,13 +174,13 @@
       "description": "Complete OpenType parser",
       "feature_id": "FEAT-013",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-014",
@@ -188,13 +188,13 @@
       "description": "WOFF/WOFF2 support",
       "feature_id": "FEAT-014",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-015",
@@ -202,13 +202,13 @@
       "description": "CFF/CFF2 parsing",
       "feature_id": "FEAT-015",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-016",
@@ -216,13 +216,13 @@
       "description": "Variable font parsing",
       "feature_id": "FEAT-016",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-017",
@@ -230,13 +230,13 @@
       "description": "Unicode bidi algorithm",
       "feature_id": "FEAT-017",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-018",
@@ -244,13 +244,13 @@
       "description": "RTL text shaping",
       "feature_id": "FEAT-018",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-019",
@@ -258,13 +258,13 @@
       "description": "Mixed direction text",
       "feature_id": "FEAT-019",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-020",
@@ -272,13 +272,13 @@
       "description": "Bidi paragraph levels",
       "feature_id": "FEAT-020",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-021",
@@ -286,13 +286,13 @@
       "description": "Arabic shaping",
       "feature_id": "FEAT-021",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-022",
@@ -300,13 +300,13 @@
       "description": "Indic scripts",
       "feature_id": "FEAT-022",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-023",
@@ -314,13 +314,13 @@
       "description": "Thai/Lao/Khmer",
       "feature_id": "FEAT-023",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-024",
@@ -328,13 +328,13 @@
       "description": "Vertical text (CJK)",
       "feature_id": "FEAT-024",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-025",
@@ -342,13 +342,13 @@
       "description": "GSUB implementation",
       "feature_id": "FEAT-025",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-026",
@@ -356,13 +356,13 @@
       "description": "GPOS implementation",
       "feature_id": "FEAT-026",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-027",
@@ -370,13 +370,13 @@
       "description": "Feature selection",
       "feature_id": "FEAT-027",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-028",
@@ -384,13 +384,13 @@
       "description": "Contextual substitution",
       "feature_id": "FEAT-028",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-029",
@@ -398,13 +398,13 @@
       "description": "Replace Harfbuzz with Rust impl",
       "feature_id": "FEAT-029",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:37:58.102423Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-030",
@@ -412,13 +412,13 @@
       "description": "Performance optimization",
       "feature_id": "FEAT-030",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:37:58.102423Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-031",
@@ -426,13 +426,13 @@
       "description": "Caching system",
       "feature_id": "FEAT-031",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-032",
@@ -440,13 +440,13 @@
       "description": "Memory optimization",
       "feature_id": "FEAT-032",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:37:58.102423Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-033",
@@ -454,13 +454,13 @@
       "description": "Pure Rust rasterizer",
       "feature_id": "FEAT-033",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:37:58.102423Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-034",
@@ -468,13 +468,13 @@
       "description": "Anti-aliasing",
       "feature_id": "FEAT-034",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-035",
@@ -482,13 +482,13 @@
       "description": "Subpixel rendering",
       "feature_id": "FEAT-035",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-036",
@@ -496,13 +496,13 @@
       "description": "Hinting support",
       "feature_id": "FEAT-036",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-037",
@@ -510,13 +510,13 @@
       "description": "Color fonts (COLR/CPAL)",
       "feature_id": "FEAT-037",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-038",
@@ -524,13 +524,13 @@
       "description": "Emoji support",
       "feature_id": "FEAT-038",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-039",
@@ -538,13 +538,13 @@
       "description": "SVG-in-OpenType",
       "feature_id": "FEAT-039",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-040",
@@ -552,13 +552,13 @@
       "description": "Bitmap fonts",
       "feature_id": "FEAT-040",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:15:07.519673Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-041",
@@ -566,13 +566,13 @@
       "description": "DirectWrite integration (Windows)",
       "feature_id": "FEAT-041",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-042",
@@ -580,13 +580,13 @@
       "description": "CoreText integration (macOS)",
       "feature_id": "FEAT-042",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-043",
@@ -594,13 +594,13 @@
       "description": "Advanced font matching",
       "feature_id": "FEAT-043",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-044",
@@ -608,13 +608,13 @@
       "description": "System font substitution",
       "feature_id": "FEAT-044",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-045",
@@ -622,13 +622,13 @@
       "description": "GPU glyph caching",
       "feature_id": "FEAT-045",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:37:58.102423Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-046",
@@ -636,13 +636,13 @@
       "description": "Parallel shaping",
       "feature_id": "FEAT-046",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:37:58.102423Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-047",
@@ -650,13 +650,13 @@
       "description": "Memory pool optimization",
       "feature_id": "FEAT-047",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:37:58.102423Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-048",
@@ -664,13 +664,13 @@
       "description": "Final optimizations",
       "feature_id": "FEAT-048",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:37:58.102423Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "automated-checklist-bare",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-049",
@@ -681,9 +681,9 @@
         "FEAT-002",
         "FEAT-003"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "template_id": "fonts-font-loader",
@@ -704,7 +704,7 @@
         }
       ],
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-050",
@@ -714,9 +714,9 @@
       "dependencies": [
         "FEAT-006"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "template_id": "fonts-text-shaping",
@@ -732,7 +732,7 @@
         }
       ],
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-051",
@@ -743,9 +743,9 @@
         "FEAT-050",
         "FEAT-006"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "template_id": "fonts-text-shaping",
@@ -754,7 +754,7 @@
       "estimated_loc": "3000-5000",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-052",
@@ -764,9 +764,9 @@
       "dependencies": [
         "FEAT-007"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "template_id": "fonts-text-shaping",
@@ -775,7 +775,7 @@
       "estimated_loc": "2000-3000",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-053",
@@ -786,9 +786,9 @@
         "FEAT-051",
         "FEAT-052"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "template_id": "fonts-text-shaping",
@@ -797,7 +797,7 @@
       "estimated_loc": "1500-2500",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-054",
@@ -807,9 +807,9 @@
       "dependencies": [
         "FEAT-001"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "template_id": "fonts-font-loader",
@@ -825,7 +825,7 @@
         }
       ],
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-055",
@@ -833,16 +833,16 @@
       "description": "FontWeight enumeration (100-900) with Thin, Light, Regular, Bold, Black variants",
       "feature_id": "FEAT-055",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "easy",
       "estimated_loc": "100-200",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-056",
@@ -850,16 +850,16 @@
       "description": "FontStyle enumeration with Normal, Italic, Oblique(angle) variants",
       "feature_id": "FEAT-056",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "easy",
       "estimated_loc": "100-200",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-057",
@@ -867,16 +867,16 @@
       "description": "FontStretch enumeration (50-200) from UltraCondensed to UltraExpanded",
       "feature_id": "FEAT-057",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "easy",
       "estimated_loc": "100-200",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-058",
@@ -888,16 +888,16 @@
         "FEAT-056",
         "FEAT-057"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "easy",
       "estimated_loc": "200-400",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-059",
@@ -907,16 +907,16 @@
       "dependencies": [
         "FEAT-058"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
       "estimated_loc": "500-1000",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-060",
@@ -924,16 +924,16 @@
       "description": "GlyphId newtype wrapper for glyph identifiers with u32 storage",
       "feature_id": "FEAT-060",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "easy",
       "estimated_loc": "50-100",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-061",
@@ -943,16 +943,16 @@
       "dependencies": [
         "FEAT-060"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "easy",
       "estimated_loc": "200-400",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-062",
@@ -962,16 +962,16 @@
       "dependencies": [
         "FEAT-061"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "easy",
       "estimated_loc": "200-400",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-063",
@@ -979,16 +979,16 @@
       "description": "ShapingOptions structure with script, language, direction, features, kerning, ligatures",
       "feature_id": "FEAT-063",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "easy",
       "estimated_loc": "300-500",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-064",
@@ -996,16 +996,16 @@
       "description": "Direction enumeration with LeftToRight, RightToLeft, TopToBottom, BottomToTop",
       "feature_id": "FEAT-064",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "easy",
       "estimated_loc": "50-100",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-065",
@@ -1013,9 +1013,9 @@
       "description": "RenderMode enumeration with Mono, Gray, SubpixelRgb, SubpixelBgr variants",
       "feature_id": "FEAT-065",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "template_id": "fonts-font-rasterization",
@@ -1024,7 +1024,7 @@
       "estimated_loc": "100-200",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-066",
@@ -1034,9 +1034,9 @@
       "dependencies": [
         "FEAT-065"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "template_id": "fonts-font-rasterization",
@@ -1045,7 +1045,7 @@
       "estimated_loc": "200-400",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-067",
@@ -1055,9 +1055,9 @@
       "dependencies": [
         "FEAT-003"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "template_id": "fonts-font-loader",
@@ -1066,7 +1066,7 @@
       "estimated_loc": "500-1000",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-068",
@@ -1077,9 +1077,9 @@
         "FEAT-002",
         "FEAT-067"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "template_id": "fonts-font-loader",
@@ -1088,7 +1088,7 @@
       "estimated_loc": "500-1000",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-069",
@@ -1099,9 +1099,9 @@
         "FEAT-002",
         "FEAT-067"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "template_id": "fonts-font-loader",
@@ -1110,7 +1110,7 @@
       "estimated_loc": "300-600",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-070",
@@ -1121,9 +1121,9 @@
         "FEAT-005",
         "FEAT-063"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "template_id": "fonts-text-shaping",
@@ -1139,7 +1139,7 @@
         }
       ],
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-071",
@@ -1150,9 +1150,9 @@
         "FEAT-070",
         "FEAT-010"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "template_id": "fonts-text-shaping",
@@ -1161,7 +1161,7 @@
       "estimated_loc": "1500-2500",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-072",
@@ -1171,9 +1171,9 @@
       "dependencies": [
         "FEAT-013"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T22:58:57.477070Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "template_id": "fonts-font-rasterization",
@@ -1182,7 +1182,7 @@
       "estimated_loc": "1000-2000",
       "detected_language": "Rust",
       "completion_method": "reconciliation",
-      "reconciliation_notes": "Detected as already implemented via /orch-reconcile-queue"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-073",
@@ -1192,16 +1192,16 @@
       "dependencies": [
         "FEAT-067"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
       "estimated_loc": "500-1000",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-074",
@@ -1211,16 +1211,16 @@
       "dependencies": [
         "FEAT-073"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
       "estimated_loc": "200-400",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-075",
@@ -1230,16 +1230,16 @@
       "dependencies": [
         "FEAT-073"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "easy",
       "estimated_loc": "100-200",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-076",
@@ -1250,16 +1250,16 @@
         "FEAT-073",
         "FEAT-049"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
       "estimated_loc": "300-500",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-077",
@@ -1270,16 +1270,16 @@
         "FEAT-073",
         "FEAT-070"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
       "estimated_loc": "300-500",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-078",
@@ -1290,16 +1290,16 @@
         "FEAT-073",
         "FEAT-008"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
       "estimated_loc": "300-500",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-079",
@@ -1309,16 +1309,16 @@
       "dependencies": [
         "FEAT-073"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "easy",
       "estimated_loc": "100-200",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-080",
@@ -1328,16 +1328,16 @@
       "dependencies": [
         "FEAT-073"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "easy",
       "estimated_loc": "200-400",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-081",
@@ -1347,16 +1347,16 @@
       "dependencies": [
         "FEAT-013"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
       "estimated_loc": "300-600",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-082",
@@ -1366,16 +1366,16 @@
       "dependencies": [
         "FEAT-013"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
       "estimated_loc": "500-1000",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-083",
@@ -1385,16 +1385,16 @@
       "dependencies": [
         "FEAT-013"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "easy",
       "estimated_loc": "100-200",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-084",
@@ -1404,16 +1404,16 @@
       "dependencies": [
         "FEAT-013"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "hard",
       "estimated_loc": "1000-2000",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-085",
@@ -1423,16 +1423,16 @@
       "dependencies": [
         "FEAT-002"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "easy",
       "estimated_loc": "100-200",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-086",
@@ -1442,9 +1442,9 @@
       "dependencies": [
         "FEAT-013"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
@@ -1458,7 +1458,7 @@
         }
       ],
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-087",
@@ -1468,16 +1468,16 @@
       "dependencies": [
         "FEAT-013"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "expert",
       "estimated_loc": "2000-4000",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-088",
@@ -1487,16 +1487,16 @@
       "dependencies": [
         "FEAT-031"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
       "estimated_loc": "300-600",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-089",
@@ -1504,16 +1504,16 @@
       "description": "Timeout long font operations for security",
       "feature_id": "FEAT-089",
       "dependencies": [],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
       "estimated_loc": "300-600",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-090",
@@ -1523,16 +1523,16 @@
       "dependencies": [
         "FEAT-087"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
       "estimated_loc": "500-1000",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-091",
@@ -1543,16 +1543,16 @@
         "FEAT-073",
         "FEAT-049"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
       "estimated_loc": "500-1000",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-092",
@@ -1563,16 +1563,16 @@
         "FEAT-073",
         "FEAT-062"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
       "estimated_loc": "500-1000",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-093",
@@ -1582,16 +1582,16 @@
       "dependencies": [
         "FEAT-049"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
       "estimated_loc": "500-1000",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-094",
@@ -1601,16 +1601,16 @@
       "dependencies": [
         "FEAT-093"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "medium",
       "estimated_loc": "300-600",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     },
     {
       "id": "TASK-FEAT-095",
@@ -1620,116 +1620,20 @@
       "dependencies": [
         "FEAT-073"
       ],
-      "status": "completed",
+      "status": "incomplete",
       "started_at": null,
-      "completed_at": "2025-11-23T23:25:56.363325Z",
+      "completed_at": null,
       "verification_result": null,
       "extraction_method": "llm",
       "difficulty": "easy",
       "estimated_loc": "200-400",
       "detected_language": "Rust",
       "completion_method": "sub-agent",
-      "reconciliation_notes": "Implemented by parallel sub-agent during Phase 4"
+      "reconciliation_notes": "Reset from 'completed' via /orch-reconcile-queue --reset at 2025-11-24T19:12:57.991880Z"
     }
   ],
-  "completed_order": [
-    "FEAT-001",
-    "FEAT-002",
-    "FEAT-003",
-    "FEAT-004",
-    "FEAT-005",
-    "FEAT-006",
-    "FEAT-007",
-    "FEAT-008",
-    "FEAT-009",
-    "FEAT-010",
-    "FEAT-011",
-    "FEAT-014",
-    "FEAT-016",
-    "FEAT-024",
-    "FEAT-031",
-    "FEAT-034",
-    "FEAT-035",
-    "FEAT-037",
-    "FEAT-050",
-    "FEAT-051",
-    "FEAT-052",
-    "FEAT-053",
-    "FEAT-054",
-    "FEAT-055",
-    "FEAT-056",
-    "FEAT-057",
-    "FEAT-058",
-    "FEAT-060",
-    "FEAT-061",
-    "FEAT-062",
-    "FEAT-063",
-    "FEAT-064",
-    "FEAT-065",
-    "FEAT-066",
-    "FEAT-067",
-    "FEAT-068",
-    "FEAT-069",
-    "FEAT-070",
-    "FEAT-071",
-    "FEAT-072",
-    "FEAT-017",
-    "FEAT-018",
-    "FEAT-019",
-    "FEAT-020",
-    "FEAT-021",
-    "FEAT-022",
-    "FEAT-023",
-    "FEAT-025",
-    "FEAT-026",
-    "FEAT-027",
-    "FEAT-028",
-    "FEAT-013",
-    "FEAT-015",
-    "FEAT-036",
-    "FEAT-038",
-    "FEAT-039",
-    "FEAT-040",
-    "FEAT-073",
-    "FEAT-074",
-    "FEAT-075",
-    "FEAT-076",
-    "FEAT-077",
-    "FEAT-078",
-    "FEAT-079",
-    "FEAT-080",
-    "FEAT-081",
-    "FEAT-082",
-    "FEAT-083",
-    "FEAT-084",
-    "FEAT-085",
-    "FEAT-086",
-    "FEAT-087",
-    "FEAT-088",
-    "FEAT-089",
-    "FEAT-090",
-    "FEAT-012",
-    "FEAT-041",
-    "FEAT-042",
-    "FEAT-043",
-    "FEAT-044",
-    "FEAT-049",
-    "FEAT-059",
-    "FEAT-091",
-    "FEAT-092",
-    "FEAT-093",
-    "FEAT-094",
-    "FEAT-095",
-    "FEAT-029",
-    "FEAT-030",
-    "FEAT-032",
-    "FEAT-033",
-    "FEAT-045",
-    "FEAT-046",
-    "FEAT-047",
-    "FEAT-048"
-  ],
-  "last_updated": "2025-11-23T23:37:58.102423Z",
+  "completed_order": [],
+  "last_updated": "2025-11-24T19:12:57.991880Z",
   "initialized": true,
   "spec_file": "specifications/font-system-specification.md",
   "spec_files": [
@@ -1748,8 +1652,9 @@
     "extraction_timestamp": "2025-11-23T23:58:00.000000"
   },
   "reconciliation_info": {
-    "timestamp": "2025-11-23T22:58:57.477070Z",
-    "tasks_marked_complete": 40,
-    "method": "codebase_analysis"
+    "timestamp": "2025-11-24T19:12:57.991880Z",
+    "tasks_reset": 95,
+    "method": "reset_all",
+    "reason": "User requested full re-verification via --reset flag"
   }
 }
