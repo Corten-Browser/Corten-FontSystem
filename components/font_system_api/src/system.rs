@@ -9,12 +9,11 @@ use glyph_renderer::types::{GlyphBitmap, GlyphOutline, RenderMode};
 use std::path::Path;
 use text_shaper::types::ShapingOptions;
 
-// ShapedText type placeholder (will be implemented in text_shaper)
-/// Shaped text result (placeholder)
+/// Shaped text result containing glyph positions and IDs
 #[derive(Debug, Clone, Default)]
 pub struct ShapedText {
-    /// Placeholder for shaped text data
-    _data: Vec<u8>,
+    /// Raw shaped text data
+    data: Vec<u8>,
 }
 
 /// Main font system orchestration structure

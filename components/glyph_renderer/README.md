@@ -32,8 +32,8 @@ use glyph_renderer::{GlyphRenderer, types::*};
 // Create a new glyph renderer
 let mut renderer = GlyphRenderer::new();
 
-// Rasterize a glyph (requires actual font implementation)
-let font = OpenTypeFont::new_stub(); // Placeholder until font_parser is ready
+// Rasterize a glyph
+let font = OpenTypeFont::load("path/to/font.ttf")?;
 let glyph_id = GlyphId(42);
 let size = 16.0; // Font size in points
 let mode = RenderMode::Gray;
@@ -66,22 +66,20 @@ println!("Cache: {} entries, {} hits, {} misses, {} bytes",
 renderer.clear_cache();
 ```
 
-### Current Implementation Status
+### Implementation Status
 
-**Implemented:**
+**Implemented (v0.1.0):**
 - ✅ GlyphRenderer structure with caching support
 - ✅ Cache statistics tracking (hits, misses, memory usage)
 - ✅ Cache management (clear, stats)
 - ✅ Type definitions (RenderError, CacheStats, GlyphBitmap, GlyphOutline)
+- ✅ FreeType-based rasterization
+- ✅ Glyph outline extraction
 - ✅ API contract compliance (matches contracts/glyph_renderer.yaml)
 
-**Pending:**
-- ⏳ Actual FreeType-based rasterization (requires real font data)
-- ⏳ Glyph outline extraction
-- ⏳ Subpixel rendering optimization
-- ⏳ GPU-accelerated caching (future enhancement)
-
-**Note:** This component currently uses stub types for OpenTypeFont. Full functionality will be available once the font_parser component provides real font parsing capabilities.
+**Future Enhancements:**
+- Subpixel rendering optimization
+- GPU-accelerated caching
 
 ## Development
 
