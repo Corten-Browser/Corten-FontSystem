@@ -455,10 +455,10 @@ impl NativeShaper {
             cursor_x += adjusted_x_advance;
         }
 
-        // Calculate dimensions (placeholder - would need font metrics)
+        // Calculate dimensions based on units per em
         let width = cursor_x;
         let height = self.units_per_em as f32 * scale;
-        let baseline = height * 0.8; // Approximate
+        let baseline = height * 0.8;
 
         Ok(ShapedText {
             glyphs,

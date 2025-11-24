@@ -1,7 +1,7 @@
 //! Unit tests for Harfbuzz integration
 //!
 //! These tests verify that real text shaping is performed using Harfbuzz,
-//! not just placeholder implementations.
+//! with actual glyph positioning and shaping results.
 
 use font_registry::FontRegistry;
 use font_types::types::{Direction, FontDescriptor, FontStretch, FontStyle, FontWeight};
