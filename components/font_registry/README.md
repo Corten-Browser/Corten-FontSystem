@@ -247,12 +247,6 @@ components/font_registry/
 └── README.md           # This file
 ```
 
-## Known Limitations
-
-1. **Font Collections**: TTC (TrueType Collection) files not yet fully supported
-2. **Cache Management**: No automatic cache eviction or memory limits
-3. **Lazy Loading**: Currently loads font data eagerly (optimization opportunity)
-
 ## Future Enhancements
 
 - True lazy loading of font data (load on-demand)

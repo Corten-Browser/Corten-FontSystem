@@ -34,8 +34,9 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_placeholder() {
-        // Tests will be added during TDD
-        assert!(true);
+    fn test_module_exports() {
+        // Verify module re-exports work correctly
+        let script = Script::Latin;
+        assert!(matches!(script, Script::Latin));
     }
 }

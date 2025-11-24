@@ -100,7 +100,7 @@ for font in fonts {
 
 #### Windows Implementation
 
-**Status**: 🚧 Stub (Planned)
+**Status**: 🔄 Planned (v0.2.0)
 
 Will use DirectWrite API for font discovery:
 - IDWriteFontCollection for system fonts
@@ -111,7 +111,7 @@ See: [DirectWrite Documentation](https://docs.microsoft.com/en-us/windows/win32/
 
 #### macOS Implementation
 
-**Status**: 🚧 Stub (Planned)
+**Status**: 🔄 Planned (v0.2.0)
 
 Will use CoreText API for font discovery:
 - CTFontCollection for system fonts
